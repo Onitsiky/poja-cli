@@ -37,4 +37,3 @@ def gen(app_name, region, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, output_dir=
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)
 
     print_title("... all done!")
-    return output_dir

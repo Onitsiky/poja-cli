@@ -6,7 +6,7 @@ from poja.version import get_version
 import yaml
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG = "v1.0.0"
+GIT_TAG = "v1.1.0"
 
 
 def gen(app_name, region, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, output_dir=None):

@@ -11,6 +11,7 @@ def test_gen_annotator():
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/public1/id",
         ssm_subnet2_id="/poja/subnet/public2/id",
+        package_full_name="com.company.base",
         output_dir=output_dir,
     )
     assert is_dir_superset_of("oracle-poja-base", output_dir)

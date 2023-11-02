@@ -4,6 +4,7 @@ import poja.sed as sed
 from poja.myrich import print_title, print_normal, print_banner
 from poja.version import get_version
 import yaml
+import os
 
 GIT_URL = "https://github.com/hei-school/poja"
 GIT_TAG = "v1.1.0"
@@ -37,6 +38,10 @@ def gen(app_name, region, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, output_dir=
     print_title("Save conf..")
     save_conf(temp_dir, app_name, region, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id)
     print_normal("poja.yml")
+
+    print_title("Rm project-specific files..")
+    print_normal("README.*")
+    os.remove(temp_dir + "/README.md")
 
     print_title("Copy to output dir..")
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)

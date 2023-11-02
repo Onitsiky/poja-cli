@@ -10,7 +10,7 @@ A Python CLI to the [POJA stack](https://github.com/hei-school/poja).
 ```
 pip install poja
 python -m poja \
-  --app-name=poja-annotator \
+  --app-name=poja-base \
   --region=eu-west-3 \
   --ssm-sg-id=/poja/sg/id \
   --ssm-subnet1-id=/poja/subnet/public1/id \
@@ -25,7 +25,7 @@ Those configurations will be automatically saved in `poja.yml` at the end of the
 ```
 pip install poja --upgrade
 python -m poja \
-  --app-name=poja-annotator \
+  --app-name=poja-base \
   --region=eu-west-3 \
   --ssm-sg-id=/poja/sg/id \
   --ssm-subnet1-id=/poja/subnet/public1/id \

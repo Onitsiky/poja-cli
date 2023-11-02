@@ -14,8 +14,8 @@ python -m poja \
   --package-full-name=com.company.base \
   --region=eu-west-3 \
   --ssm-sg-id=/poja/sg/id \
-  --ssm-subnet1-id=/poja/subnet/public1/id \
-  --ssm-subnet2-id=/poja/subnet/public2/id \
+  --ssm-subnet1-id=/poja/subnet/private1/id \
+  --ssm-subnet2-id=/poja/subnet/private2/id \
   --output-dir=folder-to-be-created
 ```
 
@@ -30,8 +30,8 @@ python -m poja \
   --package-full-name=com.company.base \
   --region=eu-west-3 \
   --ssm-sg-id=/poja/sg/id \
-  --ssm-subnet1-id=/poja/subnet/public1/id \
-  --ssm-subnet2-id=/poja/subnet/public2/id \
+  --ssm-subnet1-id=/poja/subnet/private1/id \
+  --ssm-subnet2-id=/poja/subnet/private2/id \
   --output-dir=folder-already-created
 ```
 

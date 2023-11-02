@@ -14,7 +14,7 @@ The moment you push in one of these branches, CI/CD will be triggered.
 Create first:
 - Two subnets. They can be both public or both private or a mix of both, as long as they can communicate between each other. Reference their id in SSM under any name you want.
 - A security group that allows HTTP and Postgres traffic. Put its id in SSM under any name you want.
-- Two entries in SSM that stores the credentials of the database that will be created. The name MUST be as follows: `/poja-annotator/<?env>/db/username` and `/poja-annotator/<?env>/db/password` where poja-annotator` is any name you want and `poja-annotator` is either `prod` or `preprod`.
+- Two entries in SSM that stores the credentials of the database that will be created. The name MUST be as follows: `/poja-base/<?env>/db/username` and `/poja-base/<?env>/db/password` where poja-base` is any name you want and `poja-base` is either `prod` or `preprod`.
 
 > **Warning**
 > In case you provide private subnets, remind that the associated NAT Gateway for accessing Internet is __not__ serverless.

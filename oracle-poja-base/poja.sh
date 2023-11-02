@@ -2,7 +2,7 @@
 
 export LC_CTYPE=C
 export LANG=C
-find ./ -type f -exec sed -i '' -e "s/poja-annotator/$1/g" {} \;
+find ./ -type f -exec sed -i '' -e "s/poja-base/$1/g" {} \;
 find ./ -type f -exec sed -i '' -e "s/eu-west-3/$2/g" {} \;
 
 ESCAPED_SG_ID=$(printf '%s\n' "$3" | sed -e 's/\//\\&/g');

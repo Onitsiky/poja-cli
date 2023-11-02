@@ -4,16 +4,16 @@ import os.path
 
 
 def test_gen_annotator():
-    output_dir = "test-poja-annotator"
+    output_dir = "test-poja-base"
     poja.gen(
-        "poja-annotator",
+        "poja-base",
         region="eu-west-3",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/public1/id",
         ssm_subnet2_id="/poja/subnet/public2/id",
         output_dir=output_dir,
     )
-    assert is_dir_superset_of("oracle-poja-annotator", output_dir)
+    assert is_dir_superset_of("oracle-poja-base", output_dir)
 
 
 def is_dir_superset_of(superset_dir, subset_dir):

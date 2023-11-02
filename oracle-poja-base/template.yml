@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
-Description: poja-annotator - Computation and API
+Description: poja-base - Computation and API
 
 Globals:
   Function:
@@ -12,9 +12,9 @@ Globals:
     MemorySize: 1024
     Environment:
       Variables:
-        DATABASE_URL: !Sub '{{resolve:ssm:/poja-annotator/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-annotator/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-annotator/${Env}/db/password}}'
+        DATABASE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/db/url}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'
 
 Parameters:
   Env:
@@ -58,7 +58,7 @@ Resources:
   ApiUrlSSM:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: !Join [ '', [ /poja-annotator/, !Ref Env, /api/url ] ]
+      Name: !Join [ '', [ /poja-base/, !Ref Env, /api/url ] ]
       Type: String
       Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
 

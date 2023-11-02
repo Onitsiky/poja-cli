@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: poja-annotator - Domain name
+Description: poja-base - Domain name
 
 Parameters:
   DomainName:

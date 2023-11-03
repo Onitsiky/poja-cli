@@ -1,3 +1,20 @@
+# [1.0.0](https://github.com/hei-school/poja-cli/compare/v0.3.0...v1.0.0) (2023-11-03)
+
+
+### Features
+
+* event stack ([f186d82](https://github.com/hei-school/poja-cli/commit/f186d82ed886d16c5f6786186092e7e465466067))
+
+
+### BREAKING CHANGES
+
+* POJA subnets must be private
+fix: SpringApp is Poja, not Mailbox
+feat: disable flyway migration during Mailbox
+feat: push messages by batch of 5
+
+
+
 # [0.3.0](https://github.com/hei-school/poja-cli/compare/v0.2.0...v0.3.0) (2023-11-02)
 
 

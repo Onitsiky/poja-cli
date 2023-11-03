@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "00cf6c2"
+GIT_TAG_OR_COMMIT = "602df2b"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 
@@ -49,7 +49,7 @@ def gen(
     set_package_dirs(temp_dir, package_full_name, "main")
     set_package_dirs(temp_dir, package_full_name, "test")
 
-    print_title("Save conf..")
+    print_title("Save conf...")
     save_conf(
         temp_dir,
         app_name,
@@ -61,11 +61,14 @@ def gen(
     )
     print_normal("poja.yml")
 
-    print_title("Rm project-specific files..")
+    print_title("Rm project-specific files...")
     print_normal("README.*")
     os.remove(temp_dir + "/README.md")
 
-    print_title("Copy to output dir..")
+    print_title("Format...")
+    os.system("cd %s && ./format.sh" % temp_dir)
+
+    print_title("Copy to output dir...")
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)
 
     print_title("... all done!")

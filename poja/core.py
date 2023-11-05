@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "602df2b"
+GIT_TAG_OR_COMMIT = "5756d9a"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 

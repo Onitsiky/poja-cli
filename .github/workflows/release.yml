@@ -35,8 +35,8 @@ jobs:
       uses: TriPSs/conventional-changelog-action@v4.1.1
       with:
         github-token: ${{ secrets.GH_TOKEN_FOR_CONVENTIONAL_CHANGELOG }}
-        release-count: '10'
         version-file: './version.yml'
+        input-file: './CHANGELOG.md'
         git-message: 'release: {version}'
         version-path: 'version'
         skip-on-empty: 'true'

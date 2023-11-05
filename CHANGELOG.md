@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/hei-school/poja-cli/compare/v1.1.0...v1.2.0) (2023-11-05)
+
+
+### Features
+
+* reflection for event routing ([ab01a26](https://github.com/hei-school/poja-cli/commit/ab01a2621289e9fe5e3862048cb9baee0cd2927b))
+
+
+
 # [1.1.0](https://github.com/hei-school/poja-cli/compare/v1.0.0...v1.1.0) (2023-11-04)
 
 
@@ -5,11 +14,7 @@
 
 * health check on async stack ([d307cb6](https://github.com/hei-school/poja-cli/commit/d307cb68c856f44913925ae847adb800aedda7f9))
 
-* consecutive health checks to mitigate cold start false negatives
 
-* refactor.sh using Google Java Format
-
-* fail tests under 0.8 line cov
 
 # [1.0.0](https://github.com/hei-school/poja-cli/compare/v0.3.0...v1.0.0) (2023-11-03)
 
@@ -18,17 +23,13 @@
 
 * event stack ([f186d82](https://github.com/hei-school/poja-cli/commit/f186d82ed886d16c5f6786186092e7e465466067))
 
-* disable flyway migration during Mailbox
 
-* push messages by batch of 5
-  
 ### BREAKING CHANGES
 
 * POJA subnets must be private
-
-### Fixes
-
-* SpringApp is Poja, not Mailbox
+fix: SpringApp is Poja, not Mailbox
+feat: disable flyway migration during Mailbox
+feat: push messages by batch of 5
 
 
 

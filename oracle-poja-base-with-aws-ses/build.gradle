@@ -74,5 +74,6 @@ dependencies {
 
     testImplementation 'org.testcontainers:postgresql'
 
+implementation 'com.amazonaws:aws-java-sdk-ses:1.12.580'
 
 }

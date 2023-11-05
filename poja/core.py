@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "5756d9a"
+GIT_TAG_OR_COMMIT = "0abbc95"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 
@@ -19,6 +19,7 @@ def gen(
     ssm_subnet1_id,
     ssm_subnet2_id,
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
+    custom_java_deps=None,
     output_dir=None,
 ):
     if output_dir is None:
@@ -48,6 +49,8 @@ def gen(
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
     set_package_dirs(temp_dir, package_full_name, "main")
     set_package_dirs(temp_dir, package_full_name, "test")
+    print_normal("custom_java_deps")
+    java_deps = set_java_deps(temp_dir, custom_java_deps, exclude)
 
     print_title("Save conf...")
     save_conf(
@@ -58,6 +61,7 @@ def gen(
         ssm_subnet1_id,
         ssm_subnet2_id,
         package_full_name,
+        java_deps,
     )
     print_normal("poja.yml")
 
@@ -82,7 +86,9 @@ def save_conf(
     ssm_subnet1_id,
     ssm_subnet2_id,
     package_full_name,
+    custom_java_deps,
 ):
+    custom_java_deps_filename = "poja-custom-java-deps.txt"
     conf = {
         "cli_version": get_version(),
         "app_name": app_name,
@@ -91,9 +97,25 @@ def save_conf(
         "ssm_subnet1_id": ssm_subnet1_id,
         "ssm_subnet2_id": ssm_subnet2_id,
         "package_full_name": package_full_name,
+        "custom_java_deps": custom_java_deps_filename,
     }
-    with open(temp_dir + "/poja.yml", "w") as file:
-        yaml.dump(conf, file)
+    with open(temp_dir + "/poja.yml", "w") as conf_file:
+        yaml.dump(conf, conf_file)
+    print_normal(custom_java_deps_filename)
+    with open(
+        "%s/%s" % (temp_dir, custom_java_deps_filename), "w"
+    ) as custom_java_deps_file:
+        custom_java_deps_file.write(custom_java_deps)
+
+
+def set_java_deps(project_dir, custom_java_deps_file, exclude):
+    if custom_java_deps_file is None:
+        java_deps = ""
+    else:
+        java_deps_file = open(custom_java_deps_file, "r")
+        java_deps = "\n".join(java_deps_file.readlines())
+    sed.find_replace(project_dir, "<?java-deps>", java_deps, exclude)
+    return java_deps
 
 
 def set_package_dirs(temp_dir, package_full_name, scope):

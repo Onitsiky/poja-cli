@@ -3,7 +3,7 @@ from filecmp import dircmp
 import os.path
 
 
-def test_gen_annotator():
+def test_base():
     output_dir = "test-poja-base"
     poja.gen(
         "poja-base",
@@ -15,6 +15,21 @@ def test_gen_annotator():
         output_dir=output_dir,
     )
     assert is_dir_superset_of("oracle-poja-base", output_dir)
+
+
+def test_base_with_custom_java_deps():
+    output_dir = "test-poja-base-with-aws-ses"
+    poja.gen(
+        "poja-base",
+        region="eu-west-3",
+        ssm_sg_id="/poja/sg/id",
+        ssm_subnet1_id="/poja/subnet/private1/id",
+        ssm_subnet2_id="/poja/subnet/private2/id",
+        package_full_name="com.company.base",
+        custom_java_deps="custom-java-deps-aws-ses.txt",
+        output_dir=output_dir,
+    )
+    assert is_dir_superset_of("oracle-poja-base-with-aws-ses", output_dir)
 
 
 def is_dir_superset_of(superset_dir, subset_dir):

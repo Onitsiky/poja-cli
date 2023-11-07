@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "204e66d"
+GIT_TAG_OR_COMMIT = "280a339"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 
@@ -20,6 +20,7 @@ def gen(
     ssm_subnet2_id,
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_deps=None,
+    custom_java_env_vars=None,
     with_postgres=True,
     output_dir=None,
 ):
@@ -51,7 +52,14 @@ def gen(
     set_package_dirs(temp_dir, package_full_name, "main")
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
-    java_deps = set_java_deps(temp_dir, custom_java_deps, exclude)
+    java_deps = replace_with_file_content(
+        temp_dir, "<?java-deps>", custom_java_deps, exclude
+    )
+    print_normal("custom_java_env_vars")
+    indent = "        "
+    java_env_vars = replace_with_file_content(
+        temp_dir, "<?java-env-vars>", custom_java_env_vars, exclude, joiner=indent
+    )
     print_normal("with_postgres")
     set_postgres(with_postgres, temp_dir, exclude)
 
@@ -65,6 +73,7 @@ def gen(
         ssm_subnet2_id,
         package_full_name,
         java_deps,
+        java_env_vars,
         with_postgres,
     )
     print_normal("poja.yml")
@@ -91,9 +100,11 @@ def save_conf(
     ssm_subnet2_id,
     package_full_name,
     custom_java_deps,
+    custom_java_env_vars,
     with_postgres,
 ):
     custom_java_deps_filename = "poja-custom-java-deps.txt"
+    custom_java_env_vars_filename = "poja-custom-java-env-vars.txt"
     conf = {
         "cli_version": get_version(),
         "app_name": app_name,
@@ -103,25 +114,35 @@ def save_conf(
         "ssm_subnet2_id": ssm_subnet2_id,
         "package_full_name": package_full_name,
         "custom_java_deps": custom_java_deps_filename,
+        "custom_java_env_vars": custom_java_env_vars_filename,
         "with_postgres": with_postgres,
     }
     with open(temp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)
+
     print_normal(custom_java_deps_filename)
     with open(
         "%s/%s" % (temp_dir, custom_java_deps_filename), "w"
     ) as custom_java_deps_file:
         custom_java_deps_file.write(custom_java_deps)
 
+    print_normal(custom_java_env_vars_filename)
+    with open(
+        "%s/%s" % (temp_dir, custom_java_env_vars_filename), "w"
+    ) as custom_java_env_vars_file:
+        custom_java_env_vars_file.write(custom_java_env_vars)
 
-def set_java_deps(project_dir, custom_java_deps_file, exclude):
-    if custom_java_deps_file is None:
-        java_deps = ""
+
+def replace_with_file_content(
+    project_dir, to_replace, replacement_filepath, exclude, joiner=""
+):
+    if replacement_filepath is None:
+        content = ""
     else:
-        java_deps_file = open(custom_java_deps_file, "r")
-        java_deps = "\n".join(java_deps_file.readlines())
-    sed.find_replace(project_dir, "<?java-deps>", java_deps, exclude)
-    return java_deps
+        file = open(replacement_filepath, "r")
+        content = joiner.join(file.readlines())
+    sed.find_replace(project_dir, to_replace, content, exclude)
+    return content
 
 
 def set_postgres(with_postgres, temp, exclude):

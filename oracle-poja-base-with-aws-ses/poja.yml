@@ -1,6 +1,7 @@
 app_name: poja-base
 cli_version: 1.3.0
 custom_java_deps: poja-custom-java-deps.txt
+custom_java_env_vars: poja-custom-java-env-vars.txt
 package_full_name: com.company.base
 region: eu-west-3
 ssm_sg_id: /poja/sg/id

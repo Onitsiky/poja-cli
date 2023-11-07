@@ -70,3 +70,10 @@ Once the generation finishes, `your-list-of-deps` will be copied at the root pat
 under the name `poja-custom-java-deps.txt`.
 That file will come handy for future generations based on past generations.
 
+### Use custom/additional Java env vars
+
+Similar to the Java deps section above, but with `--custom-java-env-vars` as argument name.
+[Here](./custom-java-env-vars.txt) is an example of such a file.
+
+
+

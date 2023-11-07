@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "0abbc95"
+GIT_TAG_OR_COMMIT = "204e66d"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 
@@ -20,6 +20,7 @@ def gen(
     ssm_subnet2_id,
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_deps=None,
+    with_postgres=True,
     output_dir=None,
 ):
     if output_dir is None:
@@ -51,6 +52,8 @@ def gen(
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
     java_deps = set_java_deps(temp_dir, custom_java_deps, exclude)
+    print_normal("with_postgres")
+    set_postgres(with_postgres, temp_dir, exclude)
 
     print_title("Save conf...")
     save_conf(
@@ -62,6 +65,7 @@ def gen(
         ssm_subnet2_id,
         package_full_name,
         java_deps,
+        with_postgres,
     )
     print_normal("poja.yml")
 
@@ -87,6 +91,7 @@ def save_conf(
     ssm_subnet2_id,
     package_full_name,
     custom_java_deps,
+    with_postgres,
 ):
     custom_java_deps_filename = "poja-custom-java-deps.txt"
     conf = {
@@ -98,6 +103,7 @@ def save_conf(
         "ssm_subnet2_id": ssm_subnet2_id,
         "package_full_name": package_full_name,
         "custom_java_deps": custom_java_deps_filename,
+        "with_postgres": with_postgres,
     }
     with open(temp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)
@@ -116,6 +122,22 @@ def set_java_deps(project_dir, custom_java_deps_file, exclude):
         java_deps = "\n".join(java_deps_file.readlines())
     sed.find_replace(project_dir, "<?java-deps>", java_deps, exclude)
     return java_deps
+
+
+def set_postgres(with_postgres, temp, exclude):
+    if with_postgres:
+        post_gres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/db/url}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'"""
+    else:
+        post_gres_env_vars = ""
+        os.remove("%s/.github/workflows/cd-storage.yml" % temp)
+    sed.find_replace(
+        temp,
+        "<?postgres-env-vars>",
+        post_gres_env_vars,
+        exclude,
+    )
 
 
 def set_package_dirs(temp_dir, package_full_name, scope):

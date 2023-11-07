@@ -17,6 +17,21 @@ def test_base():
     assert is_dir_superset_of("oracle-poja-base", output_dir)
 
 
+def test_base_without_postgres():
+    output_dir = "test-poja-base-without-postgres"
+    poja.gen(
+        "poja-base-without-postgres",
+        region="eu-west-3",
+        ssm_sg_id="/poja/sg/id",
+        ssm_subnet1_id="/poja/subnet/private1/id",
+        ssm_subnet2_id="/poja/subnet/private2/id",
+        package_full_name="com.company.base",
+        output_dir=output_dir,
+        with_postgres=False,
+    )
+    assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
+
+
 def test_base_with_custom_java_deps():
     output_dir = "test-poja-base-with-aws-ses"
     poja.gen(

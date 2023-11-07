@@ -75,5 +75,9 @@ That file will come handy for future generations based on past generations.
 Similar to the Java deps section above, but with `--custom-java-env-vars` as argument name.
 [Here](./custom-java-env-vars.txt) is an example of such a file.
 
+### Do not create a new Postgres
+
+Use `--with-postgres=false`. Handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
+
 
 

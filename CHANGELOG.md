@@ -1,19 +1,16 @@
 # [2.0.0](https://github.com/hei-school/poja-cli/compare/v1.4.0...v2.0.0) (2023-11-08)
 
-
-### Features
-
-* downgrade to Spring 2 ([1434566](https://github.com/hei-school/poja-cli/commit/1434566f3a9b3e7cdd3e9143aa6252f1d4bb64ff))
-
-
 ### BREAKING CHANGES
 
 * downgrade to Spring 2
 
-fix: no cd-domain
+### Features
 
-feat: openapi-gen Java client
+* openapi-gen Java client
 
+### Bug Fixes
+
+* no cd-domain
 
 
 # [1.4.0](https://github.com/hei-school/poja-cli/compare/v1.3.0...v1.4.0) (2023-11-07)

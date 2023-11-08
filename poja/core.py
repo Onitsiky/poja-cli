@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "280a339"
+GIT_TAG_OR_COMMIT = "1c0afbb"
 
 DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
 
@@ -79,8 +79,10 @@ def gen(
     print_normal("poja.yml")
 
     print_title("Rm project-specific files...")
-    print_normal("README.*")
+    print_normal("README.md")
     os.remove(temp_dir + "/README.md")
+    print_normal("application.properties")
+    os.remove(temp_dir + "/src/main/resources/application.properties")
 
     print_title("Format...")
     os.system("cd %s && ./format.sh" % temp_dir)

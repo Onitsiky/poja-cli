@@ -37,8 +37,6 @@ def gen(
 
     print_title("Handle arguments...")
     exclude = "*.jar"
-    print_normal("app_name")
-    sed.find_replace(temp_dir, "<?app-name>", app_name, exclude)
     print_normal("region")
     sed.find_replace(temp_dir, "<?aws-region>", region, exclude)
     print_normal("ssm_sg_id")
@@ -62,6 +60,8 @@ def gen(
     )
     print_normal("with_postgres")
     set_postgres(with_postgres, temp_dir, exclude)
+    print_normal("app_name")
+    sed.find_replace(temp_dir, "<?app-name>", app_name, exclude)
 
     print_title("Save conf...")
     save_conf(
@@ -149,9 +149,9 @@ def replace_with_file_content(
 
 def set_postgres(with_postgres, temp, exclude):
     if with_postgres:
-        post_gres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'"""
+        post_gres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""
     else:
         post_gres_env_vars = ""
         os.remove("%s/.github/workflows/cd-storage.yml" % temp)

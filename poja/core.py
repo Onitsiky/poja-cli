@@ -21,7 +21,7 @@ def gen(
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_deps=None,
     custom_java_env_vars=None,
-    with_postgres=True,
+    with_postgres="true",
     output_dir=None,
 ):
     if output_dir is None:
@@ -148,7 +148,7 @@ def replace_with_file_content(
 
 
 def set_postgres(with_postgres, temp, exclude):
-    if with_postgres:
+    if with_postgres == "true":
         post_gres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
         DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
         DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""

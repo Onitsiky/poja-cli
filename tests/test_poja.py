@@ -27,7 +27,7 @@ def test_base_without_postgres():
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
         output_dir=output_dir,
-        with_postgres=False,
+        with_postgres="false",
     )
     assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
 
@@ -56,7 +56,7 @@ def test_base_with_custom_java_env_vars():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        with_postgres=False,
+        with_postgres="false",
         custom_java_env_vars="custom-java-env-vars.txt",
         output_dir=output_dir,
     )

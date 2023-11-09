@@ -4,7 +4,7 @@ import yaml
 
 def get_version():
     try:
-        with open("version.yml") as version_file:
+        with open("poja-version.yml") as version_file:
             parsed_version_file = yaml.load(version_file, Loader=yaml.FullLoader)
             return parsed_version_file["version"]
     except FileNotFoundError:

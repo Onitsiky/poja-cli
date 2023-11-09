@@ -28,14 +28,14 @@ jobs:
       id: read-old-version
       uses: CumulusDS/get-yaml-paths-action@v1.0.1
       with:
-        file: version.yml
+        file: poja-version.yml
         version: version
     - name: Conventional changelog
       id: conventional-ch
       uses: TriPSs/conventional-changelog-action@v4.1.1
       with:
         github-token: ${{ secrets.GH_TOKEN_FOR_CONVENTIONAL_CHANGELOG }}
-        version-file: './version.yml'
+        version-file: './poja-version.yml'
         input-file: './CHANGELOG.md'
         git-message: 'release: {version}'
         version-path: 'version'
@@ -46,15 +46,15 @@ jobs:
       id: read-new-version
       uses: CumulusDS/get-yaml-paths-action@v1.0.1
       with:
-        file: version.yml
+        file: poja-version.yml
         version: version
-    - name: Put correct version into GITHUB_ENV and into version.yml
+    - name: Put correct version into GITHUB_ENV and into poja-version.yml
       run: |
         if ${{ steps.conventional-ch.outputs.skipped == 'false' }}; then
           echo "nxc_version=${{ steps.read-new-version.outputs.version }}" >> $GITHUB_ENV
         else
           echo "nxc_version=${{ steps.read-old-version.outputs.version }}" >> $GITHUB_ENV
-          git checkout -- version.yml
+          git checkout -- poja-version.yml
         fi
 
 

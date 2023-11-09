@@ -95,7 +95,6 @@ def gen(
     os.system("cd %s && ./format.sh" % temp_dir)
 
     print_title("Copy to output dir...")
-    os.system("chmod -R 555 %s/*" % temp_dir)
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)
 
     print_title("... all done!")

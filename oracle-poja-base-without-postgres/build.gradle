@@ -39,9 +39,9 @@ task generateJavaClient(type: GenerateTask) {
     generatorName = "java"
     inputSpec = "$rootDir/doc/api.yml".toString()
     outputDir = "$buildDir/gen".toString()
-    apiPackage = "school.hei.haapi.endpoint.rest.api"
-    invokerPackage = "school.hei.haapi.endpoint.rest.client"
-    modelPackage = "school.hei.haapi.endpoint.rest.model"
+    apiPackage = "com.company.base.endpoint.rest.api"
+    invokerPackage = "com.company.base.endpoint.rest.client"
+    modelPackage = "com.company.base.endpoint.rest.model"
 
     configOptions = [
             serializationLibrary: "jackson",
@@ -54,8 +54,8 @@ task generateJavaClient(type: GenerateTask) {
     ]
     library = "native"
 
-    groupId = 'school.hei'
-    id = 'haapi-gen'
+    groupId = 'com.company'
+    id = 'poja-base-without-postgres-gen'
     skipValidateSpec = false
     logToStderr = true
     generateAliasAsModel = false

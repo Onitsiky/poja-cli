@@ -7,9 +7,10 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "b3feb1e"
+GIT_TAG_OR_COMMIT = "c1ad22e"
 
-DEFAULT_PACKAGE_FULL_NAME = "school.hei.poja"
+DEFAULT_GROUP_NAME = "school.hei"
+DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
 
 
 def gen(
@@ -47,6 +48,12 @@ def gen(
     sed.find_replace(temp_dir, "<?ssm-param-name-subnet2-id>", ssm_subnet2_id, exclude)
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
+    sed.find_replace(
+        temp_dir,
+        DEFAULT_GROUP_NAME,
+        group_name_from_package_full_name(package_full_name),
+        exclude,
+    )
     set_package_dirs(temp_dir, package_full_name, "main")
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
@@ -91,6 +98,11 @@ def gen(
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)
 
     print_title("... all done!")
+
+
+def group_name_from_package_full_name(package_full_name):
+    package_full_name_parts = get_package_full_name_parts(package_full_name)
+    return package_full_name_parts[0] + "." + package_full_name_parts[1]
 
 
 def save_conf(
@@ -164,11 +176,7 @@ def set_postgres(with_postgres, temp, exclude):
 
 
 def set_package_dirs(temp_dir, package_full_name, scope):
-    package_full_name_parts = package_full_name.split(".")
-    if len(package_full_name_parts) != 3:
-        raise Exception(
-            "package_full_name must exactly have 3 parts such as com.company.base"
-        )
+    package_full_name_parts = get_package_full_name_parts(package_full_name)
     default_package_full_name_parts = DEFAULT_PACKAGE_FULL_NAME.split(".")
     os.rename(
         "%s/src/%s/java/%s" % (temp_dir, scope, default_package_full_name_parts[0]),
@@ -203,3 +211,12 @@ def set_package_dirs(temp_dir, package_full_name, scope):
             package_full_name_parts[2],
         ),
     )
+
+
+def get_package_full_name_parts(package_full_name):
+    package_full_name_parts = package_full_name.split(".")
+    if len(package_full_name_parts) != 3:
+        raise Exception(
+            "package_full_name must exactly have 3 parts such as com.company.base"
+        )
+    return package_full_name_parts

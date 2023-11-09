@@ -1,3 +1,17 @@
+# [2.1.0](https://github.com/hei-school/poja-cli/compare/v2.0.4...v2.1.0) (2023-11-09)
+
+
+### Bug Fixes
+
+* version.yml --> poja-version.yml ([7039e9b](https://github.com/hei-school/poja-cli/commit/7039e9b3031f67b9e4c4b59055526a418350f3a3))
+
+
+### Features
+
+* rm writing permission on generated files ([bb7679a](https://github.com/hei-school/poja-cli/commit/bb7679a72c9e14e92bd47a887cf91b95741a1d76))
+
+
+
 ## [2.0.4](https://github.com/hei-school/poja-cli/compare/v2.0.2...v2.0.4) (2023-11-09)
 
 

@@ -1,3 +1,12 @@
+## [2.4.2](https://github.com/hei-school/poja-cli/compare/v2.4.1...v2.4.2) (2023-11-10)
+
+
+### Bug Fixes
+
+* allow spring-web in mailbox for instantions like spring-secu ([c9e8d46](https://github.com/hei-school/poja-cli/commit/c9e8d46d6c99677a38858ac0e768ab584a932194))
+
+
+
 ## [2.4.1](https://github.com/hei-school/poja-cli/compare/v2.4.0...v2.4.1) (2023-11-10)
 
 

@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/hei-school/poja-cli/compare/v2.2.0...v2.3.0) (2023-11-10)
+
+
+### Features
+
+* make jacoco min coverage configurable ([6e78078](https://github.com/hei-school/poja-cli/commit/6e780788e6b974f8543f77dd6aeeb5b388922b39))
+
+
+
 # [2.2.0](https://github.com/hei-school/poja-cli/compare/v2.1.0...v2.2.0) (2023-11-10)
 
 

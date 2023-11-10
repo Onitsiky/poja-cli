@@ -1,3 +1,17 @@
+# [2.2.0](https://github.com/hei-school/poja-cli/compare/v2.1.0...v2.2.0) (2023-11-10)
+
+
+### Bug Fixes
+
+* revert "feat: rm writing permission on generated files" ([1e03204](https://github.com/hei-school/poja-cli/commit/1e0320466370123a61c531beab89f71c8597a1af))
+
+
+### Features
+
+* publish to mvn local and gen ts-axios ([9bb4ccc](https://github.com/hei-school/poja-cli/commit/9bb4cccce72d3650f0d5db3addca4afd79ab6c18))
+
+
+
 # [2.1.0](https://github.com/hei-school/poja-cli/compare/v2.0.4...v2.1.0) (2023-11-09)
 
 

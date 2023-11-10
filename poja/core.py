@@ -7,10 +7,11 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "a649900"
+GIT_TAG_OR_COMMIT = "fc2cfbf"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
+
 
 def gen(
     app_name,
@@ -84,7 +85,7 @@ def gen(
         java_deps,
         java_env_vars,
         with_postgres,
-        jacoco_min_coverage
+        jacoco_min_coverage,
     )
     print_normal("poja.yml")
 
@@ -134,7 +135,7 @@ def save_conf(
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
         "with_postgres": with_postgres,
-        "jacoco-min-coverage": jacoco_min_coverage
+        "jacoco-min-coverage": jacoco_min_coverage,
     }
     with open(temp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)

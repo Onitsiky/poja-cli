@@ -7,7 +7,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "7067ee0"
+GIT_TAG_OR_COMMIT = "0dde40b"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -71,7 +71,9 @@ def gen(
     print_normal("app_name")
     sed.find_replace(temp_dir, "<?app-name>", app_name, exclude)
     print_normal("jacoco_min_coverage")
-    sed.find_replace(temp_dir, "<?jacoco-min-coverage>", jacoco_min_coverage + "", exclude)
+    sed.find_replace(
+        temp_dir, "<?jacoco-min-coverage>", jacoco_min_coverage + "", exclude
+    )
 
     print_title("Save conf...")
     save_conf(
@@ -150,7 +152,9 @@ def save_conf(
     with open(
         "%s/%s" % (temp_dir, custom_java_env_vars_filename), "w"
     ) as custom_java_env_vars_file:
-        custom_java_env_vars_file.write(custom_java_env_vars)
+        custom_java_env_vars_file.write(
+            "\n".join([s.strip() for s in custom_java_env_vars.split("\n")])
+        )
 
 
 def replace_with_file_content(

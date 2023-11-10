@@ -1,3 +1,12 @@
+## [2.4.1](https://github.com/hei-school/poja-cli/compare/v2.4.0...v2.4.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* --jacoco-min-coverage is a string ([085b676](https://github.com/hei-school/poja-cli/commit/085b676f854f73bebf3b6297cac3d1555914c7b8))
+
+
+
 # [2.4.0](https://github.com/hei-school/poja-cli/compare/v2.3.0...v2.4.0) (2023-11-10)
 
 

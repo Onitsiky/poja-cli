@@ -1,3 +1,12 @@
+## [2.4.3](https://github.com/hei-school/poja-cli/compare/v2.4.2...v2.4.3) (2023-11-10)
+
+
+### Bug Fixes
+
+* do not save heading whitespace in varenvs ([d31f0fd](https://github.com/hei-school/poja-cli/commit/d31f0fd21b29603ab1ca214fa26038ec85304b09))
+
+
+
 ## [2.4.2](https://github.com/hei-school/poja-cli/compare/v2.4.1...v2.4.2) (2023-11-10)
 
 

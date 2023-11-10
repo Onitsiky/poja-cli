@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/hei-school/poja-cli/compare/v2.3.0...v2.4.0) (2023-11-10)
+
+
+### Features
+
+* EnvConf for project-specific env vars ([da19a48](https://github.com/hei-school/poja-cli/commit/da19a48636fba36a9cede31fb82832c1c0c8d2c8))
+
+
+
 # [2.3.0](https://github.com/hei-school/poja-cli/compare/v2.2.0...v2.3.0) (2023-11-10)
 
 

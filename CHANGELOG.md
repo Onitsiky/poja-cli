@@ -11,13 +11,12 @@
 ### Features
 
 * --with-own-vpc ([d5418e1](https://github.com/hei-school/poja-cli/commit/d5418e1c7e1d6c79c84ac55b2436f8cb5c864a57))
-* --with-own-vpc ([3ce4481](https://github.com/hei-school/poja-cli/commit/3ce44818c40e427dbac2e7f8771a59c4b36eefec))
 * EnvConf is optional ([62b30b6](https://github.com/hei-school/poja-cli/commit/62b30b6ebd770a55a9a6e723781aba5f3cf4f51d))
 
 
 ### BREAKING CHANGES
 
-* default value of --with-gen-client is false
+* default value of --with-gen-clients is false
 * default value of --with-own-vpc is false
 
 

@@ -8,6 +8,7 @@ def test_base():
     poja.gen(
         "poja-base",
         region="eu-west-3",
+        with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
@@ -23,6 +24,7 @@ def test_base_without_postgres():
     poja.gen(
         "poja-base-without-postgres",
         region="eu-west-3",
+        with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
@@ -39,6 +41,7 @@ def test_base_with_custom_java_deps():
     poja.gen(
         "poja-base",
         region="eu-west-3",
+        with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
@@ -55,6 +58,7 @@ def test_base_with_custom_java_env_vars():
     poja.gen(
         "poja-base-with-java-env-vars",
         region="eu-west-3",
+        with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
@@ -72,6 +76,7 @@ def test_base_with_script_to_publish_to_npm_registry():
     poja.gen(
         "poja-base-with-publication-to-npm-registry",
         region="eu-west-3",
+        with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",

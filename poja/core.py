@@ -16,9 +16,10 @@ DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
 def gen(
     app_name,
     region,
-    ssm_sg_id,
-    ssm_subnet1_id,
-    ssm_subnet2_id,
+    with_own_vpc="false",
+    ssm_sg_id=None,
+    ssm_subnet1_id=None,
+    ssm_subnet2_id=None,
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_deps=None,
     custom_java_env_vars=None,
@@ -44,11 +45,17 @@ def gen(
     exclude = "*.jar"
     print_normal("region")
     sed.find_replace(temp_dir, "<?aws-region>", region, exclude)
-    print_normal("ssm_sg_id")
-    sed.find_replace(temp_dir, "<?ssm-param-sg-id>", ssm_sg_id, exclude)
-    print_normal("ssm_subnet1_id")
-    sed.find_replace(temp_dir, "<?ssm-param-name-subnet1-id>", ssm_subnet1_id, exclude)
-    print_normal("ssm_subnet2_id")
+
+    print_normal("with_own_vpc")
+    if with_own_vpc == "true":
+        print_normal("ssm_sg_id")
+        sed.find_replace(temp_dir, "<?ssm-param-sg-id>", ssm_sg_id, exclude)
+        print_normal("ssm_subnet1_id")
+        sed.find_replace(
+            temp_dir, "<?ssm-param-name-subnet1-id>", ssm_subnet1_id, exclude
+        )
+        print_normal("ssm_subnet2_id")
+
     sed.find_replace(temp_dir, "<?ssm-param-name-subnet2-id>", ssm_subnet2_id, exclude)
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
@@ -100,6 +107,7 @@ def gen(
         temp_dir,
         app_name,
         region,
+        with_own_vpc,
         ssm_sg_id,
         ssm_subnet1_id,
         ssm_subnet2_id,
@@ -137,6 +145,7 @@ def save_conf(
     temp_dir,
     app_name,
     region,
+    with_own_vpc,
     ssm_sg_id,
     ssm_subnet1_id,
     ssm_subnet2_id,
@@ -154,6 +163,7 @@ def save_conf(
         "cli_version": get_version(),
         "app_name": app_name,
         "region": region,
+        "with_own_vpc": with_own_vpc,
         "ssm_sg_id": ssm_sg_id,
         "ssm_subnet1_id": ssm_subnet1_id,
         "ssm_subnet2_id": ssm_subnet2_id,

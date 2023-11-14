@@ -128,6 +128,10 @@ def gen(
     print_title("Copy to output dir...")
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)
 
+    print_title("Client generation...")
+    print_normal("doc/api.yml")
+    os.system("mkdir %s/doc & touch %s/doc/api.yml" % (output_dir, output_dir))
+
     print_title("... all done!")
 
 

@@ -31,10 +31,14 @@ public class FacadeIT {
     POSTGRES_CONF.configureProperties(registry);
     EVENT_CONF.configureProperties(registry);
 
-    var envConfClazz = Class.forName("com.company.base.conf.EnvConf");
-    var envConfConfigureProperties =
-        envConfClazz.getDeclaredMethod("configureProperties", DynamicPropertyRegistry.class);
-    var envConf = envConfClazz.getConstructor().newInstance();
-    envConfConfigureProperties.invoke(envConf, registry);
+    try {
+      var envConfClazz = Class.forName("com.company.base.conf.EnvConf");
+      var envConfConfigureProperties =
+          envConfClazz.getDeclaredMethod("configureProperties", DynamicPropertyRegistry.class);
+      var envConf = envConfClazz.getConstructor().newInstance();
+      envConfConfigureProperties.invoke(envConf, registry);
+    } catch (ClassNotFoundException e) {
+
+    }
   }
 }

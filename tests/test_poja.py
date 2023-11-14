@@ -27,6 +27,7 @@ def test_base_without_own_vpc():
         with_own_vpc="false",
         package_full_name="com.company.base",
         output_dir=output_dir,
+        with_gen_clients="true",
         jacoco_min_coverage="0.9",
     )
     assert is_dir_superset_of("oracle-poja-base-without-own-vpc", output_dir)
@@ -44,6 +45,7 @@ def test_base_without_postgres():
         package_full_name="com.company.base",
         output_dir=output_dir,
         with_postgres="false",
+        with_gen_clients="true",
         jacoco_min_coverage="0.9",
     )
     assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
@@ -61,6 +63,7 @@ def test_base_with_custom_java_deps():
         package_full_name="com.company.base",
         custom_java_deps="custom-java-deps-aws-ses.txt",
         output_dir=output_dir,
+        with_gen_clients="true",
         jacoco_min_coverage="0.9",
     )
     assert is_dir_superset_of("oracle-poja-base-with-aws-ses", output_dir)
@@ -79,6 +82,7 @@ def test_base_with_custom_java_env_vars():
         with_postgres="false",
         custom_java_env_vars="custom-java-env-vars.txt",
         output_dir=output_dir,
+        with_gen_clients="true",
         jacoco_min_coverage="0.9",
     )
     assert is_dir_superset_of("oracle-poja-base-with-java-env-vars", output_dir)
@@ -99,6 +103,7 @@ def test_base_with_script_to_publish_to_npm_registry():
         output_dir=output_dir,
         jacoco_min_coverage="0.9",
         with_publish_to_npm_registry="true",
+        with_gen_clients="true",
         ts_client_default_openapi_server_url="http://localhost",
         ts_client_api_url_env_var_name="CLIENT_API_URL",
     )

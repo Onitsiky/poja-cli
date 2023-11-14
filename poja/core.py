@@ -4,11 +4,12 @@ import poja.sed as sed
 from poja.myrich import print_title, print_normal, print_banner
 from poja.version import get_version
 from poja.vpcscoped import set_vpc_scoped_resources
+from poja.genclients import set_gen_clients
 import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "53eb5c89b2"
+GIT_TAG_OR_COMMIT = "b7e2b9a"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -24,6 +25,7 @@ def gen(
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_deps=None,
     custom_java_env_vars=None,
+    with_gen_clients="false",
     with_postgres="true",
     output_dir=None,
     jacoco_min_coverage="0.8",
@@ -52,6 +54,9 @@ def gen(
         with_own_vpc, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, temp_dir, exclude
     )
 
+    print_normal("with_gen_clients")
+    set_gen_clients(with_gen_clients, temp_dir, exclude)
+
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
     sed.find_replace(
@@ -71,6 +76,7 @@ def gen(
     java_env_vars = replace_with_file_content(
         temp_dir, "<?java-env-vars>", custom_java_env_vars, exclude, joiner=indent
     )
+
     print_normal("with_postgres")
     set_postgres(with_postgres, temp_dir, exclude)
     print_normal("app_name")
@@ -109,6 +115,7 @@ def gen(
         package_full_name,
         java_deps,
         java_env_vars,
+        with_gen_clients,
         with_postgres,
         jacoco_min_coverage,
         ts_client_default_openapi_server_url,
@@ -151,6 +158,7 @@ def save_conf(
     package_full_name,
     custom_java_deps,
     custom_java_env_vars,
+    with_gen_clients,
     with_postgres,
     jacoco_min_coverage,
     ts_client_default_openapi_server_url,
@@ -169,6 +177,7 @@ def save_conf(
         "package_full_name": package_full_name,
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
+        "with_gen_clients": with_gen_clients,
         "with_postgres": with_postgres,
         "jacoco-min-coverage": jacoco_min_coverage,
         "ts_client_default_openapi_server_url": ts_client_default_openapi_server_url,

@@ -1,3 +1,27 @@
+# [3.0.0](https://github.com/hei-school/poja-cli/compare/v2.5.0...v3.0.0) (2023-11-14)
+
+
+### Bug Fixes
+
+* --with-gen-clients ([0b2d2ca](https://github.com/hei-school/poja-cli/commit/0b2d2ca502c9ceac613dad44943a03a397ebd8b0))
+* DatasourceConf for handling optional appProp when --with-postgres ([9de177f](https://github.com/hei-school/poja-cli/commit/9de177feb05cc6026aa3369d095ff869ca034abe))
+* touch doc/api.yml ([1aa0a65](https://github.com/hei-school/poja-cli/commit/1aa0a65a870887a2a4f632b7fdc974f4d31b21c4))
+
+
+### Features
+
+* --with-own-vpc ([d5418e1](https://github.com/hei-school/poja-cli/commit/d5418e1c7e1d6c79c84ac55b2436f8cb5c864a57))
+* --with-own-vpc ([3ce4481](https://github.com/hei-school/poja-cli/commit/3ce44818c40e427dbac2e7f8771a59c4b36eefec))
+* EnvConf is optional ([62b30b6](https://github.com/hei-school/poja-cli/commit/62b30b6ebd770a55a9a6e723781aba5f3cf4f51d))
+
+
+### BREAKING CHANGES
+
+* default value of --with-gen-client is false
+* default value of --with-own-vpc is false
+
+
+
 # [2.5.0](https://github.com/hei-school/poja-cli/compare/v2.4.3...v2.5.0) (2023-11-14)
 
 

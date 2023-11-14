@@ -3,11 +3,12 @@ import shutil
 import poja.sed as sed
 from poja.myrich import print_title, print_normal, print_banner
 from poja.version import get_version
+from poja.vpcscoped import set_vpc_scoped_resources
 import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "8e1a1a0"
+GIT_TAG_OR_COMMIT = "53eb5c89b2"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -47,16 +48,10 @@ def gen(
     sed.find_replace(temp_dir, "<?aws-region>", region, exclude)
 
     print_normal("with_own_vpc")
-    if with_own_vpc == "true":
-        print_normal("ssm_sg_id")
-        sed.find_replace(temp_dir, "<?ssm-param-sg-id>", ssm_sg_id, exclude)
-        print_normal("ssm_subnet1_id")
-        sed.find_replace(
-            temp_dir, "<?ssm-param-name-subnet1-id>", ssm_subnet1_id, exclude
-        )
-        print_normal("ssm_subnet2_id")
+    set_vpc_scoped_resources(
+        with_own_vpc, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, temp_dir, exclude
+    )
 
-    sed.find_replace(temp_dir, "<?ssm-param-name-subnet2-id>", ssm_subnet2_id, exclude)
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
     sed.find_replace(

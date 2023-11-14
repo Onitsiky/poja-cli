@@ -19,6 +19,19 @@ def test_base():
     assert is_dir_superset_of("oracle-poja-base", output_dir)
 
 
+def test_base_without_own_vpc():
+    output_dir = "test-poja-base-without-own-vpc"
+    poja.gen(
+        "poja-base",
+        region="eu-west-3",
+        with_own_vpc="false",
+        package_full_name="com.company.base",
+        output_dir=output_dir,
+        jacoco_min_coverage="0.9",
+    )
+    assert is_dir_superset_of("oracle-poja-base-without-own-vpc", output_dir)
+
+
 def test_base_without_postgres():
     output_dir = "test-poja-base-without-postgres"
     poja.gen(

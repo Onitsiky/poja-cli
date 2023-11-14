@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: poja-base - Computation and API
+
+Globals:
+  Function:
+    CodeUri: .
+    Runtime: java17
+    Tracing: Active
+    Architectures:
+      - x86_64
+    Timeout: 600
+    MemorySize: 1024
+    AutoPublishAlias: live
+    SnapStart:
+      ApplyOn: PublishedVersions
+    
+    Environment:
+      Variables:
+        ENV: !Ref Env
+        AWS_SQS_QUEUE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/sqs/mailbox-queue-url}}'
+        AWS_EVENTBRIDGE_BUS: !Sub '{{resolve:ssm:/poja-base/${Env}/eventbridge/bus-name}}'
+        DATABASE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/db/url}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'
+        
+
+Parameters:
+  Env:
+    Type: String
+
+Resources:
+  ApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.company.base.ApiEventHandler::handleRequest
+      Role: !Sub '{{resolve:ssm:/poja-base/${Env}/execution/role-arn}}'
+      Events:
+        ApiCall:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+  MailboxEventFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.company.base.MailboxEventHandler::handleRequest
+      Role: !Sub '{{resolve:ssm:/poja-base/${Env}/execution/role-arn}}'
+      Events:
+        AllEvents:
+          Type: SQS
+          Properties:
+            Queue: !Sub '{{resolve:ssm:/poja-base/${Env}/sqs/mailbox-queue-arn}}'
+            BatchSize: 5
+
+  ApplicationResourceGroup:
+    Type: AWS::ResourceGroups::Group
+    Properties:
+      Name:
+        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+      ResourceQuery:
+        Type: CLOUDFORMATION_STACK_1_0
+  ApplicationInsightsMonitoring:
+    Type: AWS::ApplicationInsights::Application
+    Properties:
+      ResourceGroupName: !Ref ApplicationResourceGroup
+      AutoConfigurationEnabled: 'true'
+
+  ApiUrlSSM:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Join [ '', [ /poja-base/, !Ref Env, /api/url ] ]
+      Type: String
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !GetAtt ApiUrlSSM.Value

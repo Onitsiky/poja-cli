@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/hei-school/poja-cli/compare/v3.0.0...v3.0.1) (2023-11-14)
+
+
+### Bug Fixes
+
+* typo in release-version.yml ([c946fa9](https://github.com/hei-school/poja-cli/commit/c946fa9bfb3f108d23988711bbbdd894fa61fcc5))
+
+
+
 # [3.0.0](https://github.com/hei-school/poja-cli/compare/v2.5.0...v3.0.0) (2023-11-14)
 
 

@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/hei-school/poja-cli/compare/v2.4.3...v2.5.0) (2023-11-14)
+
+
+### Features
+
+* --with-publish-to-npm-registry ([3ae4850](https://github.com/hei-school/poja-cli/commit/3ae4850f8400e7e23a0d2e6b40bb4900222e40cf))
+
+
+
 ## [2.4.3](https://github.com/hei-school/poja-cli/compare/v2.4.2...v2.4.3) (2023-11-10)
 
 

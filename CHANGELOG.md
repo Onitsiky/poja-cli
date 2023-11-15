@@ -1,3 +1,12 @@
+## [3.0.3](https://github.com/hei-school/poja-cli/compare/v3.0.2...v3.0.3) (2023-11-15)
+
+
+### Bug Fixes
+
+* add checkout step in publish-client script ([f6189d7](https://github.com/hei-school/poja-cli/commit/f6189d79a08b5d5c4e1817ea398a65e4132a0705))
+
+
+
 ## [3.0.2](https://github.com/hei-school/poja-cli/compare/v3.0.1...v3.0.2) (2023-11-15)
 
 

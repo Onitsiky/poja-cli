@@ -1,3 +1,12 @@
+## [3.0.2](https://github.com/hei-school/poja-cli/compare/v3.0.1...v3.0.2) (2023-11-15)
+
+
+### Bug Fixes
+
+* mkdir ./doc --> mkdir -p ([0421b4f](https://github.com/hei-school/poja-cli/commit/0421b4ff663f8ecec802d3458a41edb33db0f5f8))
+
+
+
 ## [3.0.1](https://github.com/hei-school/poja-cli/compare/v3.0.0...v3.0.1) (2023-11-14)
 
 

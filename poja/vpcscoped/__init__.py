@@ -58,6 +58,6 @@ def set_vpc_scoped_resources(
         sed.find_replace(temp_dir, "<?function-vpc-config>", "", exclude)
         sed.find_replace(temp_dir, "<?db-sg-ids>", "", exclude)
 
-        #TODO: Aurora Postgres v1 cannot be put inside AWS-managed network
+        # TODO: Aurora Postgres v1 cannot be put inside AWS-managed network
         sed.find_replace(temp_dir, "<?db-subnet-group>", "", exclude)
         sed.find_replace(temp_dir, "<?db-subnet-group-name>", "", exclude)

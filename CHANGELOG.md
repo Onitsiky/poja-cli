@@ -1,3 +1,12 @@
+## [3.0.4](https://github.com/hei-school/poja-cli/compare/v3.0.3...v3.0.4) (2023-11-16)
+
+
+### Bug Fixes
+
+* cannot touch ./doc/api.yml file ([7647e7e](https://github.com/hei-school/poja-cli/commit/7647e7e97228662c1660e171b57f2cd942ca5472))
+
+
+
 ## [3.0.3](https://github.com/hei-school/poja-cli/compare/v3.0.2...v3.0.3) (2023-11-15)
 
 

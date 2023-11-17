@@ -1,3 +1,12 @@
+## [3.0.6](https://github.com/hei-school/poja-cli/compare/v3.0.5...v3.0.6) (2023-11-17)
+
+
+### Bug Fixes
+
+* read version directly from gradle.properties file ([81426b5](https://github.com/hei-school/poja-cli/commit/81426b5dcd45f515e5c29180b885223fd471146f))
+
+
+
 ## [3.0.5](https://github.com/hei-school/poja-cli/compare/v3.0.4...v3.0.5) (2023-11-17)
 
 

@@ -2,6 +2,7 @@ app_name: poja-base-with-publication-to-npm-registry
 cli_version: 3.0.6
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
+frontal_memory: 1024
 jacoco-min-coverage: '0.9'
 package_full_name: com.company.base
 region: eu-west-3
@@ -13,3 +14,5 @@ ts_client_default_openapi_server_url: http://localhost
 with_gen_clients: 'true'
 with_own_vpc: 'true'
 with_postgres: 'false'
+worker_batch: 5
+worker_memory: 2048

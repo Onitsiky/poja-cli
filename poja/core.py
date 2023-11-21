@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "d5b11aa"
+GIT_TAG_OR_COMMIT = "6c41267666"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -32,6 +32,9 @@ def gen(
     with_publish_to_npm_registry="false",
     ts_client_default_openapi_server_url="",
     ts_client_api_url_env_var_name="",
+    frontal_memory=1024,
+    worker_memory=2048,
+    worker_batch=5,
 ):
     if output_dir is None:
         output_dir = app_name
@@ -48,6 +51,13 @@ def gen(
     exclude = "*.jar"
     print_normal("region")
     sed.find_replace(temp_dir, "<?aws-region>", region, exclude)
+
+    print_normal("frontal_memory")
+    sed.find_replace(temp_dir, "<?frontal-memory>", str(frontal_memory), exclude)
+    print_normal("worker_memory")
+    sed.find_replace(temp_dir, "<?worker-memory>", str(worker_memory), exclude)
+    print_normal("worker_batch")
+    sed.find_replace(temp_dir, "<?worker-batch>", str(worker_batch), exclude)
 
     print_normal("with_own_vpc")
     set_vpc_scoped_resources(
@@ -83,7 +93,7 @@ def gen(
     sed.find_replace(temp_dir, "<?app-name>", app_name, exclude)
     print_normal("jacoco_min_coverage")
     sed.find_replace(
-        temp_dir, "<?jacoco-min-coverage>", jacoco_min_coverage + "", exclude
+        temp_dir, "<?jacoco-min-coverage>", str(jacoco_min_coverage), exclude
     )
     if with_publish_to_npm_registry == "true":
         print_normal("ts_client_default_openapi_server_url")
@@ -120,6 +130,9 @@ def gen(
         jacoco_min_coverage,
         ts_client_default_openapi_server_url,
         ts_client_api_url_env_var_name,
+        frontal_memory,
+        worker_memory,
+        worker_batch,
     )
     print_normal("poja.yml")
 
@@ -166,6 +179,9 @@ def save_conf(
     jacoco_min_coverage,
     ts_client_default_openapi_server_url,
     ts_client_api_url_env_var_name,
+    frontal_memory,
+    worker_memory,
+    worker_batch,
 ):
     custom_java_deps_filename = "poja-custom-java-deps.txt"
     custom_java_env_vars_filename = "poja-custom-java-env-vars.txt"
@@ -185,6 +201,9 @@ def save_conf(
         "jacoco-min-coverage": jacoco_min_coverage,
         "ts_client_default_openapi_server_url": ts_client_default_openapi_server_url,
         "ts_client_api_url_env_var_name": ts_client_api_url_env_var_name,
+        "frontal_memory": frontal_memory,
+        "worker_memory": worker_memory,
+        "worker_batch": worker_batch,
     }
     with open(temp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)

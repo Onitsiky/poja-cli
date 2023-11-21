@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "6c41267666"
+GIT_TAG_OR_COMMIT = "8263aaf"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -242,7 +242,7 @@ def set_postgres(with_postgres, temp, exclude):
         DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""
     else:
         post_gres_env_vars = ""
-        os.remove("%s/.github/workflows/cd-storage.yml" % temp)
+        os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
     sed.find_replace(
         temp,
         "<?postgres-env-vars>",

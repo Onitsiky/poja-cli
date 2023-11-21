@@ -17,7 +17,7 @@ DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
 
 def gen(
     app_name,
-    region,
+    region="eu-west-3",
     with_own_vpc="false",
     ssm_sg_id=None,
     ssm_subnet1_id=None,

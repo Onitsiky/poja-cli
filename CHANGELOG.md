@@ -1,3 +1,17 @@
+# [3.1.0](https://github.com/hei-school/poja-cli/compare/v3.0.6...v3.1.0) (2023-11-21)
+
+
+### Bug Fixes
+
+* default region is Paris ([99a0c37](https://github.com/hei-school/poja-cli/commit/99a0c371ccf72030c6aff2cc1155bb619957107b))
+
+
+### Features
+
+* --frontal-memory, --worker-memory and --worker-batch ([a3dd156](https://github.com/hei-school/poja-cli/commit/a3dd1569011ce42715a821a35d439a831fe06231))
+
+
+
 ## [3.0.6](https://github.com/hei-school/poja-cli/compare/v3.0.5...v3.0.6) (2023-11-17)
 
 

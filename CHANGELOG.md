@@ -1,3 +1,12 @@
+# [3.2.0](https://github.com/hei-school/poja-cli/compare/v3.1.0...v3.2.0) (2023-11-21)
+
+
+### Features
+
+* storage = database + bucket ([4a8402d](https://github.com/hei-school/poja-cli/commit/4a8402d332ec70a518f735f891285cdd94052daa))
+
+
+
 # [3.1.0](https://github.com/hei-school/poja-cli/compare/v3.0.6...v3.1.0) (2023-11-21)
 
 

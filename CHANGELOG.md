@@ -1,3 +1,12 @@
+# [3.3.0](https://github.com/hei-school/poja-cli/compare/v3.2.0...v3.3.0) (2023-11-24)
+
+
+### Features
+
+* store eventBridge bus arn and Deadletter queue arn in SSM ([3057d3e](https://github.com/hei-school/poja-cli/commit/3057d3e1afd434be836f00123ab2b7e3545dd1c0))
+
+
+
 # [3.2.0](https://github.com/hei-school/poja-cli/compare/v3.1.0...v3.2.0) (2023-11-21)
 
 

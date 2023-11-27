@@ -1,5 +1,5 @@
 app_name: poja-base
-cli_version: 3.4.0
+cli_version: 3.4.1
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
@@ -15,5 +15,6 @@ ts_client_default_openapi_server_url: ''
 with_gen_clients: 'true'
 with_own_vpc: 'true'
 with_postgres: 'true'
+with_swagger_ui: 'false'
 worker_batch: 5
 worker_memory: 2048

@@ -71,7 +71,7 @@ def test_base_with_custom_java_repos_and_deps():
     assert is_dir_superset_of("oracle-poja-base-with-aws-ses", output_dir)
 
 
-def test_base_with_custom_java_env_vars():
+def test_base_with_custom_java_env_vars_and_swagger_ui():
     output_dir = "test-poja-base-with-java-env-vars"
     poja.gen(
         "poja-base-with-java-env-vars",
@@ -82,6 +82,7 @@ def test_base_with_custom_java_env_vars():
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
         with_postgres="false",
+        with_swagger_ui="true",
         custom_java_env_vars="custom-java-env-vars.txt",
         output_dir=output_dir,
         with_gen_clients="true",

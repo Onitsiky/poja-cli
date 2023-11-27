@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "b78513d"
+GIT_TAG_OR_COMMIT = "375579f"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -22,6 +22,7 @@ def gen(
     ssm_sg_id=None,
     ssm_subnet1_id=None,
     ssm_subnet2_id=None,
+    with_swagger_ui="false",
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
     custom_java_repositories=None,
     custom_java_deps=None,
@@ -68,6 +69,17 @@ def gen(
     print_normal("with_gen_clients")
     set_gen_clients(with_gen_clients, temp_dir, exclude)
 
+    print_normal("with_swagger_ui")
+    if with_swagger_ui == "true":
+        swagger_ui_java_dep = (
+            "implementation 'io.springfox:springfox-boot-starter:3.0.0'"
+        )
+    else:
+        os.remove(
+            "%s/src/main/java/school/hei/poja/endpoint/rest/SwaggerConf.java" % temp_dir
+        )
+        swagger_ui_java_dep = ""
+
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
     sed.find_replace(
@@ -84,8 +96,13 @@ def gen(
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
     java_deps = replace_with_file_content(
-        temp_dir, "<?java-deps>", custom_java_deps, exclude
+        temp_dir,
+        "<?java-deps>",
+        custom_java_deps,
+        exclude,
+        to_append=swagger_ui_java_dep,
     )
+    java_deps = java_deps + "\n" + swagger_ui_java_dep
     print_normal("custom_java_env_vars")
     indent = "        "
     java_env_vars = replace_with_file_content(
@@ -127,6 +144,7 @@ def gen(
         ssm_sg_id,
         ssm_subnet1_id,
         ssm_subnet2_id,
+        with_swagger_ui,
         package_full_name,
         java_repositories,
         java_deps,
@@ -177,6 +195,7 @@ def save_conf(
     ssm_sg_id,
     ssm_subnet1_id,
     ssm_subnet2_id,
+    with_swagger_ui,
     package_full_name,
     custom_java_repositories,
     custom_java_deps,
@@ -201,6 +220,7 @@ def save_conf(
         "ssm_sg_id": ssm_sg_id,
         "ssm_subnet1_id": ssm_subnet1_id,
         "ssm_subnet2_id": ssm_subnet2_id,
+        "with_swagger_ui": with_swagger_ui,
         "package_full_name": package_full_name,
         "custom_java_repositories": custom_java_repositories_filename,
         "custom_java_deps": custom_java_deps_filename,
@@ -239,13 +259,14 @@ def save_conf(
 
 
 def replace_with_file_content(
-    project_dir, to_replace, replacement_filepath, exclude, joiner=""
+    project_dir, to_replace, replacement_filepath, exclude, joiner="", to_append=""
 ):
     if replacement_filepath is None:
         content = ""
     else:
         file = open(replacement_filepath, "r")
         content = joiner.join(file.readlines())
+    content = content + to_append
     sed.find_replace(project_dir, to_replace, content, exclude)
     return content
 

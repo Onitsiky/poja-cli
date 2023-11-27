@@ -202,7 +202,7 @@ def save_conf(
         "ssm_subnet1_id": ssm_subnet1_id,
         "ssm_subnet2_id": ssm_subnet2_id,
         "package_full_name": package_full_name,
-        "custom_java_deps": custom_java_repositories_filename,
+        "custom_java_repositories": custom_java_repositories_filename,
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
         "with_gen_clients": with_gen_clients,

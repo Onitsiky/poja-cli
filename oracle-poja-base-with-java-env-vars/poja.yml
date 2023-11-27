@@ -1,7 +1,8 @@
 app_name: poja-base-with-java-env-vars
-cli_version: 3.3.0
+cli_version: 3.4.0
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
+custom_java_repositories: poja-custom-java-repositories.txt
 frontal_memory: 1024
 jacoco-min-coverage: '0.9'
 package_full_name: com.company.base

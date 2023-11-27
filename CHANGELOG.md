@@ -1,3 +1,12 @@
+## [3.4.1](https://github.com/hei-school/poja-cli/compare/v3.4.0...v3.4.1) (2023-11-27)
+
+
+### Bug Fixes
+
+* extra custom_java_deps --> custom_java_repositories ([367dadb](https://github.com/hei-school/poja-cli/commit/367dadbe4f284bcf726b9cfadaa04ae027b7a50c))
+
+
+
 # [3.4.0](https://github.com/hei-school/poja-cli/compare/v3.3.0...v3.4.0) (2023-11-27)
 
 

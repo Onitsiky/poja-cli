@@ -1,3 +1,12 @@
+# [3.4.0](https://github.com/hei-school/poja-cli/compare/v3.3.0...v3.4.0) (2023-11-27)
+
+
+### Features
+
+* --custom-java-repositories ([517e531](https://github.com/hei-school/poja-cli/commit/517e531c536ab9b2e7cbeb80c82607034d34e7c7))
+
+
+
 # [3.3.0](https://github.com/hei-school/poja-cli/compare/v3.2.0...v3.3.0) (2023-11-24)
 
 

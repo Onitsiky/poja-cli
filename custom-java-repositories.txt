@@ -1,0 +1,6 @@
+maven {
+    url 'https://nexus.geomatys.com/repository/geotoolkit/'
+}
+maven {
+    url 'https://repo.osgeo.org/repository/release/'
+}

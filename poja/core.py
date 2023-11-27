@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "1503a10"
+GIT_TAG_OR_COMMIT = "b78513d"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -23,6 +23,7 @@ def gen(
     ssm_subnet1_id=None,
     ssm_subnet2_id=None,
     package_full_name=DEFAULT_PACKAGE_FULL_NAME,
+    custom_java_repositories=None,
     custom_java_deps=None,
     custom_java_env_vars=None,
     with_gen_clients="false",
@@ -75,6 +76,10 @@ def gen(
         group_name_from_package_full_name(package_full_name),
         exclude,
     )
+    print_normal("custom_java_repositories")
+    java_repositories = replace_with_file_content(
+        temp_dir, "<?java-repositories>", custom_java_repositories, exclude
+    )
     set_package_dirs(temp_dir, package_full_name, "main")
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
@@ -123,6 +128,7 @@ def gen(
         ssm_subnet1_id,
         ssm_subnet2_id,
         package_full_name,
+        java_repositories,
         java_deps,
         java_env_vars,
         with_gen_clients,
@@ -172,6 +178,7 @@ def save_conf(
     ssm_subnet1_id,
     ssm_subnet2_id,
     package_full_name,
+    custom_java_repositories,
     custom_java_deps,
     custom_java_env_vars,
     with_gen_clients,
@@ -183,6 +190,7 @@ def save_conf(
     worker_memory,
     worker_batch,
 ):
+    custom_java_repositories_filename = "poja-custom-java-repositories.txt"
     custom_java_deps_filename = "poja-custom-java-deps.txt"
     custom_java_env_vars_filename = "poja-custom-java-env-vars.txt"
     conf = {
@@ -194,6 +202,7 @@ def save_conf(
         "ssm_subnet1_id": ssm_subnet1_id,
         "ssm_subnet2_id": ssm_subnet2_id,
         "package_full_name": package_full_name,
+        "custom_java_deps": custom_java_repositories_filename,
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
         "with_gen_clients": with_gen_clients,
@@ -207,6 +216,12 @@ def save_conf(
     }
     with open(temp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)
+
+    print_normal(custom_java_repositories_filename)
+    with open(
+        "%s/%s" % (temp_dir, custom_java_repositories_filename), "w"
+    ) as custom_java_repositories_file:
+        custom_java_repositories_file.write(custom_java_repositories)
 
     print_normal(custom_java_deps_filename)
     with open(

@@ -52,7 +52,7 @@ def test_base_without_postgres():
     assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
 
 
-def test_base_with_custom_java_deps():
+def test_base_with_custom_java_repos_and_deps():
     output_dir = "test-poja-base-with-aws-ses"
     poja.gen(
         "poja-base",
@@ -62,6 +62,7 @@ def test_base_with_custom_java_deps():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
+        custom_java_repositories="custom-java-repositories.txt",
         custom_java_deps="custom-java-deps-aws-ses.txt",
         output_dir=output_dir,
         with_gen_clients="true",

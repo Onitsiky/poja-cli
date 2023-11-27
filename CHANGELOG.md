@@ -1,3 +1,12 @@
+# [3.5.0](https://github.com/hei-school/poja-cli/compare/v3.4.1...v3.5.0) (2023-11-27)
+
+
+### Features
+
+* --with-swagger-ui ([c310209](https://github.com/hei-school/poja-cli/commit/c310209ec49354773be3214d578d4478a1956425))
+
+
+
 ## [3.4.1](https://github.com/hei-school/poja-cli/compare/v3.4.0...v3.4.1) (2023-11-27)
 
 

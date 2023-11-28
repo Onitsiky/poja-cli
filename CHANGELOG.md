@@ -1,3 +1,12 @@
+# [3.6.0](https://github.com/hei-school/poja-cli/compare/v3.5.2...v3.6.0) (2023-11-28)
+
+
+### Features
+
+* run spring boot on any available port when triggered from SQS Event ([ed66d5c](https://github.com/hei-school/poja-cli/commit/ed66d5c8b7827d92e53c36790957ee5ced44e48f))
+
+
+
 ## [3.5.2](https://github.com/hei-school/poja-cli/compare/v3.5.1...v3.5.2) (2023-11-28)
 
 

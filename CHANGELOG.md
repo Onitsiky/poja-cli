@@ -1,3 +1,12 @@
+## [3.5.2](https://github.com/hei-school/poja-cli/compare/v3.5.1...v3.5.2) (2023-11-28)
+
+
+### Bug Fixes
+
+* springfox --> springdoc ([ea8a1b0](https://github.com/hei-school/poja-cli/commit/ea8a1b080f3cc2f6b42f7bc715b7ca19c1fdfd18))
+
+
+
 ## [3.5.1](https://github.com/hei-school/poja-cli/compare/v3.5.0...v3.5.1) (2023-11-28)
 
 

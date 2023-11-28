@@ -1,3 +1,12 @@
+## [3.5.1](https://github.com/hei-school/poja-cli/compare/v3.5.0...v3.5.1) (2023-11-28)
+
+
+### Bug Fixes
+
+* use springfox-swagger2 for compatibility with spring2 ([8333aed](https://github.com/hei-school/poja-cli/commit/8333aedeeff3e862c0f26b369e1e7ba016d38ca6))
+
+
+
 # [3.5.0](https://github.com/hei-school/poja-cli/compare/v3.4.1...v3.5.0) (2023-11-27)
 
 

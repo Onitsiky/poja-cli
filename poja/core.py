@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "ee317e8"
+GIT_TAG_OR_COMMIT = "84a7268"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -71,12 +71,10 @@ def gen(
 
     print_normal("with_swagger_ui")
     if with_swagger_ui == "true":
-        swagger_ui_java_dep = "implementation 'io.springfox:springfox-swagger2:2.10.5'"
+        springdoc_java_dep = "implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'"
     else:
-        os.remove(
-            "%s/src/main/java/school/hei/poja/endpoint/rest/SwaggerConf.java" % temp_dir
-        )
-        swagger_ui_java_dep = ""
+        springdoc_java_dep = ""
+    sed.find_replace(temp_dir, "<?java-deps-springdoc>", springdoc_java_dep, exclude)
 
     print_normal("package_full_name")
     sed.find_replace(temp_dir, DEFAULT_PACKAGE_FULL_NAME, package_full_name, exclude)
@@ -94,11 +92,7 @@ def gen(
     set_package_dirs(temp_dir, package_full_name, "test")
     print_normal("custom_java_deps")
     java_deps = replace_with_file_content(
-        temp_dir,
-        "<?java-deps>",
-        custom_java_deps,
-        exclude,
-        to_append="\n" + swagger_ui_java_dep,
+        temp_dir, "<?java-deps>", custom_java_deps, exclude
     )
     print_normal("custom_java_env_vars")
     indent = "        "
@@ -256,14 +250,13 @@ def save_conf(
 
 
 def replace_with_file_content(
-    project_dir, to_replace, replacement_filepath, exclude, joiner="", to_append=""
+    project_dir, to_replace, replacement_filepath, exclude, joiner=""
 ):
     if replacement_filepath is None:
         content = ""
     else:
         file = open(replacement_filepath, "r")
         content = joiner.join(file.readlines())
-    content = content + to_append
     sed.find_replace(project_dir, to_replace, content, exclude)
     return content
 

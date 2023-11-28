@@ -132,5 +132,6 @@ dependencies {
 
     testImplementation 'org.testcontainers:postgresql:1.19.1'
 
-implementation 'io.springfox:springfox-boot-starter:3.0.0'
+
+implementation 'io.springfox:springfox-swagger2:2.10.5'
 }

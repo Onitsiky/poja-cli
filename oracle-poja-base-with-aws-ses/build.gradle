@@ -139,4 +139,5 @@ dependencies {
 
 implementation 'com.amazonaws:aws-java-sdk-ses:1.12.580'
 
+
 }

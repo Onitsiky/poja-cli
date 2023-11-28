@@ -9,7 +9,7 @@ import yaml
 import os
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "375579f"
+GIT_TAG_OR_COMMIT = "ee317e8"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -71,9 +71,7 @@ def gen(
 
     print_normal("with_swagger_ui")
     if with_swagger_ui == "true":
-        swagger_ui_java_dep = (
-            "implementation 'io.springfox:springfox-boot-starter:3.0.0'"
-        )
+        swagger_ui_java_dep = "implementation 'io.springfox:springfox-swagger2:2.10.5'"
     else:
         os.remove(
             "%s/src/main/java/school/hei/poja/endpoint/rest/SwaggerConf.java" % temp_dir
@@ -100,9 +98,8 @@ def gen(
         "<?java-deps>",
         custom_java_deps,
         exclude,
-        to_append=swagger_ui_java_dep,
+        to_append="\n" + swagger_ui_java_dep,
     )
-    java_deps = java_deps + "\n" + swagger_ui_java_dep
     print_normal("custom_java_env_vars")
     indent = "        "
     java_env_vars = replace_with_file_content(

@@ -1,3 +1,15 @@
+## [3.6.1](https://github.com/hei-school/poja-cli/compare/v3.6.0...v3.6.1) (2023-11-29)
+
+
+### Bug Fixes
+
+*  --> use py.open(w+) to create api.yml if not exist ([7da85ed](https://github.com/hei-school/poja-cli/commit/7da85edb4594944b728d44c19715b4c3a83e05cf))
+* format.sh --> format.bat on Windows ([17871d7](https://github.com/hei-school/poja-cli/commit/17871d7ba2a15878f5b062f97dce4126b8eecbb7))
+* os.mkdir --> pathlib.mkdir for Windows compatibility ([3379aa5](https://github.com/hei-school/poja-cli/commit/3379aa50326f4b232db555330642f572fc19a312))
+* shutil.rmtree -> git.rmtree for windows compatibility ([da67f5b](https://github.com/hei-school/poja-cli/commit/da67f5b5cc12960f772debf7cd24978376da2317))
+
+
+
 # [3.6.0](https://github.com/hei-school/poja-cli/compare/v3.5.2...v3.6.0) (2023-11-28)
 
 

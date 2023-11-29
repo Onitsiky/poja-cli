@@ -7,10 +7,10 @@ from poja.vpcscoped import set_vpc_scoped_resources
 from poja.genclients import set_gen_clients
 import yaml
 import os
-
+import platform
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "b09984f"
+GIT_TAG_OR_COMMIT = "6cdfff7"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -161,7 +161,10 @@ def gen(
     os.remove(temp_dir + "/gradle.properties")
 
     print_title("Format...")
-    os.system("cd %s && ./format.sh" % temp_dir)
+    if "Windows" in platform.system():
+        os.system("cd /D %s && format.bat" % temp_dir)
+    else:
+        os.system("cd %s && ./format.sh" % temp_dir)
 
     print_title("Copy to output dir...")
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)

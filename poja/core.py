@@ -8,6 +8,7 @@ from poja.genclients import set_gen_clients
 import yaml
 import os
 
+
 GIT_URL = "https://github.com/hei-school/poja"
 GIT_TAG_OR_COMMIT = "b09984f"
 
@@ -168,10 +169,9 @@ def gen(
     print_title("Client generation...")
     print_normal("doc/api.yml")
     os.system("mkdir -p %s/doc" % output_dir)
-    os.system("touch %s/doc/api.yml" % output_dir)
+    open("%s/doc/api.yml" % output_dir, "w+")  # create if not exist
 
     print_title("... all done!")
-
 
 def group_name_from_package_full_name(package_full_name):
     package_full_name_parts = get_package_full_name_parts(package_full_name)

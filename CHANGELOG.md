@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/hei-school/poja-cli/compare/v3.6.1...v4.0.0) (2023-11-30)
+
+
+### Bug Fixes
+
+* add missing script to connect to codeartifact private repository ([9f40e38](https://github.com/hei-school/poja-cli/commit/9f40e3888c5ef9faf72c05ff62412ed41601d334))
+
+
+* feat!: Update default values for frontal_memory and worker_memory ([6f92f32](https://github.com/hei-school/poja-cli/commit/6f92f329982ecd42e76fb9d37f6156414f2507de))
+
+
+### BREAKING CHANGES
+
+* Reduce frontal_memory default to 512 and worker_memory default to 1024
+
+
+
 ## [3.6.1](https://github.com/hei-school/poja-cli/compare/v3.6.0...v3.6.1) (2023-11-29)
 
 

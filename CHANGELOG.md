@@ -1,3 +1,12 @@
+# [4.1.0](https://github.com/hei-school/poja-cli/compare/v4.0.0...v4.1.0) (2023-12-07)
+
+
+### Features
+
+* file package with bucket component ([bdc0b6e](https://github.com/hei-school/poja-cli/commit/bdc0b6eb3d6430b1a00a90b6244422f704fd994a))
+
+
+
 # [4.0.0](https://github.com/hei-school/poja-cli/compare/v3.6.1...v4.0.0) (2023-11-30)
 
 

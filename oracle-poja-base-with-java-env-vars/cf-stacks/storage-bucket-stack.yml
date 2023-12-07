@@ -21,7 +21,7 @@ Resources:
   BucketSSM:
     Type: AWS::SSM::Parameter
     Properties:
-      Name: !Join ['', [/poja-base-with-java-env-vars/feature-detector/, !Ref Env, /s3/bucket-name]]
+      Name: !Join ['', [/poja-base-with-java-env-vars/, !Ref Env, /s3/bucket-name]]
       Type: String
       Value: !Ref Bucket
 

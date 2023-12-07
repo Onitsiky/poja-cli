@@ -14,7 +14,7 @@ def test_base():
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
         output_dir=output_dir,
-        jacoco_min_coverage="0.4",
+        jacoco_min_coverage="0.5",
         custom_java_deps="custom-java-deps-justice.txt",
     )
     assert is_dir_superset_of("oracle-poja-base", output_dir)

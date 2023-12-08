@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/hei-school/poja-cli/compare/v4.1.0...v4.1.1) (2023-12-08)
+
+
+### Bug Fixes
+
+* use GHA hei-school/aws-credentials-setter ([369cc55](https://github.com/hei-school/poja-cli/commit/369cc559ef694b5b6f0c5d0ae18328abfe2d9e73))
+
+
+
 # [4.1.0](https://github.com/hei-school/poja-cli/compare/v4.0.0...v4.1.0) (2023-12-07)
 
 

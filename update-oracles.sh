@@ -2,6 +2,7 @@
 
 mv oracle-poja-base/.git /tmp/gitpojabase
 cp -r test-poja-base/* oracle-poja-base
+cp -r test-poja-base/.github/* oracle-poja-base/.github
 mv /tmp/gitpojabase oracle-poja-base/.git
 
 rm -rf oracle-poja-base-without-own-vpc

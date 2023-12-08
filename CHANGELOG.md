@@ -1,3 +1,12 @@
+## [4.1.2](https://github.com/hei-school/poja-cli/compare/v4.1.1...v4.1.2) (2023-12-08)
+
+
+### Bug Fixes
+
+* use .shell/checkHealth.sh ([f57bef6](https://github.com/hei-school/poja-cli/commit/f57bef6506b24ca76b072689c693e1c59a83f981))
+
+
+
 ## [4.1.1](https://github.com/hei-school/poja-cli/compare/v4.1.0...v4.1.1) (2023-12-08)
 
 

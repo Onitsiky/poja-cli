@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/hei-school/poja-cli/compare/v4.1.2...v5.0.0) (2023-12-11)
+
+
+### Features
+
+* mail package ([9c488da](https://github.com/hei-school/poja-cli/commit/9c488dac4c9ba055aa16f9daf181b2a027fa2c61))
+
+
+### BREAKING CHANGES
+
+* you need to manually rm HealthController and rm infra-health-check.yml
+
+
+
 ## [4.1.2](https://github.com/hei-school/poja-cli/compare/v4.1.1...v4.1.2) (2023-12-08)
 
 

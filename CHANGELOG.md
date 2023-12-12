@@ -1,3 +1,18 @@
+# [6.0.0](https://github.com/hei-school/poja-cli/compare/v5.0.0...v6.0.0) (2023-12-12)
+
+
+### Features
+
+* --with-database=sqlite ([bb72bad](https://github.com/hei-school/poja-cli/commit/bb72bad6fff1d0c00bdc07edb6433d91ea076c49))
+
+
+### BREAKING CHANGES
+
+* former with_postgres defaulting to true now becomes with_database defaulting to sqlite
+* manually remove former repository.DatasourceConf as poja now generates repository.conf.DatasourceConf
+
+
+
 # [5.0.0](https://github.com/hei-school/poja-cli/compare/v4.1.2...v5.0.0) (2023-12-11)
 
 

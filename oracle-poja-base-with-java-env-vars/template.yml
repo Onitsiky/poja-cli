@@ -27,6 +27,9 @@ Globals:
         AWS_S3_BUCKET: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/s3/bucket-name}}'
         AWS_SES_SOURCE: noreply@nowhere.com
         
+        DATABASE_URL: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/db/url}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/db/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/db/password}}'
         SENTRY_DSN: !Sub '{{resolve:ssm:/hei-admin-api/sentry/dsn}}'
         AWS_SES_CONTACT: !Sub '{{resolve:ssm:/hei-admin-api/${Env}/ses/contact}}'
 
@@ -41,6 +44,7 @@ Resources:
       Handler: com.company.base.ApiEventHandler::handleRequest
       MemorySize: 512
       Role: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/execution/role-arn}}'
+      
       Events:
         ApiCall:
           Type: Api
@@ -54,6 +58,7 @@ Resources:
       Handler: com.company.base.MailboxEventHandler::handleRequest
       MemorySize: 1024
       Role: !Sub '{{resolve:ssm:/poja-base-with-java-env-vars/${Env}/execution/role-arn}}'
+      
       Events:
         AllEvents:
           Type: SQS

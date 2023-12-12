@@ -6,11 +6,14 @@ cp -r test-poja-base/.github/* oracle-poja-base/.github
 cp -r test-poja-base/.shell/* oracle-poja-base/.shell
 mv /tmp/gitpojabase oracle-poja-base/.git
 
+mv oracle-poja-sqlite/.git /tmp/gitpojasqlite
+cp -r test-poja-sqlite/* oracle-poja-sqlite
+cp -r test-poja-sqlite/.github/* oracle-poja-sqlite/.github
+cp -r test-poja-sqlite/.shell/* oracle-poja-sqlite/.shell
+mv /tmp/gitpojasqlite oracle-poja-sqlite/.git
+
 rm -rf oracle-poja-base-without-own-vpc
 cp -r test-poja-base-without-own-vpc oracle-poja-base-without-own-vpc
-
-rm -rf oracle-poja-base-with-aws-ses
-cp -r test-poja-base-with-aws-ses oracle-poja-base-with-aws-ses
 
 rm -rf oracle-poja-base-without-postgres
 cp -r test-poja-base-without-postgres oracle-poja-base-without-postgres

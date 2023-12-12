@@ -5,13 +5,14 @@ from poja.myrich import print_title, print_normal, print_banner
 from poja.version import get_version
 from poja.vpcscoped import set_vpc_scoped_resources
 from poja.genclients import set_gen_clients
+from poja.database import set_postgres, set_sqlite
 import yaml
 import os
 import platform
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "e62789f"
+GIT_TAG_OR_COMMIT = "1b839aa"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -31,7 +32,7 @@ def gen(
     custom_java_deps=None,
     custom_java_env_vars=None,
     with_gen_clients="false",
-    with_postgres="true",
+    with_database="sqlite",
     output_dir=None,
     jacoco_min_coverage="0.8",
     with_publish_to_npm_registry="false",
@@ -65,6 +66,10 @@ def gen(
     sed.find_replace(temp_dir, "<?worker-memory>", str(worker_memory), exclude)
     print_normal("worker_batch")
     sed.find_replace(temp_dir, "<?worker-batch>", str(worker_batch), exclude)
+
+    print_normal("with_database")
+    set_postgres(with_database, temp_dir, exclude)
+    set_sqlite(with_database, package_full_name, temp_dir, exclude)
 
     print_normal("with_own_vpc")
     set_vpc_scoped_resources(
@@ -105,8 +110,6 @@ def gen(
         temp_dir, "<?java-env-vars>", custom_java_env_vars, exclude, joiner=indent
     )
 
-    print_normal("with_postgres")
-    set_postgres(with_postgres, temp_dir, exclude)
     print_normal("app_name")
     sed.find_replace(temp_dir, "<?app-name>", app_name, exclude)
     print_normal("jacoco_min_coverage")
@@ -147,7 +150,7 @@ def gen(
         java_deps,
         java_env_vars,
         with_gen_clients,
-        with_postgres,
+        with_database,
         jacoco_min_coverage,
         ts_client_default_openapi_server_url,
         ts_client_api_url_env_var_name,
@@ -203,7 +206,7 @@ def save_conf(
     custom_java_deps,
     custom_java_env_vars,
     with_gen_clients,
-    with_postgres,
+    with_database,
     jacoco_min_coverage,
     ts_client_default_openapi_server_url,
     ts_client_api_url_env_var_name,
@@ -229,7 +232,7 @@ def save_conf(
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
         "with_gen_clients": with_gen_clients,
-        "with_postgres": with_postgres,
+        "with_database": with_database,
         "jacoco-min-coverage": jacoco_min_coverage,
         "ts_client_default_openapi_server_url": ts_client_default_openapi_server_url,
         "ts_client_api_url_env_var_name": ts_client_api_url_env_var_name,
@@ -271,22 +274,6 @@ def replace_with_file_content(
         content = joiner.join(file.readlines())
     sed.find_replace(project_dir, to_replace, content, exclude)
     return content
-
-
-def set_postgres(with_postgres, temp, exclude):
-    if with_postgres == "true":
-        post_gres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""
-    else:
-        post_gres_env_vars = ""
-        os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
-    sed.find_replace(
-        temp,
-        "<?postgres-env-vars>",
-        post_gres_env_vars,
-        exclude,
-    )
 
 
 def set_package_dirs(temp_dir, package_full_name, scope):

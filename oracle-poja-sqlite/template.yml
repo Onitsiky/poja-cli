@@ -1,0 +1,95 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: poja-sqlite - Computation and API
+
+Globals:
+  Function:
+    CodeUri: .
+    Runtime: java17
+    Tracing: Active
+    Architectures:
+      - x86_64
+    Timeout: 600
+    
+    VpcConfig:
+      SecurityGroupIds:
+        - !Sub '{{resolve:ssm:/poja/sg/id}}'
+      SubnetIds:
+        - !Sub '{{resolve:ssm:/poja-sqlite/subnet/public1/id}}'
+        - !Sub '{{resolve:ssm:/poja-sqlite/subnet/public2/id}}'
+    Environment:
+      Variables:
+        ENV: !Ref Env
+        AWS_SQS_QUEUE_URL: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/sqs/mailbox-queue-url}}'
+        AWS_EVENTBRIDGE_BUS: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/eventbridge/bus-name}}'
+        AWS_S3_BUCKET: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/s3/bucket-name}}'
+        AWS_SES_SOURCE: noreply@nowhere.com
+        DRIVERCLASSNAME: org.sqlite.JDBC
+        SPRING_JPA_DATABASEPLATFORM: com.company.base.repository.conf.SqliteDialect
+        DATABASE_URL: jdbc:sqlite:/mnt/efs/sqlite-data:db?cache=shared
+        DATABASE_USERNAME: sa
+        DATABASE_PASSWORD: sa
+        
+        
+
+Parameters:
+  Env:
+    Type: String
+
+Resources:
+  FrontalFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.company.base.ApiEventHandler::handleRequest
+      MemorySize: 512
+      Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
+      FileSystemConfigs:
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/access-point/arn}}'
+          LocalMountPath: /mnt/efs
+      Events:
+        ApiCall:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+
+  WorkerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.company.base.MailboxEventHandler::handleRequest
+      MemorySize: 1024
+      Role: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/execution/role-arn}}'
+      FileSystemConfigs:
+        - Arn: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/efs/access-point/arn}}'
+          LocalMountPath: /mnt/efs
+      Events:
+        AllEvents:
+          Type: SQS
+          Properties:
+            Queue: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/sqs/mailbox-queue-arn}}'
+            BatchSize: 5
+
+  ApplicationResourceGroup:
+    Type: AWS::ResourceGroups::Group
+    Properties:
+      Name:
+        Fn::Sub: ApplicationInsights-SAM-${AWS::StackName}
+      ResourceQuery:
+        Type: CLOUDFORMATION_STACK_1_0
+  ApplicationInsightsMonitoring:
+    Type: AWS::ApplicationInsights::Application
+    Properties:
+      ResourceGroupName: !Ref ApplicationResourceGroup
+      AutoConfigurationEnabled: 'true'
+
+  ApiUrlSSM:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Join [ '', [ /poja-sqlite/, !Ref Env, /api/url ] ]
+      Type: String
+      Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod"
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway endpoint URL
+    Value: !GetAtt ApiUrlSSM.Value

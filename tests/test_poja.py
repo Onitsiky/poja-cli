@@ -13,6 +13,7 @@ def test_base():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         ses_source="lou@hei.school",
+        with_database="postgres",
         package_full_name="com.company.base",
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
@@ -28,6 +29,7 @@ def test_base_without_own_vpc():
         region="eu-west-3",
         with_own_vpc="false",
         package_full_name="com.company.base",
+        with_database="postgres",
         output_dir=output_dir,
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
@@ -45,31 +47,30 @@ def test_base_without_postgres():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
+        with_database="postgres",
         output_dir=output_dir,
-        with_postgres="false",
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
     )
     assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
 
 
-def test_base_with_custom_java_repos_and_deps():
-    output_dir = "test-poja-base-with-aws-ses"
+def test_base_with_custom_java_repos_and_sqlite():
+    output_dir = "test-poja-sqlite"
     poja.gen(
-        "poja-base",
+        "poja-sqlite",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
-        ssm_subnet1_id="/poja/subnet/private1/id",
-        ssm_subnet2_id="/poja/subnet/private2/id",
+        ssm_subnet1_id="/poja-sqlite/subnet/public1/id",
+        ssm_subnet2_id="/poja-sqlite/subnet/public2/id",
         package_full_name="com.company.base",
+        with_database="sqlite",
         custom_java_repositories="custom-java-repositories.txt",
-        custom_java_deps="custom-java-deps-aws-ses.txt",
         output_dir=output_dir,
-        with_gen_clients="true",
-        jacoco_min_coverage="0.9",
+        jacoco_min_coverage="0.5",
     )
-    assert is_dir_superset_of("oracle-poja-base-with-aws-ses", output_dir)
+    assert is_dir_superset_of("oracle-poja-sqlite", output_dir)
 
 
 def test_base_with_custom_java_env_vars_and_swagger_ui():
@@ -82,8 +83,8 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        with_postgres="false",
         with_swagger_ui="true",
+        with_database="postgres",
         custom_java_env_vars="custom-java-env-vars.txt",
         output_dir=output_dir,
         with_gen_clients="true",
@@ -102,10 +103,10 @@ def test_base_with_script_to_publish_to_npm_registry():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        with_postgres="false",
         custom_java_env_vars="custom-java-env-vars.txt",
         output_dir=output_dir,
         jacoco_min_coverage="0.9",
+        with_database="postgres",
         with_publish_to_npm_registry="true",
         with_gen_clients="true",
         ts_client_default_openapi_server_url="http://localhost",

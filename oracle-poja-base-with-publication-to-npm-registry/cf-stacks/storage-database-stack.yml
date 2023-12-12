@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: poja-base-with-publication-to-npm-registry - Storage
+Description: poja-base-with-publication-to-npm-registry - Storage Postgres
 
 Parameters:
   Env:

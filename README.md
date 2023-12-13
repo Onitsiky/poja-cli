@@ -77,9 +77,10 @@ Then invoke Poja CLI with the following additional parameters:
 --ssm-subnet2-id=/poja/subnet/private2/id
 ```
 
-### Do not create a new Postgres
+### Configure your database
 
-Use `--with-postgres=false`. Handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
+Use `--with-database=posgres|sqlite|none`.
+In particular, `none` is handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
 
 ### Use custom/additional Java deps
 

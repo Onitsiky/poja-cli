@@ -1,3 +1,17 @@
+# [7.0.0](https://github.com/hei-school/poja-cli/compare/v6.0.0...v7.0.0) (2023-12-13)
+
+
+### Features
+
+* support for directory upload ([fe5c750](https://github.com/hei-school/poja-cli/commit/fe5c750cc9653261cd51d8d004729f300d575f7e))
+
+
+### BREAKING CHANGES
+
+* former BucketComponent.download that returned an InputStream now returns a File
+
+
+
 # [6.0.0](https://github.com/hei-school/poja-cli/compare/v5.0.0...v6.0.0) (2023-12-12)
 
 

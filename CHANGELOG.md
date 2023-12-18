@@ -1,3 +1,14 @@
+## [7.0.1](https://github.com/hei-school/poja-cli/compare/v7.0.0...v7.0.1) (2023-12-18)
+
+
+### Bug Fixes
+
+* configurable region in deploy event and compute permission workflows ([6e68f8b](https://github.com/hei-school/poja-cli/commit/6e68f8b346291f9a211d406d5685a2532bdd02f4))
+* set aws credentials in CI ([b103d4a](https://github.com/hei-school/poja-cli/commit/b103d4a8127e2fb9b2690011271f0509349732cb))
+* use spring bean object mapper instead of creating a new instance ([d0a2840](https://github.com/hei-school/poja-cli/commit/d0a2840e4f6154a5f7e267556102373bc870d3ba))
+
+
+
 # [7.0.0](https://github.com/hei-school/poja-cli/compare/v6.0.0...v7.0.0) (2023-12-13)
 
 

@@ -3,7 +3,7 @@ cli_version: 7.0.1
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
-frontal_memory: 512
+frontal_memory: 2048
 jacoco-min-coverage: '0.5'
 package_full_name: com.company.base
 region: eu-west-3

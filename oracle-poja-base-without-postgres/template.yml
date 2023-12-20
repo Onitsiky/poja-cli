@@ -42,7 +42,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: com.company.base.ApiEventHandler::handleRequest
-      MemorySize: 512
+      MemorySize: 2048
       Role: !Sub '{{resolve:ssm:/poja-base-without-postgres/${Env}/execution/role-arn}}'
       
       Events:

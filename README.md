@@ -82,7 +82,7 @@ Similar to the Java deps section above, but with `--custom-java-env-vars` as arg
 
 Create first:
 - Two subnets. They MUST be private, and access Internet through a NAT Gateway. Reference their id in SSM under any name you want. If you use public subnets, then some parts of POJA might not work correctly, notably the asynchronous stack and the bucket stack.
-- A security group that allows HTTP and Postgres traffic. Put its id in SSM under any name you want.
+- A security group that allows incoming HTTP traffic, allows all internal traffic, and allows all outcoming traffic. Put its id in SSM under any name you want.
 
 > **Warning**
 > Remind that the NAT Gateway associated to the subnets is __not__ serverless.

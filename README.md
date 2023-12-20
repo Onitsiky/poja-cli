@@ -28,7 +28,8 @@ python -m poja \
   --ssm-subnet2-id=/poja/subnet/private2/id
 ```
 
-Those configurations will be automatically saved in `poja.yml` at the end of the creation. See section "Use your own VPC" for the `--with-own-vpc` and `--ssm-xxx-id` arguments.
+Those configurations will be automatically saved in [poja.yml](https://github.com/hei-school/poja-base/blob/prod/poja.yml) at the end of the creation.
+See section "Use your own VPC" for the `--with-own-vpc` and `--ssm-xxx-id` arguments.
 
 ### Upgrade an already existing project
 

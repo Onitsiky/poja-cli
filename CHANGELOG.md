@@ -1,3 +1,19 @@
+# [8.0.0](https://github.com/hei-school/poja-cli/compare/v7.0.1...v8.0.0) (2023-12-20)
+
+
+### Bug Fixes
+
+* --frontal-memory defaults to 2048 instead of 512 ([42c5cef](https://github.com/hei-school/poja-cli/commit/42c5cef99ccd1554c89d938fb477d78021f6220a))
+* --with-snapstart defaults to false instead of true ([f0b1a52](https://github.com/hei-school/poja-cli/commit/f0b1a52f24f5a3090b048881736e6a1959e1a009))
+
+
+### BREAKING CHANGES
+
+* --frontal-memory defaults to 2048 instead of 512
+* --with-snapstart defaults to false instead of true
+
+
+
 ## [7.0.1](https://github.com/hei-school/poja-cli/compare/v7.0.0...v7.0.1) (2023-12-18)
 
 

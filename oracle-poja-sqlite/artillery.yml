@@ -7,4 +7,4 @@ config:
 scenarios:
   - flow:
       - get:
-          url: "/Prod/health/db"
+          url: "/Prod/ping"

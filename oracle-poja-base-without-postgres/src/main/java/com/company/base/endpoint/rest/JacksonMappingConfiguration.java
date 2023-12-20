@@ -1,4 +1,4 @@
-package com.company.base.endpoint.rest.controller;
+package com.company.base.endpoint.rest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Bean;

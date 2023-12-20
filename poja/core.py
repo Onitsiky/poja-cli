@@ -12,7 +12,7 @@ import platform
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "afc437e"
+GIT_TAG_OR_COMMIT = "7452d87"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -41,6 +41,7 @@ def gen(
     frontal_memory=512,
     worker_memory=1024,
     worker_batch=5,
+    with_snapstart="false",
 ):
     if output_dir is None:
         output_dir = app_name
@@ -59,6 +60,26 @@ def gen(
     sed.find_replace(temp_dir, "<?aws-region>", region, exclude)
     print_normal("ses_source")
     sed.find_replace(temp_dir, "<?aws-ses-source>", ses_source, exclude)
+
+    if with_snapstart == "true":
+        if with_database == "sqlite":
+            raise Exception(
+                "SQLite cannot be accessed by snapstart-enabled lambda functions"
+            )
+        function_snapstart = """AutoPublishAlias: live
+    SnapStart:
+      ApplyOn: PublishedVersions"""
+        function_snapstart_java_env = ""
+    else:
+        function_snapstart = ""
+        function_snapstart_java_env = "JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Dspring.main.lazy-initialization=true -Dspring.datasource.max-active=5 -Dspring.datasource.max-idle=1 -Dspring.datasource.min-idle=1 -Dspring.datasource.initial-size=1"
+    sed.find_replace(temp_dir, "<?function-snapstart>", function_snapstart, exclude)
+    sed.find_replace(
+        temp_dir,
+        "<?function-snapstart-java-env-vars>",
+        function_snapstart_java_env,
+        exclude,
+    )
 
     print_normal("frontal_memory")
     sed.find_replace(temp_dir, "<?frontal-memory>", str(frontal_memory), exclude)

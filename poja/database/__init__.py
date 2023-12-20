@@ -1,10 +1,6 @@
 import poja.sed as sed
 import os
 
-function_snapstart_enabled = """AutoPublishAlias: live
-    SnapStart:
-      ApplyOn: PublishedVersions"""
-
 
 def set_postgres(with_database, temp, exclude):
     if with_database == "postgres":
@@ -28,14 +24,12 @@ def set_postgres(with_database, temp, exclude):
         upsert_constraint_dummy_uuid = (
             "on conflict on constraint dummy_uuid_pk do nothing;"
         )
-        function_snapstart = function_snapstart_enabled
     else:
         postgres_env_vars = ""
         upsert_constraint_dummy = ";"
         postgres_configure_it_properties = ""
         postgres_start_container = ""
         upsert_constraint_dummy_uuid = ";"
-        function_snapstart = "<?function-snapstart>"
         os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
         os.remove("%s/cf-stacks/storage-database-stack.yml" % temp)
     sed.find_replace(
@@ -62,7 +56,6 @@ def set_postgres(with_database, temp, exclude):
     sed.find_replace(
         temp, "<?upsert-constraint-dummy-uuid>", upsert_constraint_dummy_uuid, exclude
     )
-    sed.find_replace(temp, "<?function-snapstart>", function_snapstart, exclude)
 
 
 def set_sqlite(with_database, package_full_name, temp, exclude):
@@ -85,14 +78,12 @@ def set_sqlite(with_database, package_full_name, temp, exclude):
           LocalMountPath: %s"""
             % efs_mount_point
         )
-        function_snapstart = ""
     else:
         sqlite_env_vars = ""
         sqlite_configure_it_properties = ""
         os.remove(temp + "/.github/workflows/cd-storage-efs.yml")
         os.remove(temp + "/cf-stacks/storage-efs-stack.yml")
         function_fs_configs = ""
-        function_snapstart = function_snapstart_enabled
 
     sed.find_replace(
         temp,
@@ -112,4 +103,3 @@ def set_sqlite(with_database, package_full_name, temp, exclude):
         function_fs_configs,
         exclude,
     )
-    sed.find_replace(temp, "<?function-snapstart>", function_snapstart, exclude)

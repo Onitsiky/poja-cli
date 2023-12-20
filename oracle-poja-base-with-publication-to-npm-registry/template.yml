@@ -32,6 +32,7 @@ Globals:
         DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/password}}'
         SENTRY_DSN: !Sub '{{resolve:ssm:/hei-admin-api/sentry/dsn}}'
         AWS_SES_CONTACT: !Sub '{{resolve:ssm:/hei-admin-api/${Env}/ses/contact}}'
+        
 
 Parameters:
   Env:

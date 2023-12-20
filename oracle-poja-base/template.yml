@@ -31,6 +31,7 @@ Globals:
         DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
         DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'
         
+        
 
 Parameters:
   Env:

@@ -1,3 +1,17 @@
+# [9.0.0](https://github.com/hei-school/poja-cli/compare/v8.0.0...v9.0.0) (2023-12-20)
+
+
+### Bug Fixes
+
+* add EndpointConf ([35e5c9f](https://github.com/hei-school/poja-cli/commit/35e5c9fcd7352bf3159fc810a2d1fe9e9d2e84a2))
+
+
+### BREAKING CHANGES
+
+* manually rm JacksonMappingConfiguration as it now becomes EndpointConf
+
+
+
 # [8.0.0](https://github.com/hei-school/poja-cli/compare/v7.0.1...v8.0.0) (2023-12-20)
 
 

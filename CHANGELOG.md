@@ -1,3 +1,12 @@
+## [9.0.1](https://github.com/hei-school/poja-cli/compare/v9.0.0...v9.0.1) (2023-12-21)
+
+
+### Bug Fixes
+
+* configure and registerModules in objectMapper ([0e56300](https://github.com/hei-school/poja-cli/commit/0e56300e4486a208a0558e1ac6a0c140f4439bd0))
+
+
+
 # [9.0.0](https://github.com/hei-school/poja-cli/compare/v8.0.0...v9.0.0) (2023-12-20)
 
 

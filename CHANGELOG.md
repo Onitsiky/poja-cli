@@ -1,3 +1,12 @@
+## [9.0.2](https://github.com/hei-school/poja-cli/compare/v9.0.1...v9.0.2) (2023-12-21)
+
+
+### Bug Fixes
+
+* add execute permission on gradlew before running tests ([193a887](https://github.com/hei-school/poja-cli/commit/193a88748cf8b3da5ce4a887305a6eb5cd810600))
+
+
+
 ## [9.0.1](https://github.com/hei-school/poja-cli/compare/v9.0.0...v9.0.1) (2023-12-21)
 
 

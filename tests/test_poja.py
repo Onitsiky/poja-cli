@@ -1,3 +1,5 @@
+import subprocess
+
 import poja
 from filecmp import dircmp
 import os.path
@@ -21,6 +23,7 @@ def test_base():
         with_snapstart="true",
     )
     assert is_dir_superset_of("oracle-poja-base", output_dir)
+    assert oracle_test_are_passing(output_dir)
 
 
 def test_base_without_own_vpc():
@@ -37,6 +40,7 @@ def test_base_without_own_vpc():
         with_snapstart="true",
     )
     assert is_dir_superset_of("oracle-poja-base-without-own-vpc", output_dir)
+    assert oracle_test_are_passing(output_dir)
 
 
 def test_base_without_postgres():
@@ -56,6 +60,7 @@ def test_base_without_postgres():
         with_snapstart="true",
     )
     assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
+    assert oracle_test_are_passing(output_dir)
 
 
 def test_base_with_custom_java_repos_and_sqlite():
@@ -74,6 +79,7 @@ def test_base_with_custom_java_repos_and_sqlite():
         jacoco_min_coverage="0.5",
     )
     assert is_dir_superset_of("oracle-poja-sqlite", output_dir)
+    assert oracle_test_are_passing(output_dir)
 
 
 def test_base_with_custom_java_env_vars_and_swagger_ui():
@@ -95,6 +101,7 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
         with_snapstart="true",
     )
     assert is_dir_superset_of("oracle-poja-base-with-java-env-vars", output_dir)
+    assert oracle_test_are_passing(output_dir)
 
 
 def test_base_with_script_to_publish_to_npm_registry():
@@ -120,6 +127,7 @@ def test_base_with_script_to_publish_to_npm_registry():
     assert is_dir_superset_of(
         "oracle-poja-base-with-publication-to-npm-registry", output_dir
     )
+    assert oracle_test_are_passing(output_dir)
 
 
 def is_dir_superset_of(superset_dir, subset_dir):
@@ -141,3 +149,31 @@ def is_dir_superset_of(superset_dir, subset_dir):
         ):
             return False
     return True
+
+
+MOCK_AWS_ENV_FOR_ORACLE_TESTS = {
+    "AWS_ACCESS_KEY_ID": "dummy",
+    "AWS_SECRET_ACCESS_KEY": "dummy",
+    "AWS_REGION": "dummy",
+}
+
+
+def oracle_test_are_passing(oracle_base_folder_dir, verbose=False):
+    gradlew_file = f"{oracle_base_folder_dir}/gradlew"
+    os.system(f"chmod +x {gradlew_file}")
+
+    process = subprocess.run(
+        "./gradlew test",
+        shell=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        env=MOCK_AWS_ENV_FOR_ORACLE_TESTS,
+        text=verbose,
+        cwd=oracle_base_folder_dir,
+    )
+    if verbose:
+        print("stdout: ")
+        print(process.stdout.decode())
+        print("\nstderr: ")
+        print(process.stderr.decode)
+    return process.returncode == 0

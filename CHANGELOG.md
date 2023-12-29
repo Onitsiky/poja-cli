@@ -1,3 +1,12 @@
+## [9.0.3](https://github.com/hei-school/poja-cli/compare/v9.0.2...v9.0.3) (2023-12-29)
+
+
+### Bug Fixes
+
+* -Dspring.data.jpa.repositories.bootstrap-mode=lazy when no snapstart ([2d4a783](https://github.com/hei-school/poja-cli/commit/2d4a783001cd61023fab9773e17090ab75394956))
+
+
+
 ## [9.0.2](https://github.com/hei-school/poja-cli/compare/v9.0.1...v9.0.2) (2023-12-21)
 
 

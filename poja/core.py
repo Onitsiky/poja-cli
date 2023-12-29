@@ -72,7 +72,7 @@ def gen(
         function_snapstart_java_env = ""
     else:
         function_snapstart = ""
-        function_snapstart_java_env = "JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Dspring.main.lazy-initialization=true -Dspring.datasource.max-active=5 -Dspring.datasource.max-idle=1 -Dspring.datasource.min-idle=1 -Dspring.datasource.initial-size=1"
+        function_snapstart_java_env = "JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Dspring.main.lazy-initialization=true -Dspring.data.jpa.repositories.bootstrap-mode=lazy -Dspring.datasource.max-active=5 -Dspring.datasource.max-idle=1 -Dspring.datasource.min-idle=1 -Dspring.datasource.initial-size=1"
     sed.find_replace(temp_dir, "<?function-snapstart>", function_snapstart, exclude)
     sed.find_replace(
         temp_dir,

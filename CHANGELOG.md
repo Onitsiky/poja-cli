@@ -1,3 +1,17 @@
+# [10.0.0](https://github.com/hei-school/poja-cli/compare/v9.1.1...v10.0.0) (2024-01-03)
+
+
+### Bug Fixes
+
+* --with-database=none --> non-poja-managed-postgres ([1bdfcd1](https://github.com/hei-school/poja-cli/commit/1bdfcd149b6c97ef5bf0f7a1fa404d17394494a5))
+
+
+### BREAKING CHANGES
+
+* --with-database=none --> non-poja-managed-postgres
+
+
+
 ## [9.1.1](https://github.com/hei-school/poja-cli/compare/v9.1.0...v9.1.1) (2024-01-03)
 
 

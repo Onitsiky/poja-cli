@@ -27,9 +27,7 @@ Globals:
         AWS_S3_BUCKET: !Sub '{{resolve:ssm:/poja-base-without-postgres/${Env}/s3/bucket-name}}'
         AWS_SES_SOURCE: noreply@nowhere.com
         
-        DATABASE_URL: !Sub '{{resolve:ssm:/poja-base-without-postgres/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base-without-postgres/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base-without-postgres/${Env}/db/password}}'
+        
         
         
 

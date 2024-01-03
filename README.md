@@ -47,8 +47,8 @@ The POJA configuration that was used for the previous generation is saved in `po
 
 ### Configure your database
 
-Use `--with-database=posgres|sqlite|none`.
-In particular, `none` is handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
+Use `--with-database=postgres|non-poja-managed-postgres|sqlite`.
+In particular, `non-poja-managed-postgres` is handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
 
 If you want POJA to fully manage Postgres: from creation, to operations -- scale-in, scale-out to zero, DDoS protection, regular backups -- to deletion. Then do as follows before running the `CD compute` action:
 

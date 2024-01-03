@@ -49,9 +49,9 @@ def test_base_without_postgres():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        with_database="postgres",
+        with_database="non-poja-managed-postgres",
         output_dir=output_dir,
-        with_gen_clients="true",
+        with_gen_clients="false",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )

@@ -1,3 +1,12 @@
+## [9.1.1](https://github.com/hei-school/poja-cli/compare/v9.1.0...v9.1.1) (2024-01-03)
+
+
+### Bug Fixes
+
+* specify region for S3AsyncClient bean ([81386c2](https://github.com/hei-school/poja-cli/commit/81386c26edbb9c2820f335fed389fe480c9ad799))
+
+
+
 # [9.1.0](https://github.com/hei-school/poja-cli/compare/v9.0.3...v9.1.0) (2024-01-03)
 
 

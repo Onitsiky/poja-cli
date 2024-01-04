@@ -41,6 +41,14 @@ python -m poja \
   --output-dir=folder-already-created
 ```
 
+Or, more conveniently, by modifying the existing `poja.yml`
+(modify mandatorily the `version` parameter so that it reflects the newly upgraded version,
+modify optionally any other parameter depending on your needs):
+```
+pip install poja --upgrade
+python -m poja --poja-conf=poja.yml --output-dir=.
+```
+
 Note the `--upgrade` and the `--output-dir=folder-already-created` flags.
 
 The POJA configuration that was used for the previous generation is saved in `poja.yml`: it will be updated after the new upgrade.

@@ -1,12 +1,13 @@
 import poja.mygit as mygit
 import shutil
 import poja.sed as sed
-from poja.myrich import print_title, print_normal, print_banner
+from poja.myrich import print_title, print_normal, print_banner, print_warn
 from poja.version import get_version
 from poja.vpcscoped import set_vpc_scoped_resources
 from poja.genclients import set_gen_clients
 from poja.database import set_postgres, set_sqlite
 import yaml
+from yaml.loader import BaseLoader
 import os
 import platform
 from pathlib import Path
@@ -19,7 +20,8 @@ DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
 
 
 def gen(
-    app_name,
+    poja_conf=None,
+    app_name=None,
     region="eu-west-3",
     with_own_vpc="false",
     ssm_sg_id=None,
@@ -43,6 +45,47 @@ def gen(
     worker_batch=5,
     with_snapstart="false",
 ):
+    if poja_conf is not None:
+        with open(poja_conf, "r") as conf_strem:
+            conf = yaml.load(conf_strem, Loader=BaseLoader)
+            if get_version() != conf["cli_version"]:
+                raise Exception(
+                    "You must use the poja version defined in your conf file"
+                )
+            print_warn(
+                "Only --poja-conf will be taken into account: all other arguments will be ignored!"
+            )
+            print_warn(
+                "No default value will be used: explicit everything in your conf file!!"
+            )
+            app_name = conf["app_name"]
+            region = conf["region"]
+            with_own_vpc = conf["with_own_vpc"]
+            ssm_sg_id = conf["ssm_sg_id"]
+            ssm_subnet1_id = conf["ssm_subnet1_id"]
+            ssm_subnet2_id = conf["ssm_subnet2_id"]
+            ses_source = conf["ses_source"]
+            with_swagger_ui = conf["with_swagger_ui"]
+            package_full_name = conf["package_full_name"]
+            custom_java_repositories = conf["custom_java_repositories"]
+            custom_java_deps = conf["custom_java_deps"]
+            custom_java_env_vars = conf["custom_java_env_vars"]
+            with_gen_clients = conf["with_gen_clients"]
+            with_database = conf["with_database"]
+            jacoco_min_coverage = conf["jacoco_min_coverage"]
+            with_publish_to_npm_registry = conf["with_publish_to_npm_registry"]
+            ts_client_default_openapi_server_url = conf[
+                "ts_client_default_openapi_server_url"
+            ]
+            ts_client_api_url_env_var_name = conf["ts_client_api_url_env_var_name"]
+            frontal_memory = int(conf["frontal_memory"])
+            worker_memory = int(conf["worker_memory"])
+            worker_batch = int(conf["worker_batch"])
+            with_snapstart = conf["with_snapstart"]
+
+    if app_name is None:
+        raise Exception("app_name must be defined")
+
     if output_dir is None:
         output_dir = app_name
 
@@ -173,8 +216,10 @@ def gen(
         with_gen_clients,
         with_database,
         jacoco_min_coverage,
+        with_publish_to_npm_registry,
         ts_client_default_openapi_server_url,
         ts_client_api_url_env_var_name,
+        with_snapstart,
         frontal_memory,
         worker_memory,
         worker_batch,
@@ -229,8 +274,10 @@ def save_conf(
     with_gen_clients,
     with_database,
     jacoco_min_coverage,
+    with_publish_to_npm_registry,
     ts_client_default_openapi_server_url,
     ts_client_api_url_env_var_name,
+    with_snapstart,
     frontal_memory,
     worker_memory,
     worker_batch,
@@ -254,9 +301,11 @@ def save_conf(
         "custom_java_env_vars": custom_java_env_vars_filename,
         "with_gen_clients": with_gen_clients,
         "with_database": with_database,
-        "jacoco-min-coverage": jacoco_min_coverage,
+        "jacoco_min_coverage": jacoco_min_coverage,
+        "with_publish_to_npm_registry": with_publish_to_npm_registry,
         "ts_client_default_openapi_server_url": ts_client_default_openapi_server_url,
         "ts_client_api_url_env_var_name": ts_client_api_url_env_var_name,
+        "with_snapstart": with_snapstart,
         "frontal_memory": frontal_memory,
         "worker_memory": worker_memory,
         "worker_batch": worker_batch,

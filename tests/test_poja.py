@@ -1,12 +1,15 @@
 import poja
 from filecmp import dircmp
+import shutil
+import tempfile
 import os.path
+import platform
 
 
 def test_base():
     output_dir = "test-poja-base"
     poja.gen(
-        "poja-base",
+        app_name="poja-base",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -26,7 +29,7 @@ def test_base():
 def test_base_without_own_vpc():
     output_dir = "test-poja-base-without-own-vpc"
     poja.gen(
-        "poja-base",
+        app_name="poja-base",
         region="eu-west-3",
         with_own_vpc="false",
         package_full_name="com.company.base",
@@ -42,7 +45,7 @@ def test_base_without_own_vpc():
 def test_base_without_postgres():
     output_dir = "test-poja-base-without-postgres"
     poja.gen(
-        "poja-base-without-postgres",
+        app_name="poja-base-without-postgres",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -61,7 +64,7 @@ def test_base_without_postgres():
 def test_base_with_custom_java_repos_and_sqlite():
     output_dir = "test-poja-sqlite"
     poja.gen(
-        "poja-sqlite",
+        app_name="poja-sqlite",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -76,10 +79,35 @@ def test_base_with_custom_java_repos_and_sqlite():
     assert is_dir_superset_of("oracle-poja-sqlite", output_dir)
 
 
+def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
+    oracle_dir = "oracle-poja-sqlite"
+
+    temp_dir = (
+        tempfile.TemporaryDirectory()
+    )  # do NOT use with-as, as Python will prematurely rm the dir
+    output_dir = shutil.copytree(oracle_dir, temp_dir.name, dirs_exist_ok=True)
+
+    os.system(
+        "pip uninstall -y poja && pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
+    )
+    if "Windows" in platform.system():
+        poja_cmd_code = os.system(
+            "cd /D %s && python -m poja --poja-conf poja.yml --output-dir=."
+            % output_dir
+        )
+    else:
+        poja_cmd_code = os.system(
+            "cd %s && python -m poja --poja-conf poja.yml --output-dir=." % output_dir
+        )
+
+    assert poja_cmd_code == 0
+    assert is_dir_superset_of(oracle_dir, output_dir)
+
+
 def test_base_with_custom_java_env_vars_and_swagger_ui():
     output_dir = "test-poja-base-with-java-env-vars"
     poja.gen(
-        "poja-base-with-java-env-vars",
+        app_name="poja-base-with-java-env-vars",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -100,7 +128,7 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
 def test_base_with_script_to_publish_to_npm_registry():
     output_dir = "test-poja-base-with-publication-to-npm-registry"
     poja.gen(
-        "poja-base-with-publication-to-npm-registry",
+        app_name="poja-base-with-publication-to-npm-registry",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",

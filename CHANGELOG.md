@@ -1,3 +1,12 @@
+# [10.1.0](https://github.com/hei-school/poja-cli/compare/v10.0.0...v10.1.0) (2024-01-04)
+
+
+### Features
+
+* --poja-conf ([8c9fb98](https://github.com/hei-school/poja-cli/commit/8c9fb98b0cf4e7117d68bf9125e275c6634389f7))
+
+
+
 # [10.0.0](https://github.com/hei-school/poja-cli/compare/v9.1.1...v10.0.0) (2024-01-03)
 
 

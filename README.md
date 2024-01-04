@@ -46,6 +46,7 @@ Or, more conveniently, by modifying the existing `poja.yml`
 modify optionally any other parameter depending on your needs):
 ```
 pip install poja --upgrade
+cd folder-already-created
 python -m poja --poja-conf=poja.yml --output-dir=.
 ```
 

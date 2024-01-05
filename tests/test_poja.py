@@ -1,7 +1,7 @@
 import poja
 from filecmp import dircmp
 import shutil
-import tempfile
+from tempfile import TemporaryDirectory
 import os.path
 import platform
 
@@ -82,11 +82,8 @@ def test_base_with_custom_java_repos_and_sqlite():
 def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
     oracle_dir = "oracle-poja-sqlite"
 
-    temp_dir = (
-        tempfile.TemporaryDirectory()
-    )  # do NOT use with-as, as Python will prematurely rm the dir
-    output_dir = shutil.copytree(oracle_dir, temp_dir.name, dirs_exist_ok=True)
-
+    # do NOT create TemporaryDirectory using with-as, as Python will prematurely rm it
+    output_dir = shutil.copytree(oracle_dir, TemporaryDirectory().name, dirs_exist_ok=True)
     os.system(
         "pip uninstall -y poja && pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
     )
@@ -101,7 +98,7 @@ def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
         )
 
     assert poja_cmd_code == 0
-    assert is_dir_superset_of(oracle_dir, output_dir)
+    assert are_dir_equals(oracle_dir, output_dir)
 
 
 def test_base_with_custom_java_env_vars_and_swagger_ui():
@@ -148,6 +145,10 @@ def test_base_with_script_to_publish_to_npm_registry():
     assert is_dir_superset_of(
         "oracle-poja-base-with-publication-to-npm-registry", output_dir
     )
+
+
+def are_dir_equals(dir1, dir2):
+    return is_dir_superset_of(dir1, dir2) and is_dir_superset_of(dir2, dir1)
 
 
 def is_dir_superset_of(superset_dir, subset_dir):

@@ -1,9 +1,9 @@
 import poja
+from poja.myos import cd_then_exec
 from filecmp import dircmp
 import shutil
 from tempfile import TemporaryDirectory
 import os.path
-import platform
 
 
 def test_base():
@@ -81,24 +81,17 @@ def test_base_with_custom_java_repos_and_sqlite():
 
 def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
     oracle_dir = "oracle-poja-sqlite"
+    # do NOT create tmp_dir using with-as, as Python will prematurely rm it
+    tmp_dir = TemporaryDirectory()
+    oracle_dir_clone = shutil.copytree(oracle_dir, tmp_dir.name, dirs_exist_ok=True)
 
-    # do NOT create TemporaryDirectory using with-as, as Python will prematurely rm it
-    output_dir = shutil.copytree(oracle_dir, TemporaryDirectory().name, dirs_exist_ok=True)
-    os.system(
-        "pip uninstall -y poja && pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
-    )
-    if "Windows" in platform.system():
-        poja_cmd_code = os.system(
-            "cd /D %s && python -m poja --poja-conf poja.yml --output-dir=."
-            % output_dir
-        )
-    else:
-        poja_cmd_code = os.system(
-            "cd %s && python -m poja --poja-conf poja.yml --output-dir=." % output_dir
-        )
+    install_cmd = "pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
+    os.system("pip uninstall -y poja && %s" % install_cmd)
+    gen_cmd = "python -m poja --poja-conf poja.yml --output-dir=."
+    gen_cmd_return_code = cd_then_exec(oracle_dir_clone, gen_cmd, gen_cmd)
 
-    assert poja_cmd_code == 0
-    assert are_dir_equals(oracle_dir, output_dir)
+    assert gen_cmd_return_code == 0
+    assert are_dir_equals(oracle_dir, oracle_dir_clone)
 
 
 def test_base_with_custom_java_env_vars_and_swagger_ui():

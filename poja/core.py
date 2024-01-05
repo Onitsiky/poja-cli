@@ -9,7 +9,7 @@ from poja.database import set_postgres, set_sqlite
 import yaml
 from yaml.loader import BaseLoader
 import os
-import platform
+from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
@@ -235,10 +235,7 @@ def gen(
     os.remove(temp_dir + "/gradle.properties")
 
     print_title("Format...")
-    if "Windows" in platform.system():
-        os.system("cd /D %s && format.bat" % temp_dir)
-    else:
-        os.system("cd %s && ./format.sh" % temp_dir)
+    cd_then_exec(temp_dir, "format.bat", "./format.sh")
 
     print_title("Copy to output dir...")
     shutil.copytree(temp_dir, output_dir, dirs_exist_ok=True)

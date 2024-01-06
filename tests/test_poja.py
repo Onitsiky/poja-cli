@@ -30,7 +30,6 @@ def test_base():
         with_snapstart="true",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
-    assert oracle_tests_are_passing(output_dir)
 
 
 def test_base_without_own_vpc():

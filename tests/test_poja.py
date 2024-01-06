@@ -6,6 +6,10 @@ from tempfile import TemporaryDirectory
 import os.path
 
 
+def oracle_rel_path(oracle_dir_name):
+    return "tests/oracles/%s" % oracle_dir_name
+
+
 def test_base():
     output_dir = "test-poja-base"
     poja.gen(
@@ -23,7 +27,7 @@ def test_base():
         custom_java_deps="custom-java-deps-justice.txt",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base", output_dir)
+    assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 
 
 def test_base_without_own_vpc():
@@ -39,7 +43,9 @@ def test_base_without_own_vpc():
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-without-own-vpc", output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-without-own-vpc"), output_dir
+    )
 
 
 def test_base_without_postgres():
@@ -58,7 +64,9 @@ def test_base_without_postgres():
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-without-postgres"), output_dir
+    )
 
 
 def test_base_with_custom_java_repos_and_sqlite():
@@ -76,11 +84,11 @@ def test_base_with_custom_java_repos_and_sqlite():
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
     )
-    assert is_dir_superset_of("oracle-poja-sqlite", output_dir)
+    assert is_dir_superset_of(oracle_rel_path("oracle-poja-sqlite"), output_dir)
 
 
 def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
-    oracle_dir = "oracle-poja-sqlite"
+    oracle_dir = oracle_rel_path("oracle-poja-sqlite")
     # do NOT create tmp_dir using with-as, as Python will prematurely rm it
     tmp_dir = TemporaryDirectory()
     oracle_dir_clone = shutil.copytree(oracle_dir, tmp_dir.name, dirs_exist_ok=True)
@@ -112,7 +120,9 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-with-java-env-vars", output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-with-java-env-vars"), output_dir
+    )
 
 
 def test_base_with_script_to_publish_to_npm_registry():
@@ -136,7 +146,7 @@ def test_base_with_script_to_publish_to_npm_registry():
         with_snapstart="true",
     )
     assert is_dir_superset_of(
-        "oracle-poja-base-with-publication-to-npm-registry", output_dir
+        oracle_rel_path("oracle-poja-base-with-publication-to-npm-registry"), output_dir
     )
 
 

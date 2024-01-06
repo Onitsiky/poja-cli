@@ -179,7 +179,7 @@ def is_dir_superset_of(superset_dir, subset_dir):
     return True
 
 
-def oracle_tests_are_passing(oracle_base_folder_dir, verbose=False):
+def oracle_tests_are_passing(oracle_base_folder_dir, verbose=True):
     gradlew_file = f"{oracle_base_folder_dir}/gradlew"
     os.system(f"chmod +x {gradlew_file}")
 
@@ -198,7 +198,7 @@ def oracle_tests_are_passing(oracle_base_folder_dir, verbose=False):
     )
     if verbose:
         print("stdout: ")
-        print(process.stdout.decode())
+        print(process.stdout)
         print("\nstderr: ")
-        print(process.stderr.decode)
+        print(process.stderr)
     return process.returncode == 0

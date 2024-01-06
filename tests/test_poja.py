@@ -184,7 +184,7 @@ def oracle_tests_are_passing(oracle_base_folder_dir, verbose=True):
     os.system(f"chmod +x {gradlew_file}")
 
     process = subprocess.run(
-        "./gradlew test",
+        "gradle test",
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,

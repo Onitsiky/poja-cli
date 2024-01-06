@@ -180,13 +180,6 @@ def is_dir_superset_of(superset_dir, subset_dir):
     return True
 
 
-MOCK_AWS_ENV_FOR_ORACLE_TESTS = {
-    "AWS_ACCESS_KEY_ID": "dummy",
-    "AWS_SECRET_ACCESS_KEY": "dummy",
-    "AWS_REGION": "dummy",
-}
-
-
 def oracle_test_are_passing(oracle_base_folder_dir, verbose=False):
     gradlew_file = f"{oracle_base_folder_dir}/gradlew"
     os.system(f"chmod +x {gradlew_file}")
@@ -196,7 +189,11 @@ def oracle_test_are_passing(oracle_base_folder_dir, verbose=False):
         shell=True,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
-        env=MOCK_AWS_ENV_FOR_ORACLE_TESTS,
+        env={
+            "AWS_ACCESS_KEY_ID": "dummy",
+            "AWS_SECRET_ACCESS_KEY": "dummy",
+            "AWS_REGION": "dummy",
+        },
         text=verbose,
         cwd=oracle_base_folder_dir,
     )

@@ -7,6 +7,20 @@ def set_postgres(with_database, temp, exclude):
         postgres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
         DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
         DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""
+        upsert_constraint_dummy = "on conflict on constraint dummy_pk do nothing;"
+        upsert_constraint_dummy_uuid = (
+            "on conflict on constraint dummy_uuid_pk do nothing;"
+        )
+    else:
+        postgres_env_vars = ""
+        upsert_constraint_dummy = ";"
+        postgres_configure_it_properties = ""
+        postgres_start_container = ""
+        upsert_constraint_dummy_uuid = ";"
+        os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
+        os.remove("%s/cf-stacks/storage-database-stack.yml" % temp)
+
+    if with_database == "postgres" or with_database == "non-poja-managed-postgres":
         postgres_start_container = """private static final PostgresConf POSTGRES_CONF = new PostgresConf();
   @BeforeAll
   static void beforeAll() {
@@ -20,18 +34,7 @@ def set_postgres(with_database, temp, exclude):
         postgres_configure_it_properties = (
             "POSTGRES_CONF.configureProperties(registry);"
         )
-        upsert_constraint_dummy = "on conflict on constraint dummy_pk do nothing;"
-        upsert_constraint_dummy_uuid = (
-            "on conflict on constraint dummy_uuid_pk do nothing;"
-        )
-    else:
-        postgres_env_vars = ""
-        upsert_constraint_dummy = ";"
-        postgres_configure_it_properties = ""
-        postgres_start_container = ""
-        upsert_constraint_dummy_uuid = ";"
-        os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
-        os.remove("%s/cf-stacks/storage-database-stack.yml" % temp)
+
     sed.find_replace(
         temp,
         "<?postgres-env-vars>",

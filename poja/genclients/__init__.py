@@ -1,10 +1,10 @@
 import poja.sed as sed
 
 
-def set_gen_clients(with_gen_clients, temp_dir, exclude):
+def set_gen_clients(with_gen_clients, tmp_dir, exclude):
     if with_gen_clients == "true":
         sed.find_replace(
-            temp_dir,
+            tmp_dir,
             "<?gen-clients>",
             """task generateJavaClient(type: GenerateTask) {
     generatorName = "java"
@@ -58,4 +58,4 @@ tasks.compileJava.dependsOn publishJavaClientToMavenLocal
             exclude,
         )
     else:
-        sed.find_replace(temp_dir, "<?gen-clients>", "", exclude)
+        sed.find_replace(tmp_dir, "<?gen-clients>", "", exclude)

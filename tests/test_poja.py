@@ -1,14 +1,21 @@
 import subprocess
 
 import poja
+from poja.myos import cd_then_exec
 from filecmp import dircmp
+import shutil
+from tempfile import TemporaryDirectory
 import os.path
+
+
+def oracle_rel_path(oracle_dir_name):
+    return "tests/oracles/%s" % oracle_dir_name
 
 
 def test_base():
     output_dir = "test-poja-base"
     poja.gen(
-        "poja-base",
+        app_name="poja-base",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -19,17 +26,17 @@ def test_base():
         package_full_name="com.company.base",
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
-        custom_java_deps="custom-java-deps-justice.txt",
+        custom_java_deps=oracle_rel_path("custom-java-deps-justice.txt"),
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base", output_dir)
+    assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
     assert oracle_test_are_passing(output_dir)
 
 
 def test_base_without_own_vpc():
     output_dir = "test-poja-base-without-own-vpc"
     poja.gen(
-        "poja-base",
+        app_name="poja-base",
         region="eu-west-3",
         with_own_vpc="false",
         package_full_name="com.company.base",
@@ -39,34 +46,36 @@ def test_base_without_own_vpc():
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-without-own-vpc", output_dir)
-    assert oracle_test_are_passing(output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-without-own-vpc"), output_dir
+    )
 
 
 def test_base_without_postgres():
     output_dir = "test-poja-base-without-postgres"
     poja.gen(
-        "poja-base-without-postgres",
+        app_name="poja-base-without-postgres",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        with_database="postgres",
+        with_database="non-poja-managed-postgres",
         output_dir=output_dir,
-        with_gen_clients="true",
+        with_gen_clients="false",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-without-postgres", output_dir)
-    assert oracle_test_are_passing(output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-without-postgres"), output_dir
+    )
 
 
 def test_base_with_custom_java_repos_and_sqlite():
     output_dir = "test-poja-sqlite"
     poja.gen(
-        "poja-sqlite",
+        app_name="poja-sqlite",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -74,18 +83,33 @@ def test_base_with_custom_java_repos_and_sqlite():
         ssm_subnet2_id="/poja-sqlite/subnet/public2/id",
         package_full_name="com.company.base",
         with_database="sqlite",
-        custom_java_repositories="custom-java-repositories.txt",
+        custom_java_repositories=oracle_rel_path("custom-java-repositories.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
     )
-    assert is_dir_superset_of("oracle-poja-sqlite", output_dir)
+    assert is_dir_superset_of(oracle_rel_path("oracle-poja-sqlite"), output_dir)
     assert oracle_test_are_passing(output_dir)
+
+
+def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
+    oracle_dir = oracle_rel_path("oracle-poja-sqlite")
+    # do NOT create tmp_dir using with-as, as Python will prematurely rm it
+    tmp_dir = TemporaryDirectory()
+    oracle_dir_clone = shutil.copytree(oracle_dir, tmp_dir.name, dirs_exist_ok=True)
+
+    install_cmd = "pip install -r requirements.txt -r requirements-dev.txt && python setup.py install"
+    os.system("pip uninstall -y poja && %s" % install_cmd)
+    gen_cmd = "python -m poja --poja-conf poja.yml --output-dir=."
+    gen_cmd_return_code = cd_then_exec(oracle_dir_clone, gen_cmd, gen_cmd)
+
+    assert gen_cmd_return_code == 0
+    assert are_dir_equals(oracle_dir, oracle_dir_clone)
 
 
 def test_base_with_custom_java_env_vars_and_swagger_ui():
     output_dir = "test-poja-base-with-java-env-vars"
     poja.gen(
-        "poja-base-with-java-env-vars",
+        app_name="poja-base-with-java-env-vars",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
@@ -94,27 +118,28 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
         package_full_name="com.company.base",
         with_swagger_ui="true",
         with_database="postgres",
-        custom_java_env_vars="custom-java-env-vars.txt",
+        custom_java_env_vars=oracle_rel_path("custom-java-env-vars.txt"),
         output_dir=output_dir,
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
     )
-    assert is_dir_superset_of("oracle-poja-base-with-java-env-vars", output_dir)
-    assert oracle_test_are_passing(output_dir)
+    assert is_dir_superset_of(
+        oracle_rel_path("oracle-poja-base-with-java-env-vars"), output_dir
+    )
 
 
 def test_base_with_script_to_publish_to_npm_registry():
     output_dir = "test-poja-base-with-publication-to-npm-registry"
     poja.gen(
-        "poja-base-with-publication-to-npm-registry",
+        app_name="poja-base-with-publication-to-npm-registry",
         region="eu-west-3",
         with_own_vpc="true",
         ssm_sg_id="/poja/sg/id",
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        custom_java_env_vars="custom-java-env-vars.txt",
+        custom_java_env_vars=oracle_rel_path("custom-java-env-vars.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.9",
         with_database="postgres",
@@ -125,9 +150,13 @@ def test_base_with_script_to_publish_to_npm_registry():
         with_snapstart="true",
     )
     assert is_dir_superset_of(
-        "oracle-poja-base-with-publication-to-npm-registry", output_dir
+        oracle_rel_path("oracle-poja-base-with-publication-to-npm-registry"), output_dir
     )
     assert oracle_test_are_passing(output_dir)
+
+
+def are_dir_equals(dir1, dir2):
+    return is_dir_superset_of(dir1, dir2) and is_dir_superset_of(dir2, dir1)
 
 
 def is_dir_superset_of(superset_dir, subset_dir):

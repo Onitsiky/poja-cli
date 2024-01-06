@@ -41,14 +41,23 @@ python -m poja \
   --output-dir=folder-already-created
 ```
 
+Or, more conveniently, by modifying the existing `poja.yml`
+(modify mandatorily the `version` parameter so that it reflects the newly upgraded version,
+modify optionally any other parameter depending on your needs):
+```
+pip install poja --upgrade
+cd folder-already-created
+python -m poja --poja-conf=poja.yml --output-dir=.
+```
+
 Note the `--upgrade` and the `--output-dir=folder-already-created` flags.
 
 The POJA configuration that was used for the previous generation is saved in `poja.yml`: it will be updated after the new upgrade.
 
 ### Configure your database
 
-Use `--with-database=posgres|sqlite|none`.
-In particular, `none` is handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
+Use `--with-database=postgres|non-poja-managed-postgres|sqlite`.
+In particular, `non-poja-managed-postgres` is handy if you want to use an already existing Postgres, that you will manually reference through custom Java env vars.
 
 If you want POJA to fully manage Postgres: from creation, to operations -- scale-in, scale-out to zero, DDoS protection, regular backups -- to deletion. Then do as follows before running the `CD compute` action:
 

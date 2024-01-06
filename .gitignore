@@ -4,3 +4,5 @@ test-*
 *egg-info
 build
 dist
+.idea
+.vscode

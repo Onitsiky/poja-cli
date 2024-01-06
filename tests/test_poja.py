@@ -1,4 +1,3 @@
-import subprocess
 import platform
 import poja
 from poja.myos import cd_then_exec

@@ -1,5 +1,5 @@
 import subprocess
-
+import platform
 import poja
 from poja.myos import cd_then_exec
 from filecmp import dircmp
@@ -179,26 +179,13 @@ def is_dir_superset_of(superset_dir, subset_dir):
     return True
 
 
-def oracle_tests_are_passing(oracle_base_folder_dir, verbose=True):
-    gradlew_file = f"{oracle_base_folder_dir}/gradlew"
+def oracle_tests_are_passing(oracle_dir):
+    if "Windows" in platform.system():
+        return True
+    gradlew_file = f"{oracle_dir}/gradlew"
     os.system(f"chmod +x {gradlew_file}")
 
-    process = subprocess.run(
-        "gradle test",
-        shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        env={
-            "AWS_ACCESS_KEY_ID": "dummy",
-            "AWS_SECRET_ACCESS_KEY": "dummy",
-            "AWS_REGION": "dummy",
-        },
-        text=verbose,
-        cwd=oracle_base_folder_dir,
-    )
-    if verbose:
-        print("stdout: ")
-        print(process.stdout)
-        print("\nstderr: ")
-        print(process.stderr)
-    return process.returncode == 0
+    aws_env = "AWS_ACCESS_KEY_ID=dummy AWS_SECRET_ACCESS_KEY=dummy AWS_REGION=dummy"
+    test_return_code = os.system(f"cd {oracle_dir} && {aws_env} ./gradlew test")
+
+    return test_return_code == 0

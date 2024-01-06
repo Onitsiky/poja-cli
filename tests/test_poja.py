@@ -24,7 +24,7 @@ def test_base():
         package_full_name="com.company.base",
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
-        custom_java_deps="custom-java-deps-justice.txt",
+        custom_java_deps=oracle_rel_path("custom-java-deps-justice.txt"),
         with_snapstart="true",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
@@ -80,7 +80,7 @@ def test_base_with_custom_java_repos_and_sqlite():
         ssm_subnet2_id="/poja-sqlite/subnet/public2/id",
         package_full_name="com.company.base",
         with_database="sqlite",
-        custom_java_repositories="custom-java-repositories.txt",
+        custom_java_repositories=oracle_rel_path("custom-java-repositories.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
     )
@@ -114,7 +114,7 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
         package_full_name="com.company.base",
         with_swagger_ui="true",
         with_database="postgres",
-        custom_java_env_vars="custom-java-env-vars.txt",
+        custom_java_env_vars=oracle_rel_path("custom-java-env-vars.txt"),
         output_dir=output_dir,
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
@@ -135,7 +135,7 @@ def test_base_with_script_to_publish_to_npm_registry():
         ssm_subnet1_id="/poja/subnet/private1/id",
         ssm_subnet2_id="/poja/subnet/private2/id",
         package_full_name="com.company.base",
-        custom_java_env_vars="custom-java-env-vars.txt",
+        custom_java_env_vars=oracle_rel_path("custom-java-env-vars.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.9",
         with_database="postgres",

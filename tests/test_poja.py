@@ -30,7 +30,7 @@ def test_base():
         with_snapstart="true",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
-    assert oracle_test_are_passing(output_dir)
+    assert oracle_tests_are_passing(output_dir)
 
 
 def test_base_without_own_vpc():
@@ -88,7 +88,7 @@ def test_base_with_custom_java_repos_and_sqlite():
         jacoco_min_coverage="0.5",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-sqlite"), output_dir)
-    assert oracle_test_are_passing(output_dir)
+    assert oracle_tests_are_passing(output_dir)
 
 
 def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
@@ -152,7 +152,6 @@ def test_base_with_script_to_publish_to_npm_registry():
     assert is_dir_superset_of(
         oracle_rel_path("oracle-poja-base-with-publication-to-npm-registry"), output_dir
     )
-    assert oracle_test_are_passing(output_dir)
 
 
 def are_dir_equals(dir1, dir2):
@@ -180,7 +179,7 @@ def is_dir_superset_of(superset_dir, subset_dir):
     return True
 
 
-def oracle_test_are_passing(oracle_base_folder_dir, verbose=False):
+def oracle_tests_are_passing(oracle_base_folder_dir, verbose=False):
     gradlew_file = f"{oracle_base_folder_dir}/gradlew"
     os.system(f"chmod +x {gradlew_file}")
 

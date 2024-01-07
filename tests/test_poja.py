@@ -8,7 +8,7 @@ import os.path
 
 
 def oracle_rel_path(oracle_dir_name):
-    return "tests/oracles/%s" % oracle_dir_name
+    return f"tests/oracles/{oracle_dir_name}"
 
 
 def test_base():

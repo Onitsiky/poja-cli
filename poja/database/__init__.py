@@ -17,8 +17,8 @@ def set_postgres(with_database, temp, exclude):
         postgres_configure_it_properties = ""
         postgres_start_container = ""
         upsert_constraint_dummy_uuid = ";"
-        os.remove("%s/.github/workflows/cd-storage-database.yml" % temp)
-        os.remove("%s/cf-stacks/storage-database-stack.yml" % temp)
+        os.remove(f"{temp}/.github/workflows/cd-storage-database.yml")
+        os.remove(f"{temp}/cf-stacks/storage-database-stack.yml")
 
     if with_database == "postgres" or with_database == "non-poja-managed-postgres":
         postgres_start_container = """private static final PostgresConf POSTGRES_CONF = new PostgresConf();
@@ -64,14 +64,11 @@ def set_postgres(with_database, temp, exclude):
 def set_sqlite(with_database, package_full_name, temp, exclude):
     if with_database == "sqlite":
         efs_mount_point = "/mnt/efs"
-        sqlite_env_vars = """DRIVERCLASSNAME: org.sqlite.JDBC
-        SPRING_JPA_DATABASEPLATFORM: %s.repository.conf.SqliteDialect
-        DATABASE_URL: jdbc:sqlite:%s/sqlite-data:db?cache=shared
+        sqlite_env_vars = f"""DRIVERCLASSNAME: org.sqlite.JDBC
+        SPRING_JPA_DATABASEPLATFORM: {package_full_name}.repository.conf.SqliteDialect
+        DATABASE_URL: jdbc:sqlite:{efs_mount_point}/sqlite-data:db?cache=shared
         DATABASE_USERNAME: sa
-        DATABASE_PASSWORD: sa""" % (
-            package_full_name,
-            efs_mount_point,
-        )
+        DATABASE_PASSWORD: sa"""
         sqlite_configure_it_properties = (
             "new SqliteConf().configureProperties(registry);"
         )

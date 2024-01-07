@@ -92,10 +92,10 @@ def gen(
     print_banner("POJA v" + get_version())
 
     print_title("Checkout base repository...")
-    print_normal("git_url=%s" % GIT_URL)
-    print_normal("git_tag=%s" % GIT_TAG_OR_COMMIT)
+    print_normal(f"git_url={GIT_URL}")
+    print_normal(f"git_tag={GIT_TAG_OR_COMMIT}")
     tmp_dir = mygit.checkout(GIT_URL, GIT_TAG_OR_COMMIT, no_git=True)
-    print_normal("tmp_dir=%s" % tmp_dir)
+    print_normal(f"tmp_dir={tmp_dir}")
 
     print_title("Handle arguments...")
     exclude = "*.jar"
@@ -196,7 +196,7 @@ def gen(
             exclude,
         )
     else:
-        os.remove("%s/.github/workflows/publish-client.yml" % tmp_dir)
+        os.remove(f"{tmp_dir}/.github/workflows/publish-client.yml")
 
     print_title("Save conf...")
     save_conf(
@@ -243,8 +243,8 @@ def gen(
     print_title("Client generation...")
     print_normal("doc/api.yml")
     # create doc/ and doc/api.yml if not exist
-    Path("%s/doc" % output_dir).mkdir(parents=True, exist_ok=True)
-    open("%s/doc/api.yml" % output_dir, "w+")
+    Path(f"{output_dir}/doc").mkdir(parents=True, exist_ok=True)
+    open(f"{output_dir}/doc/api.yml", "w+")
 
     print_title("... all done!")
 
@@ -312,19 +312,17 @@ def save_conf(
 
     print_normal(custom_java_repositories_filename)
     with open(
-        "%s/%s" % (tmp_dir, custom_java_repositories_filename), "w"
+        f"{tmp_dir}/{custom_java_repositories_filename}", "w"
     ) as custom_java_repositories_file:
         custom_java_repositories_file.write(custom_java_repositories)
 
     print_normal(custom_java_deps_filename)
-    with open(
-        "%s/%s" % (tmp_dir, custom_java_deps_filename), "w"
-    ) as custom_java_deps_file:
+    with open(f"{tmp_dir}/{custom_java_deps_filename}", "w") as custom_java_deps_file:
         custom_java_deps_file.write(custom_java_deps)
 
     print_normal(custom_java_env_vars_filename)
     with open(
-        "%s/%s" % (tmp_dir, custom_java_env_vars_filename), "w"
+        f"{tmp_dir}/{custom_java_env_vars_filename}", "w"
     ) as custom_java_env_vars_file:
         custom_java_env_vars_file.write(
             "\n".join([s.strip() for s in custom_java_env_vars.split("\n")])

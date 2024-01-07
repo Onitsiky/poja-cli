@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  pytest:
+  test:
     strategy:
       matrix:
         os:
@@ -27,7 +27,7 @@ jobs:
       - run: pip install -r requirements.txt -r requirements-dev.txt
       - run: python -m pytest -s -v --cov=poja --cov-fail-under=85
 
-  black:
+  format:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,3 +36,13 @@ jobs:
           python-version: 3.11
       - run: pip install black
       - run: black --check .
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+      - run: pip install flake8
+      - run: flake8 --extend-ignore F401,E501 poja

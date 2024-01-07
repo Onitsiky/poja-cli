@@ -84,7 +84,9 @@ def gen(
             with_snapstart = conf["with_snapstart"]
 
     if app_name is None:
-        raise Exception("app_name must be defined")
+        raise Exception(
+            "app_name in conf file (or --app-name as argument) must be defined"
+        )
 
     if output_dir is None:
         output_dir = app_name

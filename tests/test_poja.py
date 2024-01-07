@@ -5,10 +5,20 @@ from filecmp import dircmp
 import shutil
 from tempfile import TemporaryDirectory
 import os.path
+from pytest import raises
 
 
 def oracle_rel_path(oracle_dir_name):
     return f"tests/oracles/{oracle_dir_name}"
+
+
+def test_delete_file_not_found_error():
+    with raises(Exception) as e:
+        poja.gen()
+    assert (
+        str(e.value)
+        == "app_name in conf file (or --app-name as argument) must be defined"
+    )
 
 
 def test_base():

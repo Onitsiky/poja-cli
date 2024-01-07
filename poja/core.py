@@ -50,7 +50,7 @@ def gen(
             conf = yaml.load(conf_strem, Loader=BaseLoader)
             if get_version() != conf["cli_version"]:
                 raise Exception(
-                    "You must use the poja version defined in your conf file"
+                    "You must use the poja version defined in your conf file. Forgot to upgrade?"
                 )
             print_warn(
                 "Only --poja-conf will be taken into account: all other arguments will be ignored!"

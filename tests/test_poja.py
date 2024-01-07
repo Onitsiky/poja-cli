@@ -12,12 +12,21 @@ def oracle_rel_path(oracle_dir_name):
     return f"tests/oracles/{oracle_dir_name}"
 
 
-def test_delete_file_not_found_error():
+def test_app_name_must_be_defined():
     with raises(Exception) as e:
         poja.gen()
     assert (
         str(e.value)
         == "app_name in conf file (or --app-name as argument) must be defined"
+    )
+
+
+def test_poja_conf_must_use_proper_version():
+    with raises(Exception) as e:
+        poja.gen(poja_conf=oracle_rel_path("poja-conf-bad-version.yml"))
+    assert (
+        str(e.value)
+        == "You must use the poja version defined in your conf file. Forgot to upgrade?"
     )
 
 

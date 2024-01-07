@@ -1,3 +1,18 @@
+# [10.2.0](https://github.com/hei-school/poja-cli/compare/v10.1.0...v10.2.0) (2024-01-07)
+
+
+### Bug Fixes
+
+* verbose error when app_name is not defined ([d8fd01c](https://github.com/hei-school/poja-cli/commit/d8fd01c212470c373c3eb40307048aea62665f1c))
+* verbose error when poja_conf does not use proper version ([10a4496](https://github.com/hei-school/poja-cli/commit/10a4496d092b2b072ceab4a7e66a5f06d6268bd1))
+
+
+### Features
+
+* test oracles after gen ([a11b387](https://github.com/hei-school/poja-cli/commit/a11b387775061e92c8e43e6bc6ff43cdc2c99da1))
+
+
+
 # [10.1.0](https://github.com/hei-school/poja-cli/compare/v10.0.0...v10.1.0) (2024-01-04)
 
 

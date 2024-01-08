@@ -1,3 +1,12 @@
+# [10.3.0](https://github.com/hei-school/poja-cli/compare/v10.2.0...v10.3.0) (2024-01-08)
+
+
+### Features
+
+* allow sending binaries in request and fix Instant format ([2cba98f](https://github.com/hei-school/poja-cli/commit/2cba98f9f256f8051ed6db029e06d32312468a81))
+
+
+
 # [10.2.0](https://github.com/hei-school/poja-cli/compare/v10.1.0...v10.2.0) (2024-01-07)
 
 

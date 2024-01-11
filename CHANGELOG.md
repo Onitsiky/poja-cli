@@ -1,3 +1,12 @@
+# [10.4.0](https://github.com/hei-school/poja-cli/compare/v10.3.0...v10.4.0) (2024-01-11)
+
+
+### Features
+
+* run health-check-infra after successfull cd-compute ([6b4d266](https://github.com/hei-school/poja-cli/commit/6b4d266d332199fb75ad2397b4f7812cf3566d73))
+
+
+
 # [10.3.0](https://github.com/hei-school/poja-cli/compare/v10.2.0...v10.3.0) (2024-01-08)
 
 

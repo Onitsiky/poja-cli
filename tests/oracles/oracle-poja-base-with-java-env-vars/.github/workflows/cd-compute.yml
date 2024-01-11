@@ -39,5 +39,5 @@ jobs:
 
   health-check-infra:
     needs: [deploy-api]
-    if: ${{ needs.deploy-api.result == 'success' }}
+    if: ${{ needs.deploy-api.result == 'success' && github.ref_name == 'prod' }}
     uses: ./.github/workflows/health-check-infra.yml

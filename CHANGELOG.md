@@ -1,3 +1,12 @@
+## [10.4.1](https://github.com/hei-school/poja-cli/compare/v10.4.0...v10.4.1) (2024-01-11)
+
+
+### Bug Fixes
+
+* only run health-check on prod ([b5656a1](https://github.com/hei-school/poja-cli/commit/b5656a1d366fcabad4e85c68a9d0738eb3344740))
+
+
+
 # [10.4.0](https://github.com/hei-school/poja-cli/compare/v10.3.0...v10.4.0) (2024-01-11)
 
 

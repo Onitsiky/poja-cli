@@ -1,3 +1,12 @@
+## [10.4.2](https://github.com/hei-school/poja-cli/compare/v10.4.1...v10.4.2) (2024-01-12)
+
+
+### Bug Fixes
+
+* inherit secrets from parent in check-health after deploy ([3d98250](https://github.com/hei-school/poja-cli/commit/3d9825047ac275cdc734ee79b4c77b5c91c3fb0a))
+
+
+
 ## [10.4.1](https://github.com/hei-school/poja-cli/compare/v10.4.0...v10.4.1) (2024-01-11)
 
 

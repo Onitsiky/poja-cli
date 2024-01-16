@@ -12,10 +12,16 @@ The Python CLI for maintaining a [POJA stack](https://github.com/hei-school/poja
 
 ## Use cases
 
-### Create a completely new project
+### Install poja and list all possible parameters
 
 ```
 pip install poja
+python -m poja --help
+```
+
+### Create a completely new project
+
+```
 python -m poja \
   --app-name=poja-base \
   --package-full-name=com.company.base \

@@ -1,3 +1,12 @@
+## [10.4.3](https://github.com/hei-school/poja-cli/compare/v10.4.2...v10.4.3) (2024-01-17)
+
+
+### Bug Fixes
+
+* also run health-check after successfull preprod cd-compute ([887a6fa](https://github.com/hei-school/poja-cli/commit/887a6fa3979ebc9bec32f06a613f6b09d6963558))
+
+
+
 ## [10.4.2](https://github.com/hei-school/poja-cli/compare/v10.4.1...v10.4.2) (2024-01-12)
 
 

@@ -1,3 +1,12 @@
+## [10.4.4](https://github.com/hei-school/poja-cli/compare/v10.4.3...v10.4.4) (2024-01-18)
+
+
+### Bug Fixes
+
+* do not include lombok generated files in jacoco coverage ([206cecc](https://github.com/hei-school/poja-cli/commit/206cecc69e7d1b12a69531be61f1aa67b740d003))
+
+
+
 ## [10.4.3](https://github.com/hei-school/poja-cli/compare/v10.4.2...v10.4.3) (2024-01-17)
 
 

@@ -1,3 +1,12 @@
+# [10.5.0](https://github.com/hei-school/poja-cli/compare/v10.4.4...v10.5.0) (2024-01-18)
+
+
+### Features
+
+* show actual code coverage after tests ([5918c07](https://github.com/hei-school/poja-cli/commit/5918c07fab98117aefa887aed13de0e2ef5c734c))
+
+
+
 ## [10.4.4](https://github.com/hei-school/poja-cli/compare/v10.4.3...v10.4.4) (2024-01-18)
 
 

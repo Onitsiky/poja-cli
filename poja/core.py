@@ -13,7 +13,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "efb2dc6"
+GIT_TAG_OR_COMMIT = "4cece57"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -102,6 +102,7 @@ def gen(
     print_title("Handle arguments...")
     exclude = "*.jar"
     print_normal("region")
+    shutil.rmtree(tmp_dir + "/mascot")
     sed.find_replace(tmp_dir, "<?aws-region>", region, exclude)
     print_normal("ses_source")
     sed.find_replace(tmp_dir, "<?aws-ses-source>", ses_source, exclude)

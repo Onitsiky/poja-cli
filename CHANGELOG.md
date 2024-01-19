@@ -1,3 +1,12 @@
+## [10.5.1](https://github.com/hei-school/poja-cli/compare/v10.5.0...v10.5.1) (2024-01-19)
+
+
+### Bug Fixes
+
+* annotate EndpointConf and SqsMessageAckTyperTest with @PojaGenerated ([18d1d2f](https://github.com/hei-school/poja-cli/commit/18d1d2f2efce26c343fe9c6508bbe40ed1a0f46a))
+
+
+
 # [10.5.0](https://github.com/hei-school/poja-cli/compare/v10.4.4...v10.5.0) (2024-01-18)
 
 

@@ -236,6 +236,8 @@ def gen(
     os.remove(tmp_dir + "/src/main/resources/application.properties")
     print_normal("gradle.properties")
     os.remove(tmp_dir + "/gradle.properties")
+    print_normal("LICENSE")
+    os.remove(tmp_dir + "/LICENSE")
 
     print_title("Format...")
     cd_then_exec(tmp_dir, "format.bat", "./format.sh")

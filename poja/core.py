@@ -247,7 +247,11 @@ def gen(
     print_normal("doc/api.yml")
     # create doc/ and doc/api.yml if not exist
     Path(f"{output_dir}/doc").mkdir(parents=True, exist_ok=True)
-    open(f"{output_dir}/doc/api.yml", "w+")
+    spec_path = Path(f"{output_dir}/doc/api.yml")
+    if spec_path.is_file():
+        print_normal("api.yml already exists, do nothing")
+    else:
+        spec_path.write_text("")
 
     print_title("... all done!")
 

@@ -5,6 +5,7 @@ from filecmp import dircmp
 import shutil
 from tempfile import TemporaryDirectory
 import os.path
+from pathlib import Path
 from pytest import raises
 
 
@@ -32,6 +33,8 @@ def test_poja_conf_must_use_proper_version():
 
 def test_base():
     output_dir = "test-poja-base"
+    Path(f"{output_dir}/doc").mkdir(parents=True, exist_ok=True)
+    Path(f"{output_dir}/doc/api.yml").write_text("DO NOT OVERRIDE")
     poja.gen(
         app_name="poja-base",
         region="eu-west-3",
@@ -50,7 +53,7 @@ def test_base():
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 
 
-def test_base_without_own_vpc():
+def test_without_own_vpc():
     output_dir = "test-poja-base-without-own-vpc"
     poja.gen(
         app_name="poja-base",
@@ -68,7 +71,7 @@ def test_base_without_own_vpc():
     )
 
 
-def test_base_without_postgres():
+def test_without_postgres():
     output_dir = "test-poja-base-without-postgres"
     poja.gen(
         app_name="poja-base-without-postgres",
@@ -89,7 +92,7 @@ def test_base_without_postgres():
     )
 
 
-def test_base_with_custom_java_repos_and_sqlite():
+def test_with_custom_java_repos_and_sqlite():
     output_dir = "test-poja-sqlite"
     poja.gen(
         app_name="poja-sqlite",
@@ -123,7 +126,7 @@ def test_gen_with_all_cmd_args_is_equivalent_to_gen_with_poja_conf():
     assert are_dir_equals(oracle_dir, oracle_dir_clone)
 
 
-def test_base_with_custom_java_env_vars_and_swagger_ui():
+def test_with_custom_java_env_vars_and_swagger_ui():
     output_dir = "test-poja-base-with-java-env-vars"
     poja.gen(
         app_name="poja-base-with-java-env-vars",
@@ -146,7 +149,7 @@ def test_base_with_custom_java_env_vars_and_swagger_ui():
     )
 
 
-def test_base_with_script_to_publish_to_npm_registry():
+def test_with_script_to_publish_to_npm_registry():
     output_dir = "test-poja-base-with-publication-to-npm-registry"
     poja.gen(
         app_name="poja-base-with-publication-to-npm-registry",

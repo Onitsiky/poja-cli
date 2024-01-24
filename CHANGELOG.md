@@ -1,3 +1,17 @@
+# [10.6.0](https://github.com/hei-school/poja-cli/compare/v10.5.1...v10.6.0) (2024-01-24)
+
+
+### Bug Fixes
+
+* do not override existing api.yml ([09884d2](https://github.com/hei-school/poja-cli/commit/09884d2c1dcb42afd35f582af589767c76b0e24b))
+
+
+### Features
+
+* check formatting in CI ([42cacc0](https://github.com/hei-school/poja-cli/commit/42cacc094695c0414924e7dd0974b6bf45322178))
+
+
+
 ## [10.5.1](https://github.com/hei-school/poja-cli/compare/v10.5.0...v10.5.1) (2024-01-19)
 
 

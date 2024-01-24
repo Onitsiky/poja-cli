@@ -1,3 +1,12 @@
+## [10.6.1](https://github.com/hei-school/poja-cli/compare/v10.6.0...v10.6.1) (2024-01-24)
+
+
+### Bug Fixes
+
+* do not override target project LICENSE ([ae0eb7c](https://github.com/hei-school/poja-cli/commit/ae0eb7c02f96503ea52b9f85a041e0c0d91f39cd))
+
+
+
 # [10.6.0](https://github.com/hei-school/poja-cli/compare/v10.5.1...v10.6.0) (2024-01-24)
 
 

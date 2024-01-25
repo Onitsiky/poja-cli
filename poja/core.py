@@ -13,7 +13,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "6a88d08"
+GIT_TAG_OR_COMMIT = "022e072"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -33,6 +33,7 @@ def gen(
     custom_java_repositories=None,
     custom_java_deps=None,
     custom_java_env_vars=None,
+    java_facade_it="FacadeIT",
     with_gen_clients="false",
     with_database="sqlite",
     output_dir=None,
@@ -70,6 +71,7 @@ def gen(
             custom_java_repositories = conf["custom_java_repositories"]
             custom_java_deps = conf["custom_java_deps"]
             custom_java_env_vars = conf["custom_java_env_vars"]
+            java_facade_it = conf["java_facade_it"]
             with_gen_clients = conf["with_gen_clients"]
             with_database = conf["with_database"]
             jacoco_min_coverage = conf["jacoco_min_coverage"]
@@ -176,6 +178,8 @@ def gen(
     java_env_vars = replace_with_file_content(
         tmp_dir, "<?java-env-vars>", custom_java_env_vars, exclude, joiner=indent
     )
+    print_normal("java_facade_it")
+    sed.find_replace(tmp_dir, "<?java-facade-it>", java_facade_it, exclude)
 
     print_normal("app_name")
     sed.find_replace(tmp_dir, "<?app-name>", app_name, exclude)
@@ -216,6 +220,7 @@ def gen(
         java_repositories,
         java_deps,
         java_env_vars,
+        java_facade_it,
         with_gen_clients,
         with_database,
         jacoco_min_coverage,
@@ -277,6 +282,7 @@ def save_conf(
     custom_java_repositories,
     custom_java_deps,
     custom_java_env_vars,
+    java_facade_it,
     with_gen_clients,
     with_database,
     jacoco_min_coverage,
@@ -305,6 +311,7 @@ def save_conf(
         "custom_java_repositories": custom_java_repositories_filename,
         "custom_java_deps": custom_java_deps_filename,
         "custom_java_env_vars": custom_java_env_vars_filename,
+        "java_facade_it": java_facade_it,
         "with_gen_clients": with_gen_clients,
         "with_database": with_database,
         "jacoco_min_coverage": jacoco_min_coverage,

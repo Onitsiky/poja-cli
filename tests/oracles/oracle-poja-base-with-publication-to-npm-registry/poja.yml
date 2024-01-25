@@ -5,6 +5,7 @@ custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
 frontal_memory: 2048
 jacoco_min_coverage: '0.9'
+java_facade_it: FacadeIT
 package_full_name: com.company.base
 region: eu-west-3
 ses_source: noreply@nowhere.com

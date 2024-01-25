@@ -1,3 +1,12 @@
+# [10.7.0](https://github.com/hei-school/poja-cli/compare/v10.6.1...v10.7.0) (2024-01-25)
+
+
+### Features
+
+* --java-facade-it=FacadeIT is the base class for @PojaGenerated tests ([6e22e1d](https://github.com/hei-school/poja-cli/commit/6e22e1d51181e71203d057028750bb3cf2cbccf6))
+
+
+
 ## [10.6.1](https://github.com/hei-school/poja-cli/compare/v10.6.0...v10.6.1) (2024-01-24)
 
 

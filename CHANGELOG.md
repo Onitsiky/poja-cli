@@ -1,3 +1,12 @@
+# [10.8.0](https://github.com/hei-school/poja-cli/compare/v10.7.0...v10.8.0) (2024-02-02)
+
+
+### Features
+
+* add choice on enabling tests or not during cd-compute ([f9d64eb](https://github.com/hei-school/poja-cli/commit/f9d64ebee2a3dcfe0e4b68fc54c22a9431c6fb1a))
+
+
+
 # [10.7.0](https://github.com/hei-school/poja-cli/compare/v10.6.1...v10.7.0) (2024-01-25)
 
 

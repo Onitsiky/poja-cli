@@ -48,7 +48,7 @@ python -m poja \
 ```
 Note the `--upgrade` and the `--output-dir=folder-already-created` flags. The POJA configuration that was used for the previous generation is saved in `poja.yml`: it will be updated after the new upgrade.
 
-If you want to do an upgrade without re-specifying each parameter (there are more than 20 of them!), then poja conveniently provides de `--poja-conf` parameter.
+If you want to do an upgrade without re-specifying each parameter (there are more than 20 of them!), then poja conveniently provides the `--poja-conf` parameter.
 Just modify the existing `poja.yml`
 (modify mandatorily the `version` parameter so that it reflects the newly upgraded version,
 modify optionally any other parameter depending on your needs), then:

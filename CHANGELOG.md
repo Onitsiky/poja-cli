@@ -1,3 +1,12 @@
+## [11.0.1](https://github.com/hei-school/poja-cli/compare/v11.0.0...v11.0.1) (2024-02-09)
+
+
+### Bug Fixes
+
+* do not use custom sqlite dialect anymore ([4d08e32](https://github.com/hei-school/poja-cli/commit/4d08e327a69818103ffbeaeba0618b14d832ab40))
+
+
+
 # [11.0.0](https://github.com/hei-school/poja-cli/compare/v10.8.0...v11.0.0) (2024-02-09)
 
 

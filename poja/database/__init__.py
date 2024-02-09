@@ -61,11 +61,11 @@ def set_postgres(with_database, temp, exclude):
     )
 
 
-def set_sqlite(with_database, package_full_name, temp, exclude):
+def set_sqlite(with_database, temp, exclude):
     if with_database == "sqlite":
         efs_mount_point = "/mnt/efs"
         sqlite_env_vars = f"""DRIVERCLASSNAME: org.sqlite.JDBC
-        SPRING_JPA_DATABASEPLATFORM: {package_full_name}.repository.conf.SqliteDialect
+        SPRING_JPA_DATABASEPLATFORM: org.hibernate.community.dialect.SQLiteDialect
         DATABASE_URL: jdbc:sqlite:{efs_mount_point}/sqlite-data:db?cache=shared
         DATABASE_USERNAME: sa
         DATABASE_PASSWORD: sa"""

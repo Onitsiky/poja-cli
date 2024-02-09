@@ -138,7 +138,7 @@ def gen(
 
     print_normal("with_database")
     set_postgres(with_database, tmp_dir, exclude)
-    set_sqlite(with_database, package_full_name, tmp_dir, exclude)
+    set_sqlite(with_database, tmp_dir, exclude)
 
     print_normal("with_own_vpc")
     set_vpc_scoped_resources(

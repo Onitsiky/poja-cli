@@ -25,7 +25,7 @@ Globals:
         AWS_S3_BUCKET: !Sub '{{resolve:ssm:/poja-sqlite/${Env}/s3/bucket-name}}'
         AWS_SES_SOURCE: noreply@nowhere.com
         DRIVERCLASSNAME: org.sqlite.JDBC
-        SPRING_JPA_DATABASEPLATFORM: com.company.base.repository.conf.SqliteDialect
+        SPRING_JPA_DATABASEPLATFORM: org.hibernate.community.dialect.SQLiteDialect
         DATABASE_URL: jdbc:sqlite:/mnt/efs/sqlite-data:db?cache=shared
         DATABASE_USERNAME: sa
         DATABASE_PASSWORD: sa

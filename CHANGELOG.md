@@ -1,3 +1,15 @@
+# [11.0.0](https://github.com/hei-school/poja-cli/compare/v10.8.0...v11.0.0) (2024-02-09)
+
+
+* feat!: upgrade spring boot to version 3 ([f56948d](https://github.com/hei-school/poja-cli/commit/f56948dc77739fa7fbc6f75118dfd68c4c664210))
+
+
+### BREAKING CHANGES
+
+* se sversion
+
+
+
 # [10.8.0](https://github.com/hei-school/poja-cli/compare/v10.7.0...v10.8.0) (2024-02-02)
 
 

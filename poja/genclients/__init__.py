@@ -15,6 +15,7 @@ def set_gen_clients(with_gen_clients, tmp_dir, exclude):
     modelPackage = "school.hei.poja.endpoint.rest.model"
 
     configOptions = [
+            serializableModel: "true",
             serializationLibrary: "jackson",
             dateLibrary: "custom"
     ]

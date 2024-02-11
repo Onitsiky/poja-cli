@@ -47,6 +47,7 @@ task generateJavaClient(type: GenerateTask) {
     modelPackage = "com.company.base.endpoint.rest.model"
 
     configOptions = [
+            serializableModel: "true",
             serializationLibrary: "jackson",
             dateLibrary: "custom"
     ]

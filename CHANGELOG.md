@@ -1,3 +1,17 @@
+# [11.1.0](https://github.com/hei-school/poja-cli/compare/v11.0.1...v11.1.0) (2024-02-11)
+
+
+### Bug Fixes
+
+* seriazableModel=true when --gen-clients=true ([cab9d25](https://github.com/hei-school/poja-cli/commit/cab9d253503a556473a4776243a38604f82a949d))
+
+
+### Features
+
+* upgrade tika from v1 to v2 ([abd0dc3](https://github.com/hei-school/poja-cli/commit/abd0dc33cef27bb17488ac3db15d923c55d96978))
+
+
+
 ## [11.0.1](https://github.com/hei-school/poja-cli/compare/v11.0.0...v11.0.1) (2024-02-09)
 
 

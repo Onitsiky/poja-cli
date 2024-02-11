@@ -1,3 +1,12 @@
+# [11.2.0](https://github.com/hei-school/poja-cli/compare/v11.1.0...v11.2.0) (2024-02-11)
+
+
+### Features
+
+* Health check poja ([04902cd](https://github.com/hei-school/poja-cli/commit/04902cdc447a70cf41f4d50e3477e6c7a1e9dec4))
+
+
+
 # [11.1.0](https://github.com/hei-school/poja-cli/compare/v11.0.1...v11.1.0) (2024-02-11)
 
 

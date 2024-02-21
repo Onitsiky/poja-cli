@@ -1,3 +1,5 @@
+[![poja](https://snyk.io/advisor/python/poja/badge.svg)](https://snyk.io/advisor/python/poja)
+
 POJA CLI
 ========
 

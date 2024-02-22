@@ -2,7 +2,9 @@ import poja.sed as sed
 import os
 
 
-def set_postgres(with_database, temp, exclude):
+def set_postgres(
+    with_database, aurora_min_capacity, aurora_max_capacity, temp, exclude
+):
     if with_database == "postgres":
         postgres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
         DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
@@ -35,6 +37,17 @@ def set_postgres(with_database, temp, exclude):
             "POSTGRES_CONF.configureProperties(registry);"
         )
 
+    if aurora_min_capacity is not None and aurora_max_capacity is not None:
+        if aurora_min_capacity <= aurora_max_capacity:
+            aurora_capacity_conf = f"""MaxCapacity: {aurora_max_capacity}
+        MinCapacity: {aurora_min_capacity}"""
+        else:
+            raise ValueError(
+                "aurora_min_capacity value must be less than or equal to aurora_max_capacity"
+            )
+    else:
+        aurora_capacity_conf = ""
+
     sed.find_replace(
         temp,
         "<?postgres-env-vars>",
@@ -59,6 +72,7 @@ def set_postgres(with_database, temp, exclude):
     sed.find_replace(
         temp, "<?upsert-constraint-dummy-uuid>", upsert_constraint_dummy_uuid, exclude
     )
+    sed.find_replace(temp, "<?db-scaling-capacities>", aurora_capacity_conf, exclude)
 
 
 def set_sqlite(with_database, temp, exclude):

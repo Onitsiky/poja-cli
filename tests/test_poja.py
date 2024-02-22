@@ -49,6 +49,8 @@ def test_base():
         jacoco_min_coverage="0.5",
         custom_java_deps=oracle_rel_path("custom-java-deps-justice.txt"),
         with_snapstart="true",
+        aurora_max_capacity=16,
+        aurora_min_capacity=12,
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 

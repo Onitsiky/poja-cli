@@ -42,6 +42,8 @@ Resources:
       ScalingConfiguration:
         SecondsUntilAutoPause:
           !If [ IsProdEnv,  !Ref ProdDbClusterTimeout, 300 ]
+        MaxCapacity: 16
+        MinCapacity: 12
 
 
   DatabaseClusterSSM:

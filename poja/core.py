@@ -13,7 +13,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "ee72c94"
+GIT_TAG_OR_COMMIT = "af7a385"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -45,6 +45,8 @@ def gen(
     worker_memory=1024,
     worker_batch=5,
     with_snapstart="false",
+    aurora_min_capacity=None,
+    aurora_max_capacity=None,
 ):
     if poja_conf is not None:
         with open(poja_conf, "r") as conf_strem:
@@ -137,7 +139,9 @@ def gen(
     sed.find_replace(tmp_dir, "<?worker-batch>", str(worker_batch), exclude)
 
     print_normal("with_database")
-    set_postgres(with_database, tmp_dir, exclude)
+    set_postgres(
+        with_database, aurora_min_capacity, aurora_max_capacity, tmp_dir, exclude
+    )
     set_sqlite(with_database, tmp_dir, exclude)
 
     print_normal("with_own_vpc")

@@ -1,3 +1,12 @@
+# [11.3.0](https://github.com/hei-school/poja-cli/compare/v11.2.0...v11.3.0) (2024-02-22)
+
+
+### Features
+
+* add custom aurora min and max scaling configuration ([947372b](https://github.com/hei-school/poja-cli/commit/947372bc208b53204577dcd95902421efb5181d8))
+
+
+
 # [11.2.0](https://github.com/hei-school/poja-cli/compare/v11.1.0...v11.2.0) (2024-02-11)
 
 

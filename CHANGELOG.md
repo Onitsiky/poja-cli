@@ -1,3 +1,12 @@
+# [11.4.0](https://github.com/hei-school/poja-cli/compare/v11.3.0...v11.4.0) (2024-02-22)
+
+
+### Features
+
+* add support for non root database user ([b65c5ea](https://github.com/hei-school/poja-cli/commit/b65c5ea58b3918e355b2d3e0724cdb0a87d4c1ed)), closes [#49](https://github.com/hei-school/poja-cli/issues/49)
+
+
+
 # [11.3.0](https://github.com/hei-school/poja-cli/compare/v11.2.0...v11.3.0) (2024-02-22)
 
 

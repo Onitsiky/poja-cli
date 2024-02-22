@@ -28,8 +28,8 @@ Globals:
         AWS_SES_SOURCE: lou@hei.school
         
         DATABASE_URL: !Sub '{{resolve:ssm:/poja-base/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/${Env}/db/password}}'
+        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base/db/user/username}}'
+        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base/db/user/password}}'
         
         
 

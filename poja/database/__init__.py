@@ -3,12 +3,18 @@ import os
 
 
 def set_postgres(
-    with_database, aurora_min_capacity, aurora_max_capacity, temp, exclude
+    with_database,
+    aurora_min_capacity,
+    aurora_max_capacity,
+    database_non_root_username,
+    database_non_root_password,
+    temp,
+    exclude,
 ):
     if with_database == "postgres":
-        postgres_env_vars = """DATABASE_URL: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/<?app-name>/${Env}/db/password}}'"""
+        postgres_env_vars = f"""DATABASE_URL: !Sub '{{{{resolve:ssm:/<?app-name>/${{Env}}/db/url}}}}'
+        DATABASE_USERNAME: !Sub '{{{{resolve:ssm:{'/<?app-name>/${{Env}}/db/username' if database_non_root_username is None else database_non_root_username}}}}}'
+        DATABASE_PASSWORD: !Sub '{{{{resolve:ssm:{'/<?app-name>/${{Env}}/db/password' if database_non_root_password is None else database_non_root_password}}}}}'"""
         upsert_constraint_dummy = "on conflict on constraint dummy_pk do nothing;"
         upsert_constraint_dummy_uuid = (
             "on conflict on constraint dummy_uuid_pk do nothing;"

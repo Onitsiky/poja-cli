@@ -47,6 +47,8 @@ def gen(
     with_snapstart="false",
     aurora_min_capacity=None,
     aurora_max_capacity=None,
+    database_non_root_username=None,
+    database_non_root_password=None,
 ):
     if poja_conf is not None:
         with open(poja_conf, "r") as conf_strem:
@@ -140,7 +142,13 @@ def gen(
 
     print_normal("with_database")
     set_postgres(
-        with_database, aurora_min_capacity, aurora_max_capacity, tmp_dir, exclude
+        with_database,
+        aurora_min_capacity,
+        aurora_max_capacity,
+        database_non_root_username,
+        database_non_root_password,
+        tmp_dir,
+        exclude,
     )
     set_sqlite(with_database, tmp_dir, exclude)
 

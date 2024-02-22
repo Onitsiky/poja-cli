@@ -51,6 +51,8 @@ def test_base():
         with_snapstart="true",
         aurora_max_capacity=16,
         aurora_min_capacity=12,
+        database_non_root_username="/poja-base/db/user/username",
+        database_non_root_password="/poja-base/db/user/password",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 

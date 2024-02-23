@@ -88,6 +88,26 @@ def gen(
             worker_memory = int(conf["worker_memory"])
             worker_batch = int(conf["worker_batch"])
             with_snapstart = conf["with_snapstart"]
+            aurora_min_capacity = (
+                int(conf["aurora_min_capacity"])
+                if conf["aurora_min_capacity"] != "null"
+                else None
+            )
+            aurora_max_capacity = (
+                int(conf["aurora_max_capacity"])
+                if conf["aurora_max_capacity"] != "null"
+                else None
+            )
+            database_non_root_username = (
+                conf["database_non_root_username"]
+                if conf["database_non_root_username"] != "null"
+                else None
+            )
+            database_non_root_password = (
+                conf["database_non_root_password"]
+                if conf["database_non_root_password"] != "null"
+                else None
+            )
 
     if app_name is None:
         raise Exception(
@@ -243,6 +263,10 @@ def gen(
         frontal_memory,
         worker_memory,
         worker_batch,
+        aurora_min_capacity,
+        aurora_max_capacity,
+        database_non_root_username,
+        database_non_root_password,
     )
     print_normal("poja.yml")
 
@@ -305,6 +329,10 @@ def save_conf(
     frontal_memory,
     worker_memory,
     worker_batch,
+    aurora_min_capacity,
+    aurora_max_capacity,
+    database_non_root_username,
+    database_non_root_password,
 ):
     custom_java_repositories_filename = "poja-custom-java-repositories.txt"
     custom_java_deps_filename = "poja-custom-java-deps.txt"
@@ -334,6 +362,10 @@ def save_conf(
         "frontal_memory": frontal_memory,
         "worker_memory": worker_memory,
         "worker_batch": worker_batch,
+        "aurora_min_capacity": aurora_min_capacity,
+        "aurora_max_capacity": aurora_max_capacity,
+        "database_non_root_username": database_non_root_username,
+        "database_non_root_password": database_non_root_password,
     }
     with open(tmp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)

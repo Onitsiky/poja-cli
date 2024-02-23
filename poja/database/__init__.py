@@ -13,8 +13,8 @@ def set_postgres(
 ):
     if with_database == "postgres":
         postgres_env_vars = f"""DATABASE_URL: !Sub '{{{{resolve:ssm:/<?app-name>/${{Env}}/db/url}}}}'
-        DATABASE_USERNAME: !Sub '{{{{resolve:ssm:{'/<?app-name>/${{Env}}/db/username' if database_non_root_username is None else database_non_root_username}}}}}'
-        DATABASE_PASSWORD: !Sub '{{{{resolve:ssm:{'/<?app-name>/${{Env}}/db/password' if database_non_root_password is None else database_non_root_password}}}}}'"""
+        DATABASE_USERNAME: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/username' if database_non_root_username is None else database_non_root_username}}}}}'
+        DATABASE_PASSWORD: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/password' if database_non_root_password is None else database_non_root_password}}}}}'"""
         upsert_constraint_dummy = "on conflict on constraint dummy_pk do nothing;"
         upsert_constraint_dummy_uuid = (
             "on conflict on constraint dummy_uuid_pk do nothing;"

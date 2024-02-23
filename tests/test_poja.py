@@ -53,6 +53,7 @@ def test_base():
         aurora_min_capacity=12,
         database_non_root_username="/poja-base/db/user/username",
         database_non_root_password="/poja-base/db/user/password",
+        with_codeql="true",
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 
@@ -69,6 +70,7 @@ def test_without_own_vpc():
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_codeql="false",
     )
     assert is_dir_superset_of(
         oracle_rel_path("oracle-poja-base-without-own-vpc"), output_dir
@@ -90,6 +92,7 @@ def test_without_postgres():
         with_gen_clients="false",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_codeql="false",
     )
     assert is_dir_superset_of(
         oracle_rel_path("oracle-poja-base-without-postgres"), output_dir
@@ -110,7 +113,10 @@ def test_with_custom_java_repos_and_sqlite():
         custom_java_repositories=oracle_rel_path("custom-java-repositories.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
+        with_codeql="false",
     )
+    print(oracle_rel_path("oracle-poja-sqlite"))
+    print(output_dir)
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-sqlite"), output_dir)
     assert oracle_tests_are_passing(output_dir)
 
@@ -147,6 +153,7 @@ def test_with_custom_java_env_vars_and_swagger_ui():
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_codeql="false",
     )
     assert is_dir_superset_of(
         oracle_rel_path("oracle-poja-base-with-java-env-vars"), output_dir
@@ -172,6 +179,7 @@ def test_with_script_to_publish_to_npm_registry():
         ts_client_default_openapi_server_url="http://localhost",
         ts_client_api_url_env_var_name="CLIENT_API_URL",
         with_snapstart="true",
+        with_codeql="false",
     )
     assert is_dir_superset_of(
         oracle_rel_path("oracle-poja-base-with-publication-to-npm-registry"), output_dir

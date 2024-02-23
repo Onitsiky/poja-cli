@@ -49,6 +49,7 @@ def gen(
     aurora_max_capacity=None,
     database_non_root_username=None,
     database_non_root_password=None,
+    with_codeql="false",
 ):
     if poja_conf is not None:
         with open(poja_conf, "r") as conf_strem:
@@ -108,6 +109,7 @@ def gen(
                 if conf["database_non_root_password"] != "null"
                 else None
             )
+            with_codeql = conf["with_codeql"]
 
     if app_name is None:
         raise Exception(
@@ -237,6 +239,9 @@ def gen(
     else:
         os.remove(f"{tmp_dir}/.github/workflows/publish-client.yml")
 
+    if with_codeql == "false":
+        os.remove(f"{tmp_dir}/.github/workflows/codeql.yml")
+
     print_title("Save conf...")
     save_conf(
         tmp_dir,
@@ -267,6 +272,7 @@ def gen(
         aurora_max_capacity,
         database_non_root_username,
         database_non_root_password,
+        with_codeql,
     )
     print_normal("poja.yml")
 
@@ -333,6 +339,7 @@ def save_conf(
     aurora_max_capacity,
     database_non_root_username,
     database_non_root_password,
+    with_codeql,
 ):
     custom_java_repositories_filename = "poja-custom-java-repositories.txt"
     custom_java_deps_filename = "poja-custom-java-deps.txt"
@@ -366,6 +373,7 @@ def save_conf(
         "aurora_max_capacity": aurora_max_capacity,
         "database_non_root_username": database_non_root_username,
         "database_non_root_password": database_non_root_password,
+        "with_codeql": with_codeql,
     }
     with open(tmp_dir + "/poja.yml", "w") as conf_file:
         yaml.dump(conf, conf_file)

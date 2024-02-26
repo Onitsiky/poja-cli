@@ -1,3 +1,17 @@
+# [11.5.0](https://github.com/hei-school/poja-cli/compare/v11.4.1...v11.5.0) (2024-02-26)
+
+
+### Bug Fixes
+
+* consume events with parallel workers configured by workers.thread.number that defaults to 5 ([7c519b4](https://github.com/hei-school/poja-cli/commit/7c519b4bc0f7fea09e3b39182e197ee797b04ffd))
+
+
+### Features
+
+* add support for --with-codeql ([d3b6960](https://github.com/hei-school/poja-cli/commit/d3b696060dc939f661790787afa3f64b0dd2b7bc))
+
+
+
 ## [11.4.1](https://github.com/hei-school/poja-cli/compare/v11.4.0...v11.4.1) (2024-02-23)
 
 

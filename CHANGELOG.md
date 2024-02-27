@@ -1,3 +1,12 @@
+# [11.6.0](https://github.com/hei-school/poja-cli/compare/v11.5.0...v11.6.0) (2024-02-27)
+
+
+### Features
+
+* exclude **/gen/** from coverage ([7e6b3d2](https://github.com/hei-school/poja-cli/commit/7e6b3d217e88499856a097bba933eb3ab3ece304))
+
+
+
 # [11.5.0](https://github.com/hei-school/poja-cli/compare/v11.4.1...v11.5.0) (2024-02-26)
 
 

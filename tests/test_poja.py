@@ -7,6 +7,7 @@ from tempfile import TemporaryDirectory
 import os.path
 from pathlib import Path
 from pytest import raises
+from poja.version import get_version
 
 
 def oracle_rel_path(oracle_dir_name):
@@ -27,7 +28,7 @@ def test_poja_conf_must_use_proper_version():
         poja.gen(poja_conf=oracle_rel_path("poja-conf-bad-version.yml"))
     assert (
         str(e.value)
-        == "You must use the poja version defined in your conf file. Forgot to upgrade?"
+        == f"You must use the poja version defined in your conf file(v0.0.0). Forgot to upgrade (to v{get_version()})?"
     )
 
 

@@ -1,3 +1,12 @@
+## [11.7.1](https://github.com/hei-school/poja-cli/compare/v11.7.0...v11.7.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* typography ([1cae5b3](https://github.com/hei-school/poja-cli/commit/1cae5b382d0cdab1d96a02028a06084d235bcca2))
+
+
+
 # [11.7.0](https://github.com/hei-school/poja-cli/compare/v11.6.1...v11.7.0) (2024-02-27)
 
 

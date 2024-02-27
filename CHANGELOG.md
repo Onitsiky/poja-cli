@@ -1,3 +1,12 @@
+# [11.7.0](https://github.com/hei-school/poja-cli/compare/v11.6.1...v11.7.0) (2024-02-27)
+
+
+### Features
+
+* show mismatching versions of poja ([f916e6a](https://github.com/hei-school/poja-cli/commit/f916e6a5861e2204e850b4f0a55d845322ccf652))
+
+
+
 ## [11.6.1](https://github.com/hei-school/poja-cli/compare/v11.6.0...v11.6.1) (2024-02-27)
 
 

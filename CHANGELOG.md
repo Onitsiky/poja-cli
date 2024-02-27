@@ -1,3 +1,12 @@
+## [11.6.1](https://github.com/hei-school/poja-cli/compare/v11.6.0...v11.6.1) (2024-02-27)
+
+
+### Bug Fixes
+
+* remove non UTF-8 characters ([acf38ba](https://github.com/hei-school/poja-cli/commit/acf38bacad2f2ee438ebd7759fedd3b358403080))
+
+
+
 # [11.6.0](https://github.com/hei-school/poja-cli/compare/v11.5.0...v11.6.0) (2024-02-27)
 
 

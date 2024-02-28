@@ -1,7 +1,10 @@
 app_name: poja-base
+aurora_auto_pause: 'true'
 aurora_max_capacity: 16
 aurora_min_capacity: 12
-cli_version: 11.7.0
+aurora_scale_point: 60
+aurora_sleep: 900
+cli_version: 11.7.1
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
@@ -12,6 +15,7 @@ jacoco_min_coverage: '0.5'
 java_facade_it: FacadeIT
 package_full_name: com.company.base
 region: eu-west-3
+reserved_concurrent_executions_nb: null
 ses_source: lou@hei.school
 ssm_sg_id: /poja/sg/id
 ssm_subnet1_id: /poja/subnet/private1/id

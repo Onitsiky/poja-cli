@@ -6,6 +6,9 @@ def set_postgres(
     with_database,
     aurora_min_capacity,
     aurora_max_capacity,
+    aurora_scale_point,
+    aurora_sleep,
+    aurora_auto_pause,
     database_non_root_username,
     database_non_root_password,
     temp,
@@ -43,16 +46,25 @@ def set_postgres(
             "POSTGRES_CONF.configureProperties(registry);"
         )
 
-    if aurora_min_capacity is not None and aurora_max_capacity is not None:
+    if (
+        aurora_min_capacity is not None
+        and aurora_max_capacity is not None
+        and aurora_scale_point is not None
+        and aurora_sleep is not None
+    ):
         if aurora_min_capacity <= aurora_max_capacity:
             aurora_capacity_conf = f"""MaxCapacity: {aurora_max_capacity}
-        MinCapacity: {aurora_min_capacity}"""
+        MinCapacity: {aurora_min_capacity}
+        SecondsBeforeTimeout: {aurora_scale_point}
+        AutoPause: {aurora_auto_pause}
+        SecondsUntilAutoPause: !If [ IsProdEnv, {aurora_sleep}, !Ref ProdDbClusterTimeout]
+            """
         else:
             raise ValueError(
                 "aurora_min_capacity value must be less than or equal to aurora_max_capacity"
             )
     else:
-        aurora_capacity_conf = ""
+        aurora_capacity_conf = f"SecondsUntilAutoPause: !If [ IsProdEnv, {aurora_sleep}, !Ref ProdDbClusterTimeout]"
 
     sed.find_replace(
         temp,

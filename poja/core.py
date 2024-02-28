@@ -13,7 +13,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "652f696"
+GIT_TAG_OR_COMMIT = "9ecfa67"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -44,9 +44,13 @@ def gen(
     frontal_memory=2048,
     worker_memory=1024,
     worker_batch=5,
+    reserved_concurrent_executions_nb=None,
     with_snapstart="false",
     aurora_min_capacity=None,
     aurora_max_capacity=None,
+    aurora_scale_point=None,
+    aurora_sleep=300,
+    aurora_auto_pause="false",
     database_non_root_username=None,
     database_non_root_password=None,
     with_codeql="false",
@@ -88,6 +92,11 @@ def gen(
             frontal_memory = int(conf["frontal_memory"])
             worker_memory = int(conf["worker_memory"])
             worker_batch = int(conf["worker_batch"])
+            reserved_concurrent_executions_nb = (
+                int(conf["reserved_concurrent_executions_nb"])
+                if conf["reserved_concurrent_executions_nb"] != "null"
+                else None
+            )
             with_snapstart = conf["with_snapstart"]
             aurora_min_capacity = (
                 int(conf["aurora_min_capacity"])
@@ -99,6 +108,15 @@ def gen(
                 if conf["aurora_max_capacity"] != "null"
                 else None
             )
+            aurora_scale_point = (
+                int(conf["aurora_scale_point"])
+                if conf["aurora_scale_point"] != "null"
+                else None
+            )
+            aurora_sleep = (
+                int(conf["aurora_sleep"]) if conf["aurora_sleep"] != "null" else None
+            )
+            aurora_auto_pause = conf["aurora_auto_pause"]
             database_non_root_username = (
                 conf["database_non_root_username"]
                 if conf["database_non_root_username"] != "null"
@@ -161,12 +179,22 @@ def gen(
     sed.find_replace(tmp_dir, "<?worker-memory>", str(worker_memory), exclude)
     print_normal("worker_batch")
     sed.find_replace(tmp_dir, "<?worker-batch>", str(worker_batch), exclude)
+    print_normal("reserved_concurrent_executions_nb")
+    sed.find_replace(
+        tmp_dir,
+        "<?reserved-concurrent-executions-nb>",
+        str(reserved_concurrent_executions_nb),
+        exclude,
+    )
 
     print_normal("with_database")
     set_postgres(
         with_database,
         aurora_min_capacity,
         aurora_max_capacity,
+        aurora_scale_point,
+        aurora_sleep,
+        aurora_auto_pause,
         database_non_root_username,
         database_non_root_password,
         tmp_dir,
@@ -268,8 +296,12 @@ def gen(
         frontal_memory,
         worker_memory,
         worker_batch,
+        reserved_concurrent_executions_nb,
         aurora_min_capacity,
         aurora_max_capacity,
+        aurora_scale_point,
+        aurora_sleep,
+        aurora_auto_pause,
         database_non_root_username,
         database_non_root_password,
         with_codeql,
@@ -335,8 +367,12 @@ def save_conf(
     frontal_memory,
     worker_memory,
     worker_batch,
+    reserved_concurrent_executions_nb,
     aurora_min_capacity,
     aurora_max_capacity,
+    aurora_scale_point,
+    aurora_sleep,
+    aurora_auto_pause,
     database_non_root_username,
     database_non_root_password,
     with_codeql,
@@ -369,8 +405,12 @@ def save_conf(
         "frontal_memory": frontal_memory,
         "worker_memory": worker_memory,
         "worker_batch": worker_batch,
+        "reserved_concurrent_executions_nb": reserved_concurrent_executions_nb,
         "aurora_min_capacity": aurora_min_capacity,
         "aurora_max_capacity": aurora_max_capacity,
+        "aurora_scale_point": aurora_scale_point,
+        "aurora_sleep": aurora_sleep,
+        "aurora_auto_pause": aurora_auto_pause,
         "database_non_root_username": database_non_root_username,
         "database_non_root_password": database_non_root_password,
         "with_codeql": with_codeql,

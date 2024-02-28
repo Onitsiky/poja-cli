@@ -1,3 +1,12 @@
+# [11.8.0](https://github.com/hei-school/poja-cli/compare/v11.7.1...v11.8.0) (2024-02-28)
+
+
+### Features
+
+* --reserved-concurrent-executions-nb, --aurora-scale-point, --aurora-sleep, --aurora-auto-pause ([c209611](https://github.com/hei-school/poja-cli/commit/c20961156bd2cf4fa68d050b73b2a9109d7e1bf6))
+
+
+
 ## [11.7.1](https://github.com/hei-school/poja-cli/compare/v11.7.0...v11.7.1) (2024-02-27)
 
 

@@ -6,6 +6,7 @@ from poja.version import get_version
 from poja.vpcscoped import set_vpc_scoped_resources
 from poja.genclients import set_gen_clients
 from poja.database import set_postgres, set_sqlite
+from poja.sentry import set_sentry
 import yaml
 from yaml.loader import BaseLoader
 import os
@@ -53,6 +54,8 @@ def gen(
     aurora_auto_pause="false",
     database_non_root_username=None,
     database_non_root_password=None,
+    with_sentry="false",
+    sentry_dsn=None,
     with_codeql="false",
 ):
     if poja_conf is not None:
@@ -127,6 +130,8 @@ def gen(
                 if conf["database_non_root_password"] != "null"
                 else None
             )
+            with_sentry = conf["with_sentry"]
+            sentry_dsn = conf["sentry_dsn"]
             with_codeql = conf["with_codeql"]
 
     if app_name is None:
@@ -172,6 +177,9 @@ def gen(
         function_snapstart_java_env,
         exclude,
     )
+
+    if with_sentry == "true":
+        set_sentry(sentry_dsn, tmp_dir, exclude)
 
     print_normal("frontal_memory")
     sed.find_replace(tmp_dir, "<?frontal-memory>", str(frontal_memory), exclude)
@@ -308,6 +316,8 @@ def gen(
         aurora_auto_pause,
         database_non_root_username,
         database_non_root_password,
+        with_sentry,
+        sentry_dsn,
         with_codeql,
     )
     print_normal("poja.yml")
@@ -379,6 +389,8 @@ def save_conf(
     aurora_auto_pause,
     database_non_root_username,
     database_non_root_password,
+    with_sentry,
+    sentry_dsn,
     with_codeql,
 ):
     custom_java_repositories_filename = "poja-custom-java-repositories.txt"
@@ -417,6 +429,8 @@ def save_conf(
         "aurora_auto_pause": aurora_auto_pause,
         "database_non_root_username": database_non_root_username,
         "database_non_root_password": database_non_root_password,
+        "with_sentry": with_sentry,
+        "sentry_dsn": sentry_dsn,
         "with_codeql": with_codeql,
     }
     with open(tmp_dir + "/poja.yml", "w") as conf_file:

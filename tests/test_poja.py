@@ -57,6 +57,7 @@ def test_base():
         aurora_auto_pause="true",
         database_non_root_username="/poja-base/db/user/username",
         database_non_root_password="/poja-base/db/user/password",
+        with_sentry="false",
         with_codeql="true",
         reserved_concurrent_executions_nb=250,
     )
@@ -75,6 +76,7 @@ def test_without_own_vpc():
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_sentry="false",
         with_codeql="false",
     )
     assert is_dir_superset_of(
@@ -97,6 +99,7 @@ def test_without_postgres():
         with_gen_clients="false",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_sentry="false",
         with_codeql="false",
     )
     assert is_dir_superset_of(
@@ -104,7 +107,7 @@ def test_without_postgres():
     )
 
 
-def test_with_custom_java_repos_and_sqlite():
+def test_with_custom_java_repos_and_sqlite_and_sentry():
     output_dir = "test-poja-sqlite"
     poja.gen(
         app_name="poja-sqlite",
@@ -118,6 +121,8 @@ def test_with_custom_java_repos_and_sqlite():
         custom_java_repositories=oracle_rel_path("custom-java-repositories.txt"),
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
+        with_sentry="true",
+        sentry_dsn="https://sentry.dsn",
         with_codeql="false",
     )
     print(oracle_rel_path("oracle-poja-sqlite"))
@@ -158,6 +163,7 @@ def test_with_custom_java_env_vars_and_swagger_ui():
         with_gen_clients="true",
         jacoco_min_coverage="0.9",
         with_snapstart="true",
+        with_sentry="false",
         with_codeql="false",
     )
     assert is_dir_superset_of(
@@ -184,6 +190,7 @@ def test_with_script_to_publish_to_npm_registry():
         ts_client_default_openapi_server_url="http://localhost",
         ts_client_api_url_env_var_name="CLIENT_API_URL",
         with_snapstart="true",
+        with_sentry="false",
         with_codeql="false",
     )
     assert is_dir_superset_of(

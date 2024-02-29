@@ -1,3 +1,12 @@
+## [11.8.1](https://github.com/hei-school/poja-cli/compare/v11.8.0...v11.8.1) (2024-02-29)
+
+
+### Bug Fixes
+
+* rm ReservedConcurrentExecutions from template.yml if it is null ([41c6edb](https://github.com/hei-school/poja-cli/commit/41c6edbd319581c89454bf3cba74b3f3ae61b820))
+
+
+
 # [11.8.0](https://github.com/hei-school/poja-cli/compare/v11.7.1...v11.8.0) (2024-02-28)
 
 

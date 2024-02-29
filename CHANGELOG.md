@@ -1,3 +1,12 @@
+# [11.9.0](https://github.com/hei-school/poja-cli/compare/v11.8.1...v11.9.0) (2024-02-29)
+
+
+### Features
+
+* add --with-sentry support ([d7c163c](https://github.com/hei-school/poja-cli/commit/d7c163cbd05e1984e34fa5cc6bb3eb551ecc6f11))
+
+
+
 ## [11.8.1](https://github.com/hei-school/poja-cli/compare/v11.8.0...v11.8.1) (2024-02-29)
 
 

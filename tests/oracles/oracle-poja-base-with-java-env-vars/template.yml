@@ -61,7 +61,6 @@ Resources:
             Method: ANY
             RestApiId:
               Ref: FrontalServerlessRestApi
-      ReservedConcurrentExecutions: None
 
   WorkerFunction:
     Type: AWS::Serverless::Function

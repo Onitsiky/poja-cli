@@ -4,7 +4,7 @@ aurora_max_capacity: 16
 aurora_min_capacity: 12
 aurora_scale_point: 60
 aurora_sleep: 900
-cli_version: 11.7.1
+cli_version: 11.8.0
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt
@@ -15,7 +15,7 @@ jacoco_min_coverage: '0.5'
 java_facade_it: FacadeIT
 package_full_name: com.company.base
 region: eu-west-3
-reserved_concurrent_executions_nb: null
+reserved_concurrent_executions_nb: 250
 ses_source: lou@hei.school
 ssm_sg_id: /poja/sg/id
 ssm_subnet1_id: /poja/subnet/private1/id

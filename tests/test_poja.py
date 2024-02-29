@@ -58,6 +58,7 @@ def test_base():
         database_non_root_username="/poja-base/db/user/username",
         database_non_root_password="/poja-base/db/user/password",
         with_codeql="true",
+        reserved_concurrent_executions_nb=250,
     )
     assert is_dir_superset_of(oracle_rel_path("oracle-poja-base"), output_dir)
 

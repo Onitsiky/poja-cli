@@ -11,3 +11,13 @@ def find_replace(directory, find, replace, exclude_pattern):
             s = s.replace(find, replace)
             with open(filepath, "w") as f:
                 f.write(s)
+
+
+def remove_line_by_keyword(filename, keyword):
+    with open(filename, "r") as file:
+        lines = file.readlines()
+
+    with open(filename, "w") as file:
+        for line in lines:
+            if keyword not in line:
+                file.write(line)

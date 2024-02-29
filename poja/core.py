@@ -180,13 +180,17 @@ def gen(
     print_normal("worker_batch")
     sed.find_replace(tmp_dir, "<?worker-batch>", str(worker_batch), exclude)
     print_normal("reserved_concurrent_executions_nb")
-    sed.find_replace(
-        tmp_dir,
-        "<?reserved-concurrent-executions-nb>",
-        str(reserved_concurrent_executions_nb),
-        exclude,
-    )
-
+    if reserved_concurrent_executions_nb is None:
+        sed.remove_line_by_keyword(
+            f"{tmp_dir}/template.yml", "ReservedConcurrentExecutions"
+        )
+    else:
+        sed.find_replace(
+            tmp_dir,
+            "<?reserved-concurrent-executions-nb>",
+            str(reserved_concurrent_executions_nb),
+            exclude,
+        )
     print_normal("with_database")
     set_postgres(
         with_database,

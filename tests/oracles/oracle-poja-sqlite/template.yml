@@ -10,6 +10,8 @@ Globals:
     Architectures:
       - x86_64
     Timeout: 600
+    EventInvokeConfig:
+      MaximumRetryAttempts: 0
     
     VpcConfig:
       SecurityGroupIds:

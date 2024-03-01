@@ -55,7 +55,6 @@ def gen(
     database_non_root_username=None,
     database_non_root_password=None,
     with_sentry="false",
-    sentry_dsn=None,
     with_codeql="false",
 ):
     if poja_conf is not None:
@@ -131,7 +130,6 @@ def gen(
                 else None
             )
             with_sentry = conf["with_sentry"]
-            sentry_dsn = conf["sentry_dsn"]
             with_codeql = conf["with_codeql"]
 
     if app_name is None:
@@ -179,7 +177,7 @@ def gen(
     )
 
     if with_sentry == "true":
-        sentry_dsn = f"/{app_name}/sentry/dsn" if sentry_dsn is None else sentry_dsn
+        sentry_dsn = f"/{app_name}/sentry/dsn"
         set_sentry(sentry_dsn, tmp_dir, exclude)
 
     print_normal("frontal_memory")
@@ -318,7 +316,6 @@ def gen(
         database_non_root_username,
         database_non_root_password,
         with_sentry,
-        sentry_dsn,
         with_codeql,
     )
     print_normal("poja.yml")
@@ -391,7 +388,6 @@ def save_conf(
     database_non_root_username,
     database_non_root_password,
     with_sentry,
-    sentry_dsn,
     with_codeql,
 ):
     custom_java_repositories_filename = "poja-custom-java-repositories.txt"
@@ -431,7 +427,6 @@ def save_conf(
         "database_non_root_username": database_non_root_username,
         "database_non_root_password": database_non_root_password,
         "with_sentry": with_sentry,
-        "sentry_dsn": sentry_dsn,
         "with_codeql": with_codeql,
     }
     with open(tmp_dir + "/poja.yml", "w") as conf_file:

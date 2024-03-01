@@ -1,3 +1,12 @@
+## [11.11.1](https://github.com/hei-school/poja-cli/compare/v11.11.0...v11.11.1) (2024-03-01)
+
+
+### Bug Fixes
+
+* sentry parameter ([0d1a42e](https://github.com/hei-school/poja-cli/commit/0d1a42e1ad7c6faf53d1037482215c8dd89ab41f))
+
+
+
 # [11.11.0](https://github.com/hei-school/poja-cli/compare/v11.10.0...v11.11.0) (2024-03-01)
 
 

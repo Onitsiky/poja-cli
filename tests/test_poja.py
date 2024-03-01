@@ -122,7 +122,6 @@ def test_with_custom_java_repos_and_sqlite_and_sentry():
         output_dir=output_dir,
         jacoco_min_coverage="0.5",
         with_sentry="true",
-        sentry_dsn="https://sentry.dsn",
         with_codeql="false",
     )
     print(oracle_rel_path("oracle-poja-sqlite"))

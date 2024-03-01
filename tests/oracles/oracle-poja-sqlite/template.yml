@@ -33,7 +33,7 @@ Globals:
         DATABASE_PASSWORD: sa
         
         
-        SENTRY_DSN: https://sentry.dsn
+        SENTRY_DSN: !Sub '{{resolve:ssm:/poja-sqlite/sentry/dsn}}'
         SENTRY_ENVIRONMENT: !Ref Env
         
     

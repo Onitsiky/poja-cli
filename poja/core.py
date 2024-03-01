@@ -179,6 +179,7 @@ def gen(
     )
 
     if with_sentry == "true":
+        sentry_dsn = f"/{app_name}/sentry/dsn" if sentry_dsn is None else sentry_dsn
         set_sentry(sentry_dsn, tmp_dir, exclude)
 
     print_normal("frontal_memory")

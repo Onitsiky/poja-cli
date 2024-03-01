@@ -1,3 +1,12 @@
+# [11.10.0](https://github.com/hei-school/poja-cli/compare/v11.9.0...v11.10.0) (2024-03-01)
+
+
+### Features
+
+* close resources before lambda times out ([a696a4d](https://github.com/hei-school/poja-cli/commit/a696a4d2775c1899787646de1691aab0a8e4421e))
+
+
+
 # [11.9.0](https://github.com/hei-school/poja-cli/compare/v11.8.1...v11.9.0) (2024-02-29)
 
 

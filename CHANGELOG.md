@@ -1,3 +1,12 @@
+# [11.11.0](https://github.com/hei-school/poja-cli/compare/v11.10.0...v11.11.0) (2024-03-01)
+
+
+### Features
+
+* get sentry_dsn from ssm parameters ([cfc4ec8](https://github.com/hei-school/poja-cli/commit/cfc4ec87ef7eb65a0ba2dcd1718120bec47aad28)), closes [#65](https://github.com/hei-school/poja-cli/issues/65)
+
+
+
 # [11.10.0](https://github.com/hei-school/poja-cli/compare/v11.9.0...v11.10.0) (2024-03-01)
 
 

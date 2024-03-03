@@ -86,6 +86,19 @@ That file will come handy for future generations based on past generations.
 Similar to the Java deps section above, but with `--custom-java-env-vars` as argument name.
 [Here](./custom-java-env-vars.txt) is an example of such a file.
 
+### Set application properties
+
+Simply create application.properties under your classpath resource folder and you're good to go.
+Feel free to add your properties !
+
+### Override your application.properties for your workers
+
+Create a file named application-worker.properties under your classpath resources folder and set the variables you would like to override.
+
+> **Warning**
+> values from application-worker.properties will take precedence over application.properties'
+
+
 ### Use your own VPC
 
 ```diff

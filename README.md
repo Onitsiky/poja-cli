@@ -88,15 +88,13 @@ Similar to the Java deps section above, but with `--custom-java-env-vars` as arg
 
 ### Set application properties
 
-Simply create application.properties under your classpath resource folder and you're good to go.
-Feel free to add your properties !
-
-### Override your application.properties for your workers
-
-Create a file named application-worker.properties under your classpath resources folder and set the variables you would like to override.
+Use `application.properties` as standard.
+These properties hold for both frontals and workers.
+If you want to use specific values for workers,
+then set them inside a file named `application-worker.properties`.
 
 > **Warning**
-> values from application-worker.properties will take precedence over application.properties'
+> Values from `application-worker.properties` will take precedence over `application.properties`.
 
 
 ### Use your own VPC

@@ -1,3 +1,12 @@
+## [11.11.2](https://github.com/hei-school/poja-cli/compare/v11.11.1...v11.11.2) (2024-03-03)
+
+
+### Bug Fixes
+
+* rm DatasourceConf and load properties from classpath (global and worker's) ([f01932b](https://github.com/hei-school/poja-cli/commit/f01932be669ac010dc5882bb3b542d2c55c7194d))
+
+
+
 ## [11.11.1](https://github.com/hei-school/poja-cli/compare/v11.11.0...v11.11.1) (2024-03-01)
 
 

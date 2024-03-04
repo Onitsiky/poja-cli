@@ -28,9 +28,9 @@ Globals:
         AWS_SES_SOURCE: noreply@nowhere.com
         DRIVERCLASSNAME: org.sqlite.JDBC
         SPRING_JPA_DATABASEPLATFORM: org.hibernate.community.dialect.SQLiteDialect
-        DATABASE_URL: jdbc:sqlite:/mnt/efs/sqlite-data:db?cache=shared
-        DATABASE_USERNAME: sa
-        DATABASE_PASSWORD: sa
+        SPRING_DATASOURCE_URL: jdbc:sqlite:/mnt/efs/sqlite-data:db?cache=shared
+        SPRING_DATASOURCE_USERNAME: sa
+        SPRING_DATASOURCE_PASSWORD: sa
         
         
         SENTRY_DSN: !Sub '{{resolve:ssm:/poja-sqlite/sentry/dsn}}'

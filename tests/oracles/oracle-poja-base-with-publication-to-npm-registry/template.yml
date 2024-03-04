@@ -29,9 +29,9 @@ Globals:
         AWS_S3_BUCKET: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/s3/bucket-name}}'
         AWS_SES_SOURCE: noreply@nowhere.com
         
-        DATABASE_URL: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/url}}'
-        DATABASE_USERNAME: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/username}}'
-        DATABASE_PASSWORD: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/password}}'
+        SPRING_DATASOURCE_URL: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/url}}'
+        SPRING_DATASOURCE_USERNAME: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/username}}'
+        SPRING_DATASOURCE_PASSWORD: !Sub '{{resolve:ssm:/poja-base-with-publication-to-npm-registry/${Env}/db/password}}'
         SENTRY_DSN: !Sub '{{resolve:ssm:/hei-admin-api/sentry/dsn}}'
         AWS_SES_CONTACT: !Sub '{{resolve:ssm:/hei-admin-api/${Env}/ses/contact}}'
         

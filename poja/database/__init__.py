@@ -15,9 +15,9 @@ def set_postgres(
     exclude,
 ):
     if with_database == "postgres":
-        postgres_env_vars = f"""DATABASE_URL: !Sub '{{{{resolve:ssm:/<?app-name>/${{Env}}/db/url}}}}'
-        DATABASE_USERNAME: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/username' if database_non_root_username is None else database_non_root_username}}}}}'
-        DATABASE_PASSWORD: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/password' if database_non_root_password is None else database_non_root_password}}}}}'"""
+        postgres_env_vars = f"""SPRING_DATASOURCE_URL: !Sub '{{{{resolve:ssm:/<?app-name>/${{Env}}/db/url}}}}'
+        SPRING_DATASOURCE_USERNAME: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/username' if database_non_root_username is None else database_non_root_username}}}}}'
+        SPRING_DATASOURCE_PASSWORD: !Sub '{{{{resolve:ssm:{'/<?app-name>/${Env}/db/password' if database_non_root_password is None else database_non_root_password}}}}}'"""
         upsert_constraint_dummy = "on conflict on constraint dummy_pk do nothing;"
         upsert_constraint_dummy_uuid = (
             "on conflict on constraint dummy_uuid_pk do nothing;"
@@ -98,9 +98,9 @@ def set_sqlite(with_database, temp, exclude):
         efs_mount_point = "/mnt/efs"
         sqlite_env_vars = f"""DRIVERCLASSNAME: org.sqlite.JDBC
         SPRING_JPA_DATABASEPLATFORM: org.hibernate.community.dialect.SQLiteDialect
-        DATABASE_URL: jdbc:sqlite:{efs_mount_point}/sqlite-data:db?cache=shared
-        DATABASE_USERNAME: sa
-        DATABASE_PASSWORD: sa"""
+        SPRING_DATASOURCE_URL: jdbc:sqlite:{efs_mount_point}/sqlite-data:db?cache=shared
+        SPRING_DATASOURCE_USERNAME: sa
+        SPRING_DATASOURCE_PASSWORD: sa"""
         sqlite_configure_it_properties = (
             "new SqliteConf().configureProperties(registry);"
         )

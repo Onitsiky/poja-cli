@@ -14,7 +14,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "d490359"
+GIT_TAG_OR_COMMIT = "90070c0"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -176,10 +176,6 @@ def gen(
         exclude,
     )
 
-    if with_sentry == "true":
-        sentry_dsn = f"/{app_name}/sentry/dsn"
-        set_sentry(sentry_dsn, tmp_dir, exclude)
-
     print_normal("frontal_memory")
     sed.find_replace(tmp_dir, "<?frontal-memory>", str(frontal_memory), exclude)
     print_normal("worker_memory")
@@ -212,7 +208,10 @@ def gen(
         exclude,
     )
     set_sqlite(with_database, tmp_dir, exclude)
-
+    print_normal("with_sentry")
+    if with_sentry == "true":
+        sentry_dsn = f"/{app_name}/sentry/dsn"
+        set_sentry(sentry_dsn, tmp_dir, exclude)
     print_normal("with_own_vpc")
     set_vpc_scoped_resources(
         with_own_vpc, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, tmp_dir, exclude
@@ -280,6 +279,11 @@ def gen(
 
     if with_codeql == "false":
         os.remove(f"{tmp_dir}/.github/workflows/codeql.yml")
+
+    if with_sentry == "false":
+        dirs = package_full_name.replace(".", "/")
+        os.remove(f"{tmp_dir}/src/main/java/{dirs}/endpoint/SentryConf.java")
+        sed.find_replace(tmp_dir, "<?sentry-test-env>", "", exclude)
 
     print_title("Save conf...")
     save_conf(

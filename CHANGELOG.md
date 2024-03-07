@@ -1,3 +1,18 @@
+# [11.12.0](https://github.com/hei-school/poja-cli/compare/v11.11.2...v11.12.0) (2024-03-07)
+
+
+### Bug Fixes
+
+* resolve [#52](https://github.com/hei-school/poja-cli/issues/52) with hei-school/poja@7f91a48 ([fc621de](https://github.com/hei-school/poja-cli/commit/fc621de75f793f0cad5460290d9180eb1a42cde5))
+* use spring varenvs instead of named envs for datasource access ([230e9b9](https://github.com/hei-school/poja-cli/commit/230e9b9ffcc2126921f8a6c908affd3cc965a53c))
+
+
+### Features
+
+* rm SentryConf if with_sentry is false ([ec4b876](https://github.com/hei-school/poja-cli/commit/ec4b876db65239dda37a25aefe47836717a7f026))
+
+
+
 ## [11.11.2](https://github.com/hei-school/poja-cli/compare/v11.11.1...v11.11.2) (2024-03-03)
 
 

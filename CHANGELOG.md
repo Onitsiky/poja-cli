@@ -1,3 +1,15 @@
+# [12.0.0](https://github.com/hei-school/poja-cli/compare/v11.12.0...v12.0.0) (2024-03-08)
+
+
+* feat!: upgrade java to version 21 ([e1b3a01](https://github.com/hei-school/poja-cli/commit/e1b3a01be5ff6efdbd4d2793a4e6281489323ff4)), closes [#40](https://github.com/hei-school/poja-cli/issues/40)
+
+
+### BREAKING CHANGES
+
+* use java 21
+
+
+
 # [11.12.0](https://github.com/hei-school/poja-cli/compare/v11.11.2...v11.12.0) (2024-03-07)
 
 

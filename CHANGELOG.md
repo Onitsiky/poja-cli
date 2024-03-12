@@ -1,3 +1,12 @@
+# [12.2.0](https://github.com/hei-school/poja-cli/compare/v12.1.0...v12.2.0) (2024-03-12)
+
+
+### Features
+
+* add user tag on resources stacks ([06b999f](https://github.com/hei-school/poja-cli/commit/06b999fbd5dd50b342921a27441d0064b260a728))
+
+
+
 # [12.1.0](https://github.com/hei-school/poja-cli/compare/v12.0.0...v12.1.0) (2024-03-12)
 
 

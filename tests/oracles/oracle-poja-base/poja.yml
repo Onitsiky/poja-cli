@@ -4,7 +4,7 @@ aurora_max_capacity: 16
 aurora_min_capacity: 12
 aurora_scale_point: 60
 aurora_sleep: 900
-cli_version: 12.1.0
+cli_version: 12.2.0
 custom_java_deps: poja-custom-java-deps.txt
 custom_java_env_vars: poja-custom-java-env-vars.txt
 custom_java_repositories: poja-custom-java-repositories.txt

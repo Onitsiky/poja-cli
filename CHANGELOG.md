@@ -1,3 +1,12 @@
+# [12.1.0](https://github.com/hei-school/poja-cli/compare/v12.0.0...v12.1.0) (2024-03-12)
+
+
+### Features
+
+* **debug:** use virtual-threads instead of fixedThreadpool, also name frontal and worker threads ([a69e4d5](https://github.com/hei-school/poja-cli/commit/a69e4d53c4454a0016d6c70197e57ea928c1ac39))
+
+
+
 # [12.0.0](https://github.com/hei-school/poja-cli/compare/v11.12.0...v12.0.0) (2024-03-08)
 
 

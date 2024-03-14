@@ -1,3 +1,12 @@
+## [12.2.1](https://github.com/hei-school/poja-cli/compare/v12.2.0...v12.2.1) (2024-03-14)
+
+
+### Bug Fixes
+
+* add sentry logback dependency ([ec2ea36](https://github.com/hei-school/poja-cli/commit/ec2ea360313c7c218c6e1a3430839628817116f3))
+
+
+
 # [12.2.0](https://github.com/hei-school/poja-cli/compare/v12.1.0...v12.2.0) (2024-03-12)
 
 

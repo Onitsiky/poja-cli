@@ -4,6 +4,7 @@ import poja.sed as sed
 def set_sentry(dsn, dir, exclude):
 
     sentry_deps = """
+    implementation 'io.sentry:sentry-logback:7.6.0'
     implementation 'io.sentry:sentry-spring-boot-starter-jakarta:7.4.0'
     <?java-deps>
     """

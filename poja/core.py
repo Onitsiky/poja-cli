@@ -7,6 +7,7 @@ from poja.vpcscoped import set_vpc_scoped_resources
 from poja.genclients import set_gen_clients
 from poja.database import set_postgres, set_sqlite
 from poja.sentry import set_sentry
+from poja.sonar import set_sonar
 import yaml
 from yaml.loader import BaseLoader
 import os
@@ -14,7 +15,7 @@ from poja.myos import cd_then_exec
 from pathlib import Path
 
 GIT_URL = "https://github.com/hei-school/poja"
-GIT_TAG_OR_COMMIT = "3743e1d"
+GIT_TAG_OR_COMMIT = "7a8cf52"
 
 DEFAULT_GROUP_NAME = "school.hei"
 DEFAULT_PACKAGE_FULL_NAME = DEFAULT_GROUP_NAME + ".poja"
@@ -55,6 +56,7 @@ def gen(
     database_non_root_username=None,
     database_non_root_password=None,
     with_sentry="false",
+    with_sonar="false",
     with_codeql="false",
 ):
     if poja_conf is not None:
@@ -131,6 +133,7 @@ def gen(
             )
             with_sentry = conf["with_sentry"]
             with_codeql = conf["with_codeql"]
+            with_sonar = conf["with_sonar"]
 
     if app_name is None:
         raise Exception(
@@ -212,6 +215,14 @@ def gen(
     if with_sentry == "true":
         sentry_dsn = f"/{app_name}/sentry/dsn"
         set_sentry(sentry_dsn, tmp_dir, exclude)
+    if with_sonar == "true":
+        set_sonar(tmp_dir, exclude)
+    else:
+        sed.find_replace(tmp_dir, "<?sonar-java-plugins>", "", exclude)
+        sed.find_replace(tmp_dir, "<?sonar-conf>", "", exclude)
+        sed.find_replace(tmp_dir, "<?sonar-env>", "", exclude)
+        sed.find_replace(tmp_dir, "<?sonar-ci>", "", exclude)
+
     print_normal("with_own_vpc")
     set_vpc_scoped_resources(
         with_own_vpc, ssm_sg_id, ssm_subnet1_id, ssm_subnet2_id, tmp_dir, exclude
@@ -320,6 +331,7 @@ def gen(
         database_non_root_username,
         database_non_root_password,
         with_sentry,
+        with_sonar,
         with_codeql,
     )
     print_normal("poja.yml")
@@ -392,6 +404,7 @@ def save_conf(
     database_non_root_username,
     database_non_root_password,
     with_sentry,
+    with_sonar,
     with_codeql,
 ):
     custom_java_repositories_filename = "poja-custom-java-repositories.txt"
@@ -431,6 +444,7 @@ def save_conf(
         "database_non_root_username": database_non_root_username,
         "database_non_root_password": database_non_root_password,
         "with_sentry": with_sentry,
+        "with_sonar": with_sonar,
         "with_codeql": with_codeql,
     }
     with open(tmp_dir + "/poja.yml", "w") as conf_file:

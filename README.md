@@ -71,6 +71,17 @@ If you want POJA to fully manage Postgres: from creation, to operations -- scale
 2. Define the Github variable `PROD_DB_CLUSTER_TIMEOUT` that sets the prod database cluster scaling down timeout. Note that its value must be between 300 seconds (5 minutes) and 86_400 seconds (1 day). Due to the once-per-day health check action, the (serverless) prod database will always be hot if you set it to one day.
 3. Run the `CD storage` action. This creates the serverless Postgres. The database URL is printed in the Github console.
 
+
+### Configure SonarCloud
+Use the argument `--with-sonar=true` and set up the following secrets and variables in the repository settings:
+1. Secrets:
+    - `SONAR_TOKEN` : SonarCloud project token
+2. Variables:
+    - `SONAR_ORG`: SonarCloud organization key.
+    - `SONAR_PJ_KEY`: SonarCloud project key.
+    - `SONAR_PJ_NAME`: SonarCloud project name.
+
+
 ### Use custom/additional Java deps
 
 Just provide the argument `--custom-java-deps=your-list-of-deps`

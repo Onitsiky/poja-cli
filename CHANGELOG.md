@@ -1,3 +1,12 @@
+# [12.3.0](https://github.com/hei-school/poja-cli/compare/v12.2.1...v12.3.0) (2024-03-19)
+
+
+### Features
+
+* configure sonarqube for code coverage analysis ([7900f10](https://github.com/hei-school/poja-cli/commit/7900f1073a8c96a02cb1a22f8aaf02b86233c5eb))
+
+
+
 ## [12.2.1](https://github.com/hei-school/poja-cli/compare/v12.2.0...v12.2.1) (2024-03-14)
 
 

@@ -4,5 +4,6 @@ import com.company.base.PojaGenerated;
 
 @PojaGenerated
 public enum FileHashAlgorithm {
-  SHA256, NONE
+  SHA256,
+  NONE
 }

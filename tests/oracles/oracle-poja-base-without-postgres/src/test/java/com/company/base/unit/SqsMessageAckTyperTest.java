@@ -8,16 +8,16 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.amazonaws.services.lambda.runtime.events.SQSEvent;
+import com.company.base.PojaGenerated;
+import com.company.base.conf.FacadeIT;
+import com.company.base.endpoint.event.EventConsumer;
+import com.company.base.endpoint.event.gen.UuidCreated;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import com.company.base.PojaGenerated;
-import com.company.base.conf.FacadeIT;
-import com.company.base.endpoint.event.EventConsumer;
-import com.company.base.endpoint.event.gen.UuidCreated;
 import software.amazon.awssdk.services.sqs.SqsClient;
 import software.amazon.awssdk.services.sqs.model.DeleteMessageRequest;
 

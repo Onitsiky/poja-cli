@@ -105,7 +105,7 @@ public class BucketComponent {
     return presignedRequest.url();
   }
 
-  public String getBucketName(){
+  public String getBucketName() {
     return bucketConf.getBucketName();
   }
 }

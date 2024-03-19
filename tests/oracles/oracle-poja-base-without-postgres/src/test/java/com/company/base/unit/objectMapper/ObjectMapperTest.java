@@ -3,12 +3,12 @@ package com.company.base.unit.objectMapper;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import com.company.base.conf.FacadeIT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import java.time.Instant;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.company.base.conf.FacadeIT;
 
 public class ObjectMapperTest extends FacadeIT {
   @Autowired ObjectMapper injectedBean;

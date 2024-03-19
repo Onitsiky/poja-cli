@@ -1,22 +1,20 @@
 package com.company.base.endpoint.rest.controller.health;
 
+import static com.company.base.endpoint.rest.controller.health.PingController.OK;
+import static java.io.File.createTempFile;
+
 import com.company.base.PojaGenerated;
 import com.company.base.mail.Email;
 import com.company.base.mail.Mailer;
 import jakarta.mail.internet.AddressException;
 import jakarta.mail.internet.InternetAddress;
+import java.io.IOException;
+import java.util.List;
 import lombok.AllArgsConstructor;
-import lombok.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.io.IOException;
-import java.util.List;
-
-import static com.company.base.endpoint.rest.controller.health.PingController.OK;
-import static java.io.File.createTempFile;
 
 @PojaGenerated
 @RestController

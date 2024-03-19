@@ -1,7 +1,7 @@
 package com.company.base.conf;
 
-import org.springframework.test.context.DynamicPropertyRegistry;
 import com.company.base.PojaGenerated;
+import org.springframework.test.context.DynamicPropertyRegistry;
 
 @PojaGenerated
 public class EmailConf {

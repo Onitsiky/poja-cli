@@ -8,8 +8,8 @@ def set_sonar(dir, exclude):
     properties {
     }
 } """
-    sonar_env = """  env:
-     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} """
+    sonar_env = """env:
+  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} """
     sonar_ci = """- name: Cache SonarCloud packages
         uses: actions/cache@v2
         with:
@@ -19,12 +19,12 @@ def set_sonar(dir, exclude):
 
       - name: Code quality and coverage analysis
         run: |
-         ./gradlew sonarqube --info \\ \n
-         -Dsonar.host.url=https://sonarcloud.io \\ \n
-         -Dsonar.organization=${{ vars.SONAR_ORG }} \\ \n
-         -Dsonar.projectKey=${{ vars.SONAR_PJ_KEY }} \\ \n
-         -Dsonar.projectName=${{ vars.SONAR_PJ_NAME }} \\ \n
-         -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml \\ \n
+         ./gradlew sonarqube --info \\
+         -Dsonar.host.url=https://sonarcloud.io \\
+         -Dsonar.organization=${{ vars.SONAR_ORG }} \\
+         -Dsonar.projectKey=${{ vars.SONAR_PJ_KEY }} \\
+         -Dsonar.projectName=${{ vars.SONAR_PJ_NAME }} \\
+         -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml \\
          -Dsonar.java.checkstyle.reportPaths=build/reports/checkstyle/main.xml,build/reports/checkstyle/test.xml
  """
 

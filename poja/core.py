@@ -212,6 +212,7 @@ def gen(
     )
     set_sqlite(with_database, tmp_dir, exclude)
     print_normal("with_sentry")
+    print_normal("with_sonar")
     if with_sentry == "true":
         sentry_dsn = f"/{app_name}/sentry/dsn"
         set_sentry(sentry_dsn, tmp_dir, exclude)

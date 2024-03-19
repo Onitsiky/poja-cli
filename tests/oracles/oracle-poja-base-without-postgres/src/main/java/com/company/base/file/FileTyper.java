@@ -1,14 +1,15 @@
 package com.company.base.file;
 
-import static org.springframework.http.MediaType.parseMediaType;
-
 import com.company.base.PojaGenerated;
-import java.io.File;
-import java.util.function.Function;
 import lombok.SneakyThrows;
 import org.apache.tika.Tika;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+
+import java.io.File;
+import java.util.function.Function;
+
+import static org.springframework.http.MediaType.parseMediaType;
 
 @PojaGenerated
 @Component

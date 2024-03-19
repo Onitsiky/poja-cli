@@ -1,8 +1,8 @@
 package com.company.base.conf;
 
-import com.company.base.PojaGenerated;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.testcontainers.containers.PostgreSQLContainer;
+import com.company.base.PojaGenerated;
 
 @PojaGenerated
 public class PostgresConf {

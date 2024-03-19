@@ -3,15 +3,15 @@ package com.company.base.endpoint.event;
 import static java.util.UUID.randomUUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.company.base.PojaGenerated;
-import com.company.base.conf.FacadeIT;
-import com.company.base.endpoint.event.gen.UuidCreated;
-import com.company.base.repository.DummyUuidRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.company.base.PojaGenerated;
+import com.company.base.conf.FacadeIT;
+import com.company.base.endpoint.event.gen.UuidCreated;
+import com.company.base.repository.DummyUuidRepository;
 
 @PojaGenerated
 class EventConsumerIT extends FacadeIT {

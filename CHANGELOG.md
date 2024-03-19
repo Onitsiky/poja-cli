@@ -1,3 +1,12 @@
+## [12.3.1](https://github.com/hei-school/poja-cli/compare/v12.3.0...v12.3.1) (2024-03-19)
+
+
+### Bug Fixes
+
+* sonar ci indentation ([0d2103b](https://github.com/hei-school/poja-cli/commit/0d2103b5c9f9695ee20ee7de44adba0ae8e19721))
+
+
+
 # [12.3.0](https://github.com/hei-school/poja-cli/compare/v12.2.1...v12.3.0) (2024-03-19)
 
 

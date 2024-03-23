@@ -1,3 +1,12 @@
+# [12.4.0](https://github.com/hei-school/poja-cli/compare/v12.3.1...v12.4.0) (2024-03-23)
+
+
+### Features
+
+* update openapi generator version to 7.4.0 ([7845d77](https://github.com/hei-school/poja-cli/commit/7845d77f5002d0f6d54c284edb7bf0ba2867b723))
+
+
+
 ## [12.3.1](https://github.com/hei-school/poja-cli/compare/v12.3.0...v12.3.1) (2024-03-19)
 
 

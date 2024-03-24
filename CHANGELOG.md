@@ -1,3 +1,12 @@
+## [12.4.1](https://github.com/hei-school/poja-cli/compare/v12.4.0...v12.4.1) (2024-03-24)
+
+
+### Bug Fixes
+
+* add missing @PojaGenerated ([ca819c6](https://github.com/hei-school/poja-cli/commit/ca819c6a4ca9df483097e022ac53f3dd9b629820))
+
+
+
 # [12.4.0](https://github.com/hei-school/poja-cli/compare/v12.3.1...v12.4.0) (2024-03-23)
 
 
